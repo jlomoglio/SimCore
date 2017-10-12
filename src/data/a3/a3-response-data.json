@@ -1,0 +1,24 @@
+{
+    "incorrect": {
+        "vo": "../assets/audio/incorrect.mp3",
+        "cc": "Please follow the steps provided."
+    },
+    "correct": {
+        "t1": {
+            "vo": "../assets/audio/a3/A3_T1_P.mp3",
+            "cc": "Good."
+        },
+        "t3": {
+            "vo": "../assets/audio/a3/A3_T3_P.mp3",
+            "cc": "Good job. The charging process has begun."
+        },
+        "t4": {
+            "vo": "../assets/audio/a3/A3_T4_P.mp3",
+            "cc": "Good."
+        },
+        "t5": {
+            "vo": "../assets/audio/a3/A3_T5_P.mp3",
+            "cc": "Good job. The charge is complete. We will review equalizing the hoses in Activity 4."
+        }
+    }
+}

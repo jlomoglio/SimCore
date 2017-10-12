@@ -1,0 +1,54 @@
+{
+  	"footer": {
+	    "ccBar": {
+	      	"isShown": false,
+			"isOn": true,
+	      	"text": ""
+	    },
+	    "scoreBox": {
+	      	"text": ""
+	  	}
+	},
+	"closeModuleAlert": {
+		"isShown": false
+	},
+	"skipActivityAlert": {
+		"isShown": false
+	},
+    "activityAlreadyCompleted": {
+        "isShown": false
+    },
+	"assessmentWindow": {
+		"isShown": false,
+		"isExpanded": true,
+		"isCollapsed": false,
+        "assessment": null,
+        "submit": false,
+        "callback": {}
+	},
+	"siWindow": {
+		"isShown": false,
+		"isExpanded": true,
+		"isCollapsed": false,
+		"content": "",
+		"width": "",
+		"height": "",
+		"zoomIn": {
+			"isEnabled": true
+		},
+		"zoomOut": {
+			"isEnabled": false
+		},
+		"zoomPercent": 1
+	},
+	"toolTray": {
+		"isShown": false
+	},
+    "continueButton": {
+        "mode": "",
+        "view": "",
+        "isShown": false,
+        "callback": {}
+    },
+  	"score": 0
+}

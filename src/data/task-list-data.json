@@ -1,0 +1,59 @@
+{
+	"A1": {
+		"description": "Checking for power at the trunk release fuse.",
+		"tasks": [
+			"Remove the cap of the low-side service port.",
+			"Remove the cap of the high-side service port.",
+			"Connect hose to the low-side service port.",
+			"Connect hose to the high-side service port.",
+			"Open the low-side service port",
+			"Open the high-side service port",
+			"Click the power button.",
+			"Click the recover button.",
+			"Click the start button.",
+			"Rotate the low-side hand valve to open it.",
+			"Open the high side hand valve.",
+			"Close the low side hand valve.",
+            "Close the high side hand valve"
+		]
+	},
+	"A2": {
+		"description": "",
+		"tasks": [
+			"Select the vacuum button.",
+			"Set the timer.",
+			"Press the start button.",
+			"Open the low side hand valve.",
+			"Open the hide side hand valve.",
+			"Close the low side hand valve.",
+            "Close the high side hand valve."
+		]
+	},
+    "A3": {
+		"description": "",
+		"tasks": [
+			"Select the charge button.",
+			"Adjust the machine to the correct weight of refrigerant.",
+			"Select the start button.",
+			"Open the high side hand valve.",
+			"Close the high side hand valve."
+		]
+	},
+    "A4": {
+		"description": "",
+		"tasks": [
+			"Select the Start button.",
+			"Remove the high side hose from the vehicle.",
+			"Turn on the ignition.",
+			"Open the low side hand valve.",
+			"Open the high side hand valve.",
+			"Close the low side hand valve.",
+            "Close the high side hand valve.",
+			"Remove the low side hose from the vehicle.",
+			"Turn off the ignition.",
+			"Turn off the AC machine.",
+			"Cap the low side service port.",
+			"Cap the high side service port."
+		]
+	}
+}

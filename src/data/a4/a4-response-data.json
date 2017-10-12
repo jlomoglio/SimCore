@@ -1,0 +1,32 @@
+{
+    "incorrect": {
+        "vo": "../assets/audio/incorrect.mp3",
+        "cc": "Please follow the steps provided."
+    },
+    "correct": {
+        "t2": {
+            "vo": "../assets/audio/a4/A4_T2_P.mp3",
+            "cc": "Good."
+        },
+        "t3": {
+            "vo": "../assets/audio/a4/A4_T3_P.mp3",
+            "cc": "Great."
+        },
+        "t6": {
+            "vo": "../assets/audio/a4/A4_T6_P.mp3",
+            "cc": "Good."
+        },
+        "t9": {
+            "vo": "../assets/audio/a4/A4_T9_P.mp3",
+            "cc": "Good job."
+        },
+        "t10": {
+            "vo": "../assets/audio/a4/A4_T10_P.mp3",
+            "cc": "Good."
+        },
+        "t12": {
+            "vo": "../assets/audio/a4/A4_T12_P.mp3",
+            "cc": "Good job."
+        }
+    }
+}

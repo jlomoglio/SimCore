@@ -1,0 +1,60 @@
+{
+  	"isShown": true,
+  	"icons": {
+		"zoom": {
+			"isShown": false,
+			"isEnabled": false,
+			"zoomPercent": 1
+		},
+		"zoomIn": {
+			"isEnabled": true
+		},
+		"zoomOut": {
+			"isEnabled": false
+		},
+		"serviceInfo": {
+			"isShown": false,
+			"isEnabled": false
+		},
+	    "toolTray": {
+			"isShown": false,
+			"isEnabled": false
+		},
+	    "partsDepartment": {
+			"isShown": false,
+			"isEnabled": false
+		}
+  	},
+	"menus": {
+		"main": {
+	  		"isOpen": false,
+	  		"version": "Alpha",
+	  		"subMenus": {
+	    		"videoSubMenuOpen": false,
+	    		"videoPopupPlayerIsShown": false,
+	    		"videoPopupPlayerSrc": "",
+		    	"videos": [
+		      		{
+		        		"id": "vid1",
+		        		"title": "Using the Simulation",
+		        		"src": "./assets/video/intro_video.html"
+		      		},
+		      		{
+		        		"id": "vid2",
+		        		"title": "Understanding the Concepts",
+		        		"src": "./assets/video/concepts_video.html"
+		      		},
+		      		{
+		        		"id": "vid3",
+		        		"title": "Understanding the Equipment",
+		        		"src": "./assets/video/equipment_video.html"
+		      		}
+		    	],
+		    	"activitySubMenuOpen": false
+		  	}
+		},
+		"serviceInfo": {
+			"isOpen": false
+		}
+	}
+}

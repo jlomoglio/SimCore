@@ -1,0 +1,29 @@
+{
+	"currentView": "HomePage",
+	"useContentArea": false,
+	"activityName": "",
+	"currentActivityView": "A1V1",
+    "currentActivityId": "",
+    "skipToActivityId": "",
+	"version": "Alpha",
+
+	"lightBoxIsShown": false,
+	"lightBoxMode": "defaultMode",
+    "activityLightBoxIsShown": false,
+
+	"introCompleted": false,
+	"introIsShown": false,
+
+	"useSafetyScreen": true,
+	"safetyCompleted": false,
+	"safetyIsShown": false,
+
+    "endActivityScreenIsShown": false,
+	"audioCompleted": false,
+
+    "currentReviewQuestionsViewId": 1,
+    "reviewQuestionsSubmitted": false,
+    "reviewQuestionsUserAnswers": [],
+    "totalReviewQuestionsCount": 0,
+    "totalReviewQuestionsScore": 0
+}

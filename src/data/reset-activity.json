@@ -1,0 +1,46 @@
+{
+    "module": {
+        "lightBoxIsShown": false,
+        "lightBoxMode": "defaultMode"
+    },
+    "icons": {
+        "zoom": {
+            "isShown": false,
+            "isEnabled": false,
+            "zoomPercent": 1
+        },
+        "zoomIn": {
+            "isEnabled": true
+        },
+        "zoomOut": {
+            "isEnabled": false
+        },
+        "serviceInfo": {
+            "isShown": false,
+            "isEnabled": false
+        },
+        "toolTray": {
+            "isShown": false,
+            "isEnabled": false
+        },
+        "partsDepartment": {
+            "isShown": false,
+            "isEnabled": false
+        }
+    },
+    "components": {
+        "footer": {
+            "ccBar": {
+                "isShown": false,
+                "isOn": true,
+                "text": ""
+            }
+        },
+        "continueButton": {
+            "mode": "",
+            "view": "",
+            "isShown": false,
+            "callback": {}
+        }
+    }
+}

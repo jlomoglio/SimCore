@@ -1,0 +1,23 @@
+{
+    "assessment1": {
+        "id": 1,
+        "vo": "../assets/audio/a1/A1_Q1.mp3",
+        "question": "Did the pressure stay at or below zero",
+        "possiblePoints": "1",
+        "randomize": true,
+        "answers": [
+            {
+                "id": 1,
+                "answer": "Yes",
+                "correct": true,
+                "type": "radio"
+            },
+            {
+                "id": 2,
+                "answer": "No",
+                "correct": false,
+                "type": "radio"
+            }
+        ]
+    }
+}

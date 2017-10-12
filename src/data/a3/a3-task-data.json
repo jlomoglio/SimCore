@@ -1,0 +1,46 @@
+{
+    "narrative1": {
+        "vo": [
+            "../assets/audio/a3/A3.mp3",
+            "../assets/audio/a3/A3_Narrative1.mp3",
+            "../assets/audio/a3/A3_Narrative2.mp3"
+        ],
+        "cc": [
+            "Activity 3: System Charging",
+            "Charging means to put refrigerant back into the system. Before beginning the system-charging process, always check to be sure the refrigerant level in the machine is sufficient for the job."
+        ]
+    },
+    "t1": {
+        "vo": "../assets/audio/a3/A3_T1.mp3",
+        "cc": "Push the Charge button.",
+        "reportLabel": "Select the charge button."
+    },
+    "narrative2": {
+        "vo": [
+            "../assets/audio/a3/A3_Narrative2.mp3"
+        ],
+        "cc": [
+            "Select the service information icon above to reference the refrigerant label."
+        ]
+    },
+    "t2": {
+        "vo": "../assets/audio/a3/A3_T2.mp3",
+        "cc": "Select the arrow to adjust the machine to the correct weight of refrigerant.",
+        "reportLabel": "Adjust the machine to the correct weight of refrigerant."
+    },
+    "t3": {
+        "vo": "../assets/audio/a3/A3_T3.mp3",
+        "cc": "Select the start button.",
+        "reportLabel": "Select the start button."
+    },
+    "t4": {
+        "vo": "../assets/audio/a3/A3_T4.mp3",
+        "cc": "Rotate the high-side valve to open it.",
+        "reportLabel": "Open the high side hand valve."
+    },
+    "t5": {
+        "vo": "../assets/audio/a3/A3_T5.mp3",
+        "cc": "Rotate the high-side valve to close it.",
+        "reportLabel": "Close the high side hand valve."
+    }
+}

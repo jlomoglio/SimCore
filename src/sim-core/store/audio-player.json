@@ -1,0 +1,12 @@
+{
+    "currentAudioPlayer": {},
+    "playListIndex": 0,
+    "playListArrLength": 0,
+    "playListCCArrLength": 0,
+    "rewindPlayList": false,
+    "audioMuted": false,
+    "audioMutedOverride": false,
+    "rewindAudioIndex": 0,
+    "rewindAudioList": [],
+    "rewindAudioCCList": []
+}

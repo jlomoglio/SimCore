@@ -1,0 +1,56 @@
+{
+    "firstName": "Marco",
+    "lastName": "James",
+    "seriesName1": "Heating &",
+	"seriesName2": "Air Conditioning",
+    "moduleName": "AIR CONDITIONING SYSTEM SERVICING",
+    "moduleType": "equipment",
+    "passingScore": 70,
+    "totalPossibleScore": 0,
+
+    "passed": true,
+    "totalScore": 0,
+    "totalScorePercent": 0,
+    "totalTimeTaken": 0,
+    "totalTimeElapsed": null,
+    "startTime": null,
+
+	"activities": [
+        {
+            "id": "A1",
+            "title": "System Recovery",
+            "completed": false,
+            "totalScore": 0,
+            "totalPossibleScore": 0,
+            "completedTasks": []
+        },
+        {
+            "id": "A2",
+            "title": "System Evacuation",
+            "completed": false,
+            "totalScore": 0,
+            "totalPossibleScore": 0,
+            "completedTasks": []
+        },
+        {
+            "id": "A3",
+            "title": "System Charging",
+            "completed": false,
+            "totalScore": 0,
+            "totalPossibleScore": 0,
+            "completedTasks": []
+        },
+        {
+            "id": "A4",
+            "title": "System Servicing",
+            "completed": false,
+            "totalScore": 0,
+            "totalPossibleScore": 0,
+            "completedTasks": []
+        }
+    ],
+    "reviewQuestions": {
+        "totalScore": 0,
+        "totalPossibleScore": 0
+    }
+}

@@ -1,0 +1,176 @@
+{
+    "question1": {
+        "id": 1,
+        "question": "Remove refrigerant in any condition from an<br />AC system and placing it in a container is called:",
+        "possiblePoints": "1",
+        "randomize": true,
+        "answers": [
+            {
+                "id": 1,
+                "answer": "Evacuation",
+                "correct": false,
+                "type": "radio"
+            },
+            {
+                "id": 2,
+                "answer": "Recovery",
+                "correct": true,
+                "type": "radio"
+            },
+            {
+                "id": 3,
+                "answer": "Charging",
+                "correct": false,
+                "type": "radio"
+            },
+            {
+                "id": 4,
+                "answer": "Reclaiming",
+                "correct": false,
+                "type": "radio"
+            }
+        ]
+    },
+    "question2": {
+        "id": 2,
+        "question": "The amount of refrigerant charged into the system is not critical.",
+        "possiblePoints": "1",
+        "randomize": true,
+        "answers": [
+            {
+                "id": 1,
+                "answer": "True",
+                "correct": true,
+                "type": "radio"
+            },
+            {
+                "id": 2,
+                "answer": "False",
+                "correct": false,
+                "type": "radio"
+            }
+        ]
+    },
+    "question3": {
+        "id": 3,
+        "question": "This process removes any moisture and air in the form of vapors.",
+        "possiblePoints": "1",
+        "randomize": true,
+        "answers": [
+            {
+                "id": 1,
+                "answer": "Evacuation",
+                "correct": true,
+                "type": "radio"
+            },
+            {
+                "id": 2,
+                "answer": "Recovery",
+                "correct": false,
+                "type": "radio"
+            },
+            {
+                "id": 3,
+                "answer": "Charging",
+                "correct": false,
+                "type": "radio"
+            },
+            {
+                "id": 4,
+                "answer": "Reclaiming",
+                "correct": false,
+                "type": "radio"
+            }
+        ]
+    },
+    "question4": {
+        "id": 4,
+        "question": "Select the proper order of steps for preparing an AC system.",
+        "possiblePoints": "1",
+        "randomize": true,
+        "answers": [
+            {
+                "id": 1,
+                "answer": "Evacuation, recovery, perform repair,<br />charge refrigerant",
+                "correct": false,
+                "type": "radio"
+            },
+            {
+                "id": 2,
+                "answer": "Recovery, evacuation, perform repair,<br />charge refrigerant",
+                "correct": false,
+                "type": "radio"
+            },
+            {
+                "id": 3,
+                "answer": "Perform repair, recovery, charge<br />refrigerant, evacuation",
+                "correct": false,
+                "type": "radio"
+            },
+            {
+                "id": 4,
+                "answer": "Recovery, perform pepair, evacuation,<br />charge refrigerant",
+                "correct": true,
+                "type": "radio"
+            }
+        ]
+    },
+    "question5": {
+        "id": 5,
+        "question": "What is the minimum amount of time for a system evacuation?",
+        "possiblePoints": "1",
+        "randomize": true,
+        "answers": [
+            {
+                "id": 1,
+                "answer": "5 minutes",
+                "correct": false,
+                "type": "radio"
+            },
+            {
+                "id": 2,
+                "answer": "10 minutes",
+                "correct": false,
+                "type": "radio"
+            },
+            {
+                "id": 3,
+                "answer": "15 minutes",
+                "correct": true,
+                "type": "radio"
+            },
+            {
+                "id": 4,
+                "answer": "20 minutes",
+                "correct": false,
+                "type": "radio"
+            }
+        ]
+    },
+    "question6": {
+        "id": 6,
+        "question": "After recovery is complete, there is a 10-minute hold time. What does it mean if, during this hold time, the pressure rises above 0 psi?",
+        "possiblePoints": "1",
+        "randomize": true,
+        "answers": [
+            {
+                "id": 1,
+                "answer": "There is a leak in the system.",
+                "correct": false,
+                "type": "radio"
+            },
+            {
+                "id": 2,
+                "answer": "There is still refrigerant in the system.",
+                "correct": true,
+                "type": "radio"
+            },
+            {
+                "id": 3,
+                "answer": "Nothing; this is normal",
+                "correct": false,
+                "type": "radio"
+            }
+        ]
+    }
+}

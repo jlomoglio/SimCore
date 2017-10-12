@@ -1,0 +1,18 @@
+[
+    {
+        "type": "siWindow",
+        "title": "Service Port Location Diagram",
+        "content": "/assets/img/si-content/Automotive_Repair_Order.png",
+        "height": "480px",
+        "width": "400px",
+        "activeActivity": 1
+    },
+    {
+        "type": "siWindow",
+        "title": "Air Conditioner Label",
+        "content": "/assets/img/si-content/radiator_label.png",
+        "height": "290px",
+        "width": "336px",
+        "activeActivity": 3
+    }
+]

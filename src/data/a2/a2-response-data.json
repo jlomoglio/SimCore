@@ -1,0 +1,28 @@
+{
+    "incorrect": {
+        "vo": "../assets/audio/incorrect.mp3",
+        "cc": "Please follow the steps provided."
+    },
+    "correct": {
+        "t2": {
+            "vo": "../assets/audio/a2/A2_T2_P.mp3",
+            "cc": "Good job."
+        },
+        "t4": {
+            "vo": "../assets/audio/a2/A2_T4_P.mp3",
+            "cc": "Good."
+        },
+        "t5": {
+            "vo": "../assets/audio/a2/A2_T5_P.mp3",
+            "cc": "Good job. The vacuum process has started."
+        },
+        "t6": {
+            "vo": "../assets/audio/a2/A2_T6_P.mp3",
+            "cc": "Good."
+        },
+        "t7": {
+            "vo": "../assets/audio/a2/A2_T7_P.mp3",
+            "cc": "Good job."
+        }
+    }
+}

@@ -1,0 +1,55 @@
+{
+  	"popupVideoPlayer": {
+		"isShown": false,
+		"src": "",
+		"otherSrc": "",
+		"otherVTT": ""
+  	},
+	"taskWindow": {
+		"isShown": false,
+		"tasks": [
+			"Task 1",
+			"Task 2",
+			"Task 3",
+			"Task 4",
+			"Task 5"
+		]
+	},
+	"partsDepartment": {
+		"isShown": false,
+		"hotspot": {
+			"top": "",
+			"left": "",
+			"width": "",
+			"height": "",
+			"bgColor": "",
+            "borderRadius": ""
+		},
+		"image": {
+			"bgImg": "",
+			"bgSize": ""
+		},
+        "incorrectVO": "",
+        "incorrectCC": "",
+        "part": {
+            "isShown": false,
+            "minY": null,
+            "maxY": null,
+            "minX": null,
+            "maxX": null,
+            "styles": {
+                "background": "",
+                "width": "",
+                "height": "",
+                "top": "",
+                "left": ""
+            },
+            "isCorrectDrop": false
+        }
+
+	},
+    "toolTray" : {
+      "isShown": false,
+      "tools": []
+    }
+}

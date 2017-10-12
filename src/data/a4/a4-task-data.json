@@ -1,0 +1,80 @@
+{
+    "narrative1": {
+        "vo": [
+            "../assets/audio/a4/A4.mp3",
+            "../assets/audio/a4/A4_Narrative1.mp3"
+        ],
+        "cc": [
+            "Activity 4: Equalizing the Hoses and Disconnecting the AC Machine",
+            "Always be sure to equalize the hoses after performing a system charge."
+        ]
+    },
+    "narrative2": {
+        "vo": [
+            "../assets/audio/a4/A4_Narrative2.mp3"
+        ],
+        "cc": [
+            "Now that the high-side pressure has reached 40 psi, you can close the hand valves."
+        ]
+    },
+    "t1": {
+        "vo": "../assets/audio/a4/A4_T1.mp3",
+        "cc": "Select the Start button.",
+        "reportLabel": "Select the Start button."
+    },
+    "t2": {
+        "vo": "../assets/audio/a4/A4_T2.mp3",
+        "cc": "Remove the high-side hose from the vehicle.",
+        "reportLabel": "Remove the high side hose from the vehicle."
+    },
+    "t3": {
+        "vo": "../assets/audio/a4/A4_T3.mp3",
+        "cc": "Now turn on the ignition.",
+        "reportLabel": "Turn on the ignition."
+    },
+    "t4": {
+        "vo": "../assets/audio/a4/A4_T4.mp3",
+        "cc": "Rotate the low-side hand valve on the AC machine to open it.",
+        "reportLabel": "Open the low side hand valve."
+    },
+    "t5": {
+        "vo": "../assets/audio/a4/A4_T5.mp3",
+        "cc": "Now rotate the high-side hand valve to open it.",
+        "reportLabel": "Open the high side hand valve."
+    },
+    "t6": {
+        "vo": "../assets/audio/a4/A4_T6.mp3",
+        "cc": "Rotate the high-side hand valve to close it.",
+        "reportLabel": "Close the low side hand valve."
+    },
+    "t7": {
+        "vo": "../assets/audio/a4/A4_T7.mp3",
+        "cc": "Now rotate the other valve to close it.",
+        "reportLabel": "Close the high side hand valve."
+    },
+    "t8": {
+        "vo": "../assets/audio/a4/A4_T8.mp3",
+        "cc": "Remove the low-side hose from the vehicle.",
+        "reportLabel": "Remove the low side hose from the vehicle."
+    },
+    "t9": {
+        "vo": "../assets/audio/a4/A4_T9.mp3",
+        "cc": "Turn off the ignition.",
+        "reportLabel": "Turn off the ignition."
+    },
+    "t10": {
+        "vo": "../assets/audio/a4/A4_T10.mp3",
+        "cc": "Select the Power button to turn off the AC machine.",
+        "reportLabel": "Turn off the AC machine."
+    },
+    "t11": {
+        "vo": "../assets/audio/a4/A4_T11.mp3",
+        "cc": "Drag the vehicle's low-side service port cap from the parts tray back into place.",
+        "reportLabel": "Cap the low side service port."
+    },
+    "t12": {
+        "vo": "../assets/audio/a4/A4_T12.mp3",
+        "cc": "Now, drag the vehicle's high-side service port cap from the parts tray back into place.",
+        "reportLabel": "Cap the high side service port."
+    }
+}
