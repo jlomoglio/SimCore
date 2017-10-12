@@ -3,7 +3,7 @@
         <div id="homeLogo"></div>
         <div id="homeContainer">
             <div id="mainHeading">
-                <p id="line1">{{ this.$store.getters.getSeriesName1 }}</p>
+                <!-- <p id="line1">{{ this.$store.getters.getSeriesName1 }}</p> -->
                 <p id="line2">{{ this.$store.getters.getSeriesName2 }}</p>
             </div>
             <div id="subHeading">{{ this.$store.getters.getModuleName }}</div>

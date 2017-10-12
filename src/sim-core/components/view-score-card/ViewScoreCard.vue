@@ -4,13 +4,13 @@
         <div id="view-score-card-container">
             <div id="congratulations" v-if="moduleData.passed">
                 <h2 class="congrats-title">Congratulations!</h2>
-                <p class="congrats-message">You have successfully completed<br />the simulation on {{ this.moduleData.moduleName }}</p>
+                <p class="congrats-message">You have successfully completed<br />the simulation on {{ this.moduleData.performanceModuleName }}</p>
             </div>
             <div id="no-congratulations" v-else>
-                <p class="congrats-message">Sorry. You have not successfully completed<br />the simulation on {{ this.moduleData.moduleName }}</p>
+                <p class="congrats-message">Sorry. You have not successfully completed<br />the simulation on {{ this.moduleData.performanceModuleName }}</p>
             </div>
             <div id="results-score">
-                Your Score is: {{ this.moduleData.totalScore }}
+                Your Score is: {{ this.moduleData.totalScorePercent }}%
             </div>
             <div id="time-elapsed">
                 Time elapsed: {{ this.moduleData.totalTimeElapsed }}
@@ -35,6 +35,7 @@
         mounted () {
             const scoreCardVO = '/assets/audio/' + (this.moduleData.passed ? 'Congratulations.mp3' : 'Sorry.mp3')
             playAudio(scoreCardVO, null)
+            this.moduleData.totalScorePercent = (this.moduleData.reviewQuestions.totalScore / this.moduleData.reviewQuestions.totalPossibleScore) * 100
         },
         computed: mapGetters({
             moduleData: 'getModuleData'

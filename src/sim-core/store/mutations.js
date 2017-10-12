@@ -258,6 +258,7 @@ export default {
         state.module.lightBoxIsShown = true
         state.module.lightBoxMode = 'defaultMode'
         state.iconBar.isShown = false
+        state.module.carVideoIsShown = false
     },
     hideIntroScreen: (state) => {
         state.module.introCompleted = true
@@ -283,6 +284,19 @@ export default {
         state.module.safetyIsShown = false
         state.module.safetyCompleted = true
         state.module.lightBoxIsShown = false
+        state.iconBar.isShown = true
+        state.module.carVideoIsShown = true
+    },
+    showCarVideoScreen: (state) => {
+        console.log('Inside showCarVideoScreen')
+        state.module.safetyCompleted = true
+        state.module.carVideoIsShown = true
+        // state.module.lightBoxIsShown = true
+        state.iconBar.isShown = true
+    },
+    hideCarVideoScreen: (state) => {
+        state.module.carVideoIsShown = false
+        // state.module.lightBoxIsShown = false
         state.iconBar.isShown = true
     },
     safetyCompleted: (state, completed) => {

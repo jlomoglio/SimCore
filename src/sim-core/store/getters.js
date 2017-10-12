@@ -43,6 +43,7 @@ export default {
     getUseSafetyScreen: state => state.module.useSafetyScreen,
     getSafetyCompleted: state => state.module.safetyCompleted,
     getSafetyScreenIsShown: state => state.module.safetyIsShown,
+    getcarVideoIsShown: state => state.module.carVideoIsShown,
 
     /********************************************************
      * REVIEW QUESTION GETTERS

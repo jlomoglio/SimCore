@@ -68,7 +68,7 @@ export default {
                 if (btnClicked === 'uequipment') {
                     // Set the Video Page Activity Tile to: Understanding the Equipment
                     this.$store.dispatch('setActivityName', 'Understanding the Equipment')
-                    this.$store.dispatch('setActiveButton', 'uequipment')
+                    this.$store.dispatch('setActiveButton', 'usimulation')
                 }
             }
         }

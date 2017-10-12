@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<head>
+    <title>Video</title>
+    <link href="/assets/js/video-js/video-js.css" rel="stylesheet" type="text/css">
+    <link href="/assets/js/video-js/lib/videojs-captions-toggle.css" rel="stylesheet" type="text/css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <video poster="../img/module/poster.png" id="videoPlayer" class="video-js vjs-default-skin" controls preload="none" width="1000" height="575" poster="" data-setup="{}">
+				<source id="mp4Vid" src="brake_pull_driving_video.mp4" type="video/mp4">
+				<track id="capVid" kind="captions" src="uconcepts.captions.vtt" srclang="en" label="English"></track>
+                <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+        </video>
+    </div>
+
+    <script type="text/javascript" src="/assets/js/video-js/video.js"></script>
+    <script type="text/javascript" src="/assets/js/video-js/lib/videojs-captions-toggle.js"></script>
+</body>
+
+</html>
+<style>
+    #videoPlayer{
+       width: 1000px;
+       height: 575px;
+    }
+
+    .vjs-default-skin .vjs-big-play-button {
+    
+    font-size: 3em;
+    display: block;
+    z-index: 2;
+    position: absolute;
+    left: 440px;
+    top: 230px;
+    width: 4em;
+    height: 2.6em;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    opacity: 1;
+    background-color: #07141e;
+    background-color: rgba(7, 20, 30, 0.7);
+    border: 0.1em solid #3b4249;
+    -webkit-border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    border-radius: 0.8em;
+}
+</style>

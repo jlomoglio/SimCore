@@ -18,6 +18,8 @@
 	"safetyCompleted": false,
 	"safetyIsShown": false,
 
+	"carVideoIsShown": false,
+	
     "endActivityScreenIsShown": false,
 	"audioCompleted": false,
 

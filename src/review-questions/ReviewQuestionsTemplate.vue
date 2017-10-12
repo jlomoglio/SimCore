@@ -13,11 +13,12 @@
             </rq-column>
 
             <rq-submit></rq-submit>
-            <rq-continue></rq-continue>
+            <rq-view-score-card></rq-view-score-card>
+            <!-- <rq-continue></rq-continue> -->
         </rq-view>
 
 
-        <rq-view :viewId="2">
+        <!-- <rq-view :viewId="2">
             <rq-column>
                 <rq-question questionId="5"></rq-question>
             </rq-column>
@@ -28,7 +29,7 @@
             <rq-submit></rq-submit>
             <rq-view-score-card></rq-view-score-card>
 
-        </rq-view>
+        </rq-view> -->
     </div>
 </template>
 <style>

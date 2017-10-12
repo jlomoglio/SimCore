@@ -2,11 +2,12 @@
     <view-box id="a1v1" :background="backgroundImg">
         <!-- INTRO & SAFETY SCREENS -->
         <intro-screen></intro-screen>
-        <safety-screen
-            @isClosed="narrative()"
+        <safety-screen @isClosed="stopAudio();"
             v-if="this.$core.Activity.safetyIsShown()"
         >
         </safety-screen>
+        <VideoPlayer divClass="true" iframeClass="true" @load="videoLoaded()" v-if="this.$core.Activity.carVideoIsShown()" @isClosed="narrative();"></VideoPlayer>  
+        <div id="safe-continue" @click="narrative(); carVideoIsHide(); hideContinueButton()" v-if="$store.state.videoEndingFlag" title="Continue"></div>
 
         <!-- Content container required only for A1V1 -->
         <content-box :clickable="isClickable" @action="incorrect(currentTask)">
@@ -43,6 +44,10 @@ import SafetyScreen from '../../widgets/SafetyScreen'
 import ZoomPanel from '../../widgets/ZoomPanel'
 import HintBox from '../../widgets/HintBox'
 import HotSpot from '../../widgets/HotSpot'
+import ButtonsVideo from '../../sim-core/components/video-page/ButtonsVideo'
+import VideoPlayer from '../../sim-core/components/video-page/VideoPlayer'
+import ContinueButton from '../../sim-core/components/sim-page/ContinueButton'
+import { pause } from '../../sim-core/core/audio-player'
 
 export default {
     name: 'A1V1',
@@ -55,7 +60,10 @@ export default {
         SafetyScreen,
         ZoomPanel,
         HintBox,
-        HotSpot
+        HotSpot,
+        VideoPlayer,
+        ContinueButton,
+        ButtonsVideo
     },
 
     // Data contains properties that manage the state of the views
@@ -87,11 +95,17 @@ export default {
         }
     },
 
+    computed: {
+        carVideoView () {
+            return this.$store.getters.getCurrentView
+        }
+    },
+
     // Mounted is used for things that need to be active when the
     // view first loads, such as configs and init and any icons
     mounted() {
         // Configure the view (Activity Title, View Mode[full/box], Activity ID)
-        this.$core.Activity.configView('System Recovery', 'full', 'A1')
+        this.$core.Activity.configView('', 'full', 'A1')
         // Initlize the activity view
         this.$core.Activity.init([this.introScreen])
 
@@ -121,9 +135,31 @@ export default {
                 this[task + 'ShowHint'] = true
                 this.currentPoints = 0
             }
+        },
+        carVideoIsHide() {
+            this.$core.Activity.carVideoIsHide()
+        },
+        hideContinueButton() {
+            this.$store.state.videoEndingFlag = false
+        },
+        videoLoaded() {
+            var frame = document.getElementById('videoFrame')
+            var frameContent = frame.contentWindow.document.body
+            // console.log('frameContent', frameContent, frameContent.querySelector('video'))
+            frameContent.querySelector('video').addEventListener('ended', this.myHandler, false)
+        },
+        myHandler(e) {
+            this.$store.state.videoEndingFlag = true
+        },
+        stopAudio() {
+            pause('moduleAudioPlayer')
+            console.log('aaaaaaaaaaaaaaaa')
+            this.$store.dispatch('setVideoSource', '../../../assets/video/brake_pull_driving_video.html')
+            this.$store.dispatch('setLoadedVideo', 'brake_pull_driving_video')
         }
     }
 }
+
 </script>
 
 <style scoped>
@@ -192,4 +228,23 @@ export default {
     height: 21px;
     border-radius: 10px;
 }
+
+#safe-continue {
+    position: absolute;
+    right: 45px;
+	bottom: 88px;
+    background: url('/assets/img/buttons/horizontal/continue.png');
+    background-size: 100% 100%;
+    cursor: pointer;
+    width: 150px;
+    height: 32px;
+    z-index: 25;
+}
+
+#safe-continue:active {
+	background: url('/assets/img/buttons/horizontal/continue_over.png');
+    background-size: 100% 100%;
+}
+
+
 </style>

@@ -1,9 +1,10 @@
 {
     "firstName": "Marco",
     "lastName": "James",
-    "seriesName1": "Heating &",
-	"seriesName2": "Air Conditioning",
-    "moduleName": "AIR CONDITIONING SYSTEM SERVICING",
+    "seriesName1": "",
+    "seriesName2": "Brake Systems",
+    "moduleName": "DIAGNOSING BRAKE PULL",
+    "performanceModuleName": "Diagnosing Brake Pull",
     "moduleType": "equipment",
     "passingScore": 70,
     "totalPossibleScore": 0,
@@ -15,7 +16,7 @@
     "totalTimeElapsed": null,
     "startTime": null,
 
-	"activities": [
+    "activities": [
         {
             "id": "A1",
             "title": "System Recovery",

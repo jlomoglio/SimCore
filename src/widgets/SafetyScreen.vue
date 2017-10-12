@@ -41,6 +41,7 @@ export default {
         close() {
             this.$store.commit('hideSafetyScreen')
             this.isClosed = true
+            this.$store.commit('showCarVideoScreen')
         }
     }
 }
