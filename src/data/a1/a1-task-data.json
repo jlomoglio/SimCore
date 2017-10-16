@@ -1,87 +1,35 @@
 {
-    "narrative1": {
-        "vo": [
-            "../assets/audio/a1/A1.mp3",
-            "../assets/audio/a1/A1_Narrative1.mp3",
-            "../assets/audio/a1/A1_Narrative2.mp3"
-        ],
-        "cc": [
-            "Activity 1: System Recovery",
-            "System recovery consists of removing the refrigerant from the AC system and storing it in an external container. To begin recovery, you will need to connect the AC machine to the AC system.",
-            "Select the service information icon above for the location of the service ports."
-        ]
-    },
     "t1": {
-        "vo": ["../assets/audio/a1/A1_T1.mp3"],
-        "cc": ["Select to remove the cap of the low-side service port."],
-        "reportLabel": "Remove the cap of the low-side service port."
+        "vo": "../assets/audio/a1/A1_T1.mp3",
+        "cc": "Now check the operation of brakes, To begin, turn on the Ignition.",
+        "reportLabel": "Turn on the Ignition."
     },
     "t2": {
         "vo": "../assets/audio/a1/A1_T2.mp3",
-        "cc": "Select to remove the cap of the high-side service port.",
-        "reportLabel": "Remove the cap of the high-side service port."
+        "cc": "Thats correct. Now put the vehicle in drive.",
+        "reportLabel": "Put the vehicle in drive."
     },
     "t3": {
         "vo": "../assets/audio/a1/A1_T3.mp3",
-        "cc": "Drag the low-side hose of the AC machine to connect it to the low-side service port.",
-        "reportLabel": "Connect hose to the low-side service port."
+        "cc": "Great, Now apply the brakes and observe the brake fluid flow from the master cylinder.",
+        "reportLabel": "Apply the Brakes."
     },
     "t4": {
         "vo": "../assets/audio/a1/A1_T4.mp3",
-        "cc": "Drag the high-side hose of the AC machine to connect it to the high-side service port.",
-        "reportLabel": "Connect hose to the high-side service port."
+        "cc": "Put the vehicle in Park.",
+        "reportLabel": "Put the vehicle in Park."
     },
     "t5": {
         "vo": "../assets/audio/a1/A1_T5.mp3",
-        "cc": "Open the low-side service port by rotating the top of the valve on the hose.",
-        "reportLabel": "Open the low-side service port"
-    },
-    "t6": {
-        "vo": "../assets/audio/a1/A1_T6.mp3",
-        "cc": "Now open the high-side service port by rotating the top of the valve on the hose.",
-        "reportLabel": "Open the high-side service port"
-    },
-    "t7": {
-        "vo": "../assets/audio/a1/A1_T7.mp3",
-        "cc": "Select the Power button to turn the AC machine on.",
-        "reportLabel": "Click the power button."
-    },
-    "t8": {
-        "vo": "../assets/audio/a1/A1_T8.mp3",
-        "cc": "Now, select the Recover button.",
-        "reportLabel": "Click the recover button."
-    },
-    "t9": {
-        "vo": "../assets/audio/a1/A1_T9.mp3",
-        "cc": "Select Start.",
-        "reportLabel": "Click the start button."
-    },
-    "t10": {
-        "vo": "../assets/audio/a1/A1_T10.mp3",
-        "cc": "Rotate the low-side hand valve to open it.",
-        "reportLabel": "Rotate the low-side hand valve to open it."
-    },
-    "t11": {
-        "vo": "../assets/audio/a1/A1_T11.mp3",
-        "cc": "Now rotate the high-side hand valve to open it.",
-        "reportLabel": "Open the high side hand valve."
-    },
-    "t12": {
-        "vo": "../assets/audio/a1/A1_T12.mp3",
-        "cc": "Now that the recovery has ended, rotate to close the low-side valve.",
-        "reportLabel": "Close the low side hand valve."
-    },
-    "t13": {
-        "vo": "../assets/audio/a1/A1_T13.mp3",
-        "cc": "Now rotate to close the other valve.",
-        "reportLabel": "Close the high side hand valve"
+        "cc": "Thats correct. Now Turn off the Ignition.",
+        "reportLabel": "Turn off the Ignition."
     },
     "narrative3": {
         "vo": [
-            "../assets/audio/a1/A1_Narrative3.mp3"
+            "../assets/audio/a1/A1_Summary.mp3"
         ],
         "cc": [
-            "It is important to ensure that the gauges stay at or below zero. This indicates there is no refrigerant remaining in the system."
+            "Based on your observations, what would be your diagnosis."
         ]
     }
 }

@@ -4,53 +4,25 @@
         "cc": "Please follow the steps provided."
     },
     "correct": {
-        "t1": {
-            "vo": "../assets/audio/a1/A1_T1_P.mp3",
-            "cc": "Good."
-        },
         "t2": {
-            "vo": "../assets/audio/a1/A1_T2_P.mp3",
+            "vo": "../assets/audio/a2/A2_T2_P.mp3",
             "cc": "Good job."
         },
-        "t3": {
-            "vo": "../assets/audio/a1/A1_T3_P.mp3",
-            "cc": "Great."
-        },
         "t4": {
-            "vo": "../assets/audio/a1/A1_T4_P.mp3",
+            "vo": "../assets/audio/a2/A2_T4_P.mp3",
             "cc": "Good."
         },
         "t5": {
-            "vo": "../assets/audio/a1/A1_T5_P.mp3",
-            "cc": "Good."
+            "vo": "../assets/audio/a2/A2_T5_P.mp3",
+            "cc": "Good job. The vacuum process has started."
         },
         "t6": {
-            "vo": "../assets/audio/a1/A1_T6_P.mp3",
-            "cc": "Good job."
+            "vo": "../assets/audio/a2/A2_T6_P.mp3",
+            "cc": "Good."
         },
         "t7": {
-            "vo": "../assets/audio/a1/A1_T7_P.mp3",
-            "cc": "Good."
-        },
-        "t9": {
-            "vo": "../assets/audio/a1/A1_T9_P.mp3",
-            "cc": "Good."
-        },
-        "t10": {
-            "vo": "../assets/audio/a1/A1_T10_P.mp3",
-            "cc": "Good."
-        },
-        "t11": {
-            "vo": "../assets/audio/a1/A1_T11_P.mp3",
-            "cc": "Good job. The recovery process has now started."
-        },
-        "t12": {
-            "vo": "../assets/audio/a1/A1_T12_P.mp3",
-            "cc": "Good."
-        },
-        "t13": {
-            "vo": "../assets/audio/a1/A1_T13_P.mp3",
-            "cc": "Great job."
+            "vo": "../assets/audio/a2/A2_T7_P.mp3",
+            "cc": "Good job."
         }
     }
 }

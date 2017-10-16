@@ -10,28 +10,67 @@
         <div id="safe-continue" @click="narrative(); carVideoIsHide(); hideContinueButton()" v-if="$store.state.videoEndingFlag" title="Continue"></div>
 
         <!-- Content container required only for A1V1 -->
-        <content-box :clickable="isClickable" @action="incorrect(currentTask)">
-            <zoom-panel :bgimg="zoomPanelBgImg">
+        <content-box :clickable="isClickable" @action="incorrect(currentTask)" id="content">
+            <zoom-panel>
+                <div class="width-25 pull-left">
+                <div class="width-100 pull-left">
+                    <ignition-switch
+                            left="15px"
+                            @lock="t5a1('t1Lock')"
+                            @acc="incorrect('t1')"
+                            @on="t1a1()"
+                            :lockHint="false"
+                            :accHint="false"
+                            :onHint="false"
+                            :currentTask = "currentTask"
+                            :tasks="['t1a1', 't5a1']"
+                    >
+                    </ignition-switch>
+                </div>
+                <div class="width-100 pull-left brakeImg">
+                    <Brake
+                    @onBrake="t3a1()"
+                    :currentTask = "currentTask"
+                    :task="'t3a1'"
+                    ></Brake>
+                </div>
+                <div class="width-100 pull-left gearBG">
+                    <Gear
+                        @park="t4a1('t2')"
+                        @drive="t2a1()"
+                        :currentTask = "currentTask"
+                        :tasks="['t2a1', 't4a1']"
+                    ></Gear>
+                </div>
+            </div>
+            <div class="width-75 pull-left">
+                <masterCylinderFlow v-if="showCylinderFlow"></masterCylinderFlow>
+                <div v-else class="masterCylinder" ></div>
+            </div>
+            </zoom-panel>
+        </content-box>
+        <!-- <content-box :clickable="isClickable" @action="incorrect(currentTask)">
+            <zoom-panel :bgimg="zoomPanelBgImg"> -->
                 <!-- PARTS TRAY -->
-                <img id="parts-tray" src="assets/img/activities/parts_tray.png" />
+                <!-- <img id="parts-tray" src="assets/img/activities/parts_tray.png" /> -->
 
                 <!-- TASK 1: Hint & Blue Cap -->
-                <hint-box id="t1-hint" v-hint="t1ShowHint"></hint-box>
+                <!-- <hint-box id="t1-hint" v-hint="t1ShowHint"></hint-box>
                 <img id="blue-ac-cap"
                     @click="t1a1()"
                     :class="{ on: blueCapOn, off: blueCapOff }"
                     src="assets/img/activities/blue_ac_cap.png"
-                />
+                /> -->
 
                 <!-- TASK 2: Hint & Red Cap -->
-                <hint-box id="t2-hint" v-hint="t2ShowHint"></hint-box>
+                <!-- <hint-box id="t2-hint" v-hint="t2ShowHint"></hint-box>
                 <img id="red-ac-cap"
                     @click="t2a1()"
                     :class="{ on: redCapOn, off: redCapOff }"
                     src="assets/img/activities/red_ac_cap.png"
                 />
             </zoom-panel>
-        </content-box>
+        </content-box> -->
     </view-box>
 </template>
 
@@ -48,6 +87,10 @@ import ButtonsVideo from '../../sim-core/components/video-page/ButtonsVideo'
 import VideoPlayer from '../../sim-core/components/video-page/VideoPlayer'
 import ContinueButton from '../../sim-core/components/sim-page/ContinueButton'
 import { pause } from '../../sim-core/core/audio-player'
+import masterCylinderFlow from '../../sim-core/components/sim-page/masterCylinderFlow'
+import IgnitionSwitch from '../../widgets/ignition-switch/IgnitionSwitch'
+import Brake from '../../widgets/Brake'
+import Gear from '../../widgets/Gear'
 
 export default {
     name: 'A1V1',
@@ -63,7 +106,11 @@ export default {
         HotSpot,
         VideoPlayer,
         ContinueButton,
-        ButtonsVideo
+        ButtonsVideo,
+        masterCylinderFlow,
+        IgnitionSwitch,
+        Brake,
+        Gear
     },
 
     // Data contains properties that manage the state of the views
@@ -78,20 +125,8 @@ export default {
             currentPoints: 3,
             backgroundImg: 'engine_compartment_not_faded_with_AC_machine-a.png',
             // /////////////////////////////////////
-
-            // View Specific properties ///////////
-            zoomPanelBgImg: {
-                background: 'url(/assets/img/zoom-panel/engine_compartment_not_faded_with_AC_machine-a.png)',
-                backgroundSize: '105%'
-            },
-            blueCapOn: true,
-            blueCapOff: false,
-            redCapOn: true,
-            redCapOff: false,
-
-            // Hints should always follow this naming convention
-            t1ShowHint: false,
-            t2ShowHint: false
+            rotateRotors: false,
+            showCylinderFlow: false
         }
     },
 
@@ -169,66 +204,78 @@ export default {
 }
 
 /** View Specific Styles ********************************/
-#parts-tray {
+#a1v1 {
     position: absolute;
-    right: 450px;
-    bottom: 80px;
+    top: -30px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 590px;
+    background: url('/assets/img/activities/engine_compartment_not_faded_with_AC_machine-a.png');
+    background-size: 105%;
+}
+
+#content {
+    position: absolute;
+    top: 63px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* height: 590px; */
+    z-index: 2; /* Must be a 2 */
+    width: 940px;
+    height: 450px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.55);
+}
+
+/** View Specific Styles ********************************/
+
+/* Left & Right Side Popout */
+.pull-left {
+  float: left;
+}
+.width-25 {
+    width: 20%;
+    min-height: 450px;
+  }
+  .temp {
     width: 200px;
-    height: auto;
-}
-
-#red-ac-cap.on {
-    position: absolute;
-    right: 459px;
-    top: 366px;
-    width: 10px;
-    height: auto;
-    z-index: 10;
-}
-
-#red-ac-cap.off {
-    position: absolute;
-    right: 520px;
-    top: 430px;
-    width: 15px;
-    height: auto;
-}
-
-#blue-ac-cap.on {
-    position: absolute;
-    left: 436px;
-    top: 35px;
-    width: 10px;
-    height: auto;
-    z-index: 10;
-}
-
-#blue-ac-cap.off {
-    position: absolute;
-    left: 436px;
-    top: 435px;
-    width: 15px;
-    height: auto;
-}
-
-#t1-hint {
-    position: absolute;
-    top: 30px;
-    left: 427px;
-    width: 21px;
-    height: 21px;
-    border-radius: 10px;
-}
-
-#t2-hint {
-    position: absolute;
-    right: 450px;
-    top: 359px;
-    width: 21px;
-    height: 21px;
-    border-radius: 10px;
-}
-
+    height: 200px;
+  }
+  .width-100 {
+    width: 100%;
+    min-height: 20vh;
+  }
+  .width-75 {
+    width: 75%;
+  }
+  .brakeImg {
+    margin: 20px 10px;
+  }
+  .gear-BG {
+    background: url('/assets/img/module/gear_shift_movement_Sprite.png') no-repeat;
+    background-size: 586% auto;
+    border-radius: 50%;
+    width: 120px;
+    margin-top: 21px;
+    margin-left: 25px;
+    height: 120px;
+    background-position: 1.5% 0;
+  }
+  .masterCylinder {
+    width: 690px;
+    height: 440px;
+    background: url(/assets/img/module/master_cylinder_flow_calipers_drums_sprite.png) no-repeat;
+    background-position: 0 0;
+    background-size: 1200% auto;
+    position: relative;
+  }
+  .gearBG{
+    margin-top: 23px;
+    margin-left: 25px;
+  }
 #safe-continue {
     position: absolute;
     right: 45px;
