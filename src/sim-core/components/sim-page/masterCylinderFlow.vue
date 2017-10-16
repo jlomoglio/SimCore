@@ -18,7 +18,6 @@ export default {
     methods: {
         startRotation(row) {
             TweenMax.to('.master-cylinder', 1, {
-                repeat: 1,
                 backgroundPosition: `99.17% ${row}%`,
                 ease: SteppedEase.config(10),
                 onComplete: this.callback

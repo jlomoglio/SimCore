@@ -7,7 +7,7 @@
 </div>
 </template>
 <script>
-// import { TweenMax, SteppedEase } from 'gsap'
+import { TweenMax, SteppedEase } from 'gsap'
 export default {
     props: [
         'currentTask',
@@ -15,19 +15,7 @@ export default {
     ],
     data() {
         return {
-            row: 0,
-            spriteArray: [
-                {x: -5, y: 0}, {x: -142, y: 0}, {x: -278.9, y: 0}, {x: -415, y: 0}, {x: -552, y: 0},
-                {x: -5, y: -120.95}, {x: -142, y: -120.95}, {x: -278.9, y: -120.95}, {x: -415, y: -120.95}, {x: -552, y: -120.95},
-                {x: -5, y: -241.95}, {x: -142, y: -241.95}, {x: -278.9, y: -241.95}, {x: -415, y: -241.95}, {x: -552, y: -241.95},
-                {x: -5, y: -362.95}, {x: -142, y: -362.95}, {x: -278.9, y: -362.95}, {x: -415, y: -362.95}, {x: -552, y: -362.95}
-            ],
-            spriteArray1: [
-                {x: -552, y: -362.95}, {x: -415, y: -362.95}, {x: -278.9, y: -362.95}, {x: -142, y: -362.95}, {x: -5, y: -362.95},
-                {x: -552, y: -241.95}, {x: -415, y: -241.95}, {x: -278.9, y: -241.95}, {x: -142, y: -241.95}, {x: -5, y: -241.95},
-                {x: -552, y: -120.95}, {x: -415, y: -120.95}, {x: -278.9, y: -120.95}, {x: -142, y: -120.95}, {x: -5, y: -120.95},
-                {x: -552, y: 0}, {x: -415, y: 0}, {x: -278.9, y: 0}, {x: -142, y: 0}, {x: -5, y: 0}
-            ]
+            row: 0
         }
     },
     methods: {
@@ -48,64 +36,45 @@ export default {
         },
         park() {
             this.row -= 1
-            this.putInPark(362.95)
+            this.putInPark(360)
         },
         putInDrive(row) {
-            for (let i = 0; i < this.spriteArray.length; i++) {
-                let spritePos = this.spriteArray[i]
-                var sprite = document.getElementById('gear-BG')
-                this.driveCallBack(spritePos, sprite, i)
-            }
-            // TweenMax.to(`#gear-BG`, 1, {
-            //     repeat: 1,
-            //     backgroundPosition: `99.35% 0%`,
-            //     ease: SteppedEase.config(20)
-            // })
+            TweenMax.to(`#gear-BG`, 1, {
+                backgroundPosition: `-548px -${row}px`,
+                ease: SteppedEase.config(4),
+                onComplete: this.driveCallBack
+            })
         },
-        driveCallBack(spritePos, sprite, i) {
-            window.setTimeout(() => {
-                sprite.style.backgroundPosition = `${spritePos.x}px ${spritePos.y}px`
-                if (i === this.spriteArray.length - 1) {
-                    this.row = 4
-                    this.$emit('drive')
-                }
-            }, (100 * i))
+        driveCallBack() {
+            this.row += 1
+            if (this.row < 4) {
+                var sprite = document.getElementById('gear-BG')
+                var yPosition = this.row * 120
+                sprite.style.backgroundPosition = `-5px -${yPosition}px`
+                this.putInDrive(yPosition)
+            } else {
+                this.$emit('drive')
+            }
         },
         putInPark(yPosition) {
-            // TweenMax.to(`#gear-BG`, 1, {
-            //     repeat: 1,
-            //     backgroundPosition: `-5px -${yPosition}px`,
-            //     ease: SteppedEase.config(4),
-            //     onComplete: this.parkCallBack
-            // })
-            for (let i = 0; i < this.spriteArray1.length; i++) {
-                let spritePos = this.spriteArray1[i]
-                var sprite = document.getElementById('gear-BG')
-                this.driveCallBack(spritePos, sprite, i)
-            }
+            TweenMax.to(`#gear-BG`, 1, {
+                backgroundPosition: `-5px -${yPosition}px`,
+                ease: SteppedEase.config(4),
+                onComplete: this.parkCallBack
+            })
         },
-        parkCallBack(spritePos, sprite, ind) {
-            // this.row -= 1
-            // if (this.row >= 0) {
-            //     var sprite = document.getElementById('gear-BG')
-            //     var yPosition = this.row * 120.95
-            //     console.log(this.row, yPosition)
-            //     sprite.style.backgroundPosition = `-552px -${yPosition}px`
-            //     this.putInPark(yPosition)
-            // } else {
-            //     console.log('row value', this.row)
-            //     this.$emit('park')
-            // }
-            window.setTimeout(() => {
-                // return function() {
-                console.log('index val', ind)
-                sprite.style.backgroundPosition = `${spritePos.x}px ${spritePos.y}px`
-                if (ind === this.spriteArray1.length - 1) {
-                    this.row = 0
-                    this.$emit('park')
-                }
-                // }
-            }, (100 * ind))
+        parkCallBack() {
+            this.row -= 1
+            if (this.row >= 0) {
+                var sprite = document.getElementById('gear-BG')
+                var yPosition = this.row * 120
+                console.log(this.row, yPosition)
+                sprite.style.backgroundPosition = `-548px -${yPosition}px`
+                this.putInPark(yPosition)
+            } else {
+                console.log('row value', this.row)
+                this.$emit('park')
+            }
         }
     }
 }
@@ -114,10 +83,10 @@ export default {
 <style>
  #gear-BG {
     background: url('/assets/img/module/gear_shift_movement_Sprite.png') no-repeat;
-    background-size: 565% auto;
+    background-size: 566% auto;
     border-radius: 50%;
-    width: 120.95px;
-    height: 120.95px;
+    width: 120px;
+    height: 120px;
     background-position: -5px 0;
   }
   #drive-hotspot {

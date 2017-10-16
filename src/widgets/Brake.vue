@@ -28,7 +28,6 @@ export default {
         t3a1(row) {
             this.$emit('onBrake')
             TweenMax.to(`#brake`, 1, {
-                repeat: 1,
                 backgroundPosition: `-180px ${row}px`,
                 ease: SteppedEase.config(4),
                 onComplete: this.callBack
@@ -49,7 +48,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .brake-BG {
     background: url('/assets/img/module/brake_pedal_sprite_BG.png') no-repeat;
     background-size: 184% auto;
