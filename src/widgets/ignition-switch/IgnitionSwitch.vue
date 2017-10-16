@@ -10,10 +10,10 @@
         <hint-box id="acc-hint" v-hint="accShowHint"></hint-box>
         <hint-box id="on-start-hint" v-hint="onShowHint"></hint-box>
 
-        <div id="lock-hotspot" @click="setMode('lock')"></div>
-        <div id="acc-hotspot" @click="setMode('acc')"></div>
-        <div id="on-hotspot" @click="setMode('on')"></div>
-        <div id="start-hotspot" @click="setMode('start')"></div>
+        <div id="lock-hotspot" @click="clickable ? setMode('lock') : ''"></div>
+        <div id="acc-hotspot" @click="clickable ? setMode('acc') : ''"></div>
+        <div id="on-hotspot" @click="clickable ? setMode('on') : ''"></div>
+        <div id="start-hotspot" @click="clickable ? setMode('start') : ''"></div>
     </div>
 </template>
 
@@ -30,7 +30,10 @@ export default {
         'bottom',
         'lockHint',
         'accHint',
-        'onHint'
+        'onHint',
+        'currentTask',
+        'tasks',
+        'currentAction'
     ],
     components: {
         HintBox
@@ -110,13 +113,25 @@ export default {
         }
     },
     methods: {
+        clickable() {
+            let key = -1
+            this.tasks.map((task, i) => {
+                if (this.currentTask === task) {
+                    key = i
+                }
+            })
+            if (key !== -1) {
+                return true
+            }
+            return false
+        },
         // Rotates Key based on mode that is clicked
         setMode(mode) {
             // Reassign this
             let vm = this
 
             // LOCK mode
-            if (mode === 'lock') {
+            if (mode === 'lock' && this.currentAction === 'lock') {
                 TweenMax.to('#ignition-key', 1.0, {
                     rotation: 55
                 })
@@ -125,7 +140,7 @@ export default {
                 this.$emit('lock')
             }
             // ACC Mode
-            else if (mode === 'acc') {
+            else if (mode === 'acc' && this.currentAction === 'acc') {
                 TweenMax.to('#ignition-key', 1.0, {
                     rotation: 95
                 })
@@ -134,7 +149,7 @@ export default {
                 this.$emit('acc')
             }
             // ON Mode
-            else if (mode === 'on') {
+            else if (mode === 'on' && this.currentAction === 'on') {
                 TweenMax.to('#ignition-key', 1.0, {
                     rotation: 122
                 })
@@ -143,7 +158,7 @@ export default {
                 this.$emit('on')
             }
             // START mode
-            else if (mode === 'start') {
+            else if (mode === 'start' && this.currentAction === 'start') {
                 TweenMax.to('#ignition-key', 1.0, {
                     rotation: 160,
                     onComplete: function() {
@@ -177,8 +192,8 @@ export default {
 
 #lock-hotspot {
     position: absolute;
-    top: 25px;
-    left: 35px;
+    top: 33px;
+    left: 40px;
     width: 25px;
     height: 25px;
     border-radius: 12px;
@@ -187,18 +202,18 @@ export default {
 
 #lock-hint {
     position: absolute;
-    top: 25px;
-    left: 35px;
+    top: 33px;
+    left: 40px;
     width: 25px;
     height: 25px;
     border-radius: 12px;
-    z-index: 14px;
+    z-index: 15px;
 }
 
 #acc-hotspot {
     position: absolute;
-    top: 20px;
-    left: 68px;
+    top: 27px;
+    left: 67px;
     width: 20px;
     height: 20px;
     border-radius: 10px;
@@ -207,8 +222,8 @@ export default {
 
 #acc-hint {
     position: absolute;
-    top: 20px;
-    left: 66px;
+    top: 27px;
+    left: 67px;
     width: 20px;
     height: 20px;
     border-radius: 10px;
@@ -217,8 +232,8 @@ export default {
 
 #on-hotspot {
     position: absolute;
-    top: 26px;
-    left: 87px;
+    top: 34px;
+    left: 82px;
     width: 18px;
     height: 18px;
     border-radius: 9px;
@@ -227,8 +242,8 @@ export default {
 
 #on-hint {
     position: absolute;
-    top: 26px;
-    left: 85px;
+    top: 34px;
+    left: 82px;
     width: 18px;
     height: 18px;
     border-radius: 9px;
@@ -237,8 +252,8 @@ export default {
 
 #start-hotspot {
     position: absolute;
-    top: 40px;
-    left: 100px;
+    top: 45px;
+    left: 90px;
     width: 30px;
     height: 30px;
     border-radius: 15px;
@@ -247,8 +262,8 @@ export default {
 
 #start-hint {
     position: absolute;
-    top: 40px;
-    left: 96px;
+    top: 45px;
+    left: 90px;
     width: 30px;
     height: 30px;
     border-radius: 15px;
@@ -270,8 +285,10 @@ export default {
 }
 
 #ignition-switch-plate {
-    width: 150px;
-    height: 150px;
+    width: 125px;
+    height: 127px;
+    margin-top: 12px;
+    margin-left: 8%;
 }
 
 #ignition-switch-plate.on {
@@ -286,8 +303,8 @@ export default {
 
 #ignition-key {
     margin: 0 auto;
-    width: 150px;
-    height: 150px;
+    width: 126px;
+    height: 126px;
     background: url('./key_use.png') no-repeat;
     background-size: 105%;
     background-position: -320% 280%;

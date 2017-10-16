@@ -6,7 +6,7 @@
     },
     "t2": {
         "vo": "../assets/audio/a1/A1_T2.mp3",
-        "cc": "Thats correct. Now put the vehicle in drive.",
+        "cc": "That's correct. Now put the vehicle in drive.",
         "reportLabel": "Put the vehicle in drive."
     },
     "t3": {

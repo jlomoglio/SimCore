@@ -32,6 +32,8 @@ export default {
                 sprite.style.backgroundPositionY = `${yPosition}%`
                 console.log('yPosition', yPosition, sprite.style.backgroundPositionX)
                 this.startRotation(yPosition)
+            } else {
+                this.$emit('completed')
             }
         }
     }

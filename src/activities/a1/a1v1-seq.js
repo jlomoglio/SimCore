@@ -17,6 +17,7 @@ const introScreen = function() {
 
 // NARRATIVE
 const narrative = function() {
+    this.showContentBox = true
     this.t1()
 }
 // TASK 1: Constructor
@@ -24,10 +25,6 @@ const narrative = function() {
 const t1 = function() {
     this.currentTask = 't1a1'
     this.$core.Activity.showLightBox()
-    // start the rotor rotation
-
-    // this.screenTxt1 = 'REFRIG 6.34LB'
-    // this.screenTxt3 = 'SELECT FUNCTION'
 
     this.$core.Activity.Audio.play(
         TaskData.t1.vo,
@@ -36,12 +33,11 @@ const t1 = function() {
     )
 }
 
-// TASK 1: Action 1 (Click Vacuum Button)
+// TASK 1: Turn the ignition on
 const t1a1 = function() {
     let vm = this
     this.isClickable = false
     this.t1ShowHint = false
-    console.log('first task completed')
     window.setTimeout(function() {
         vm.t1Completed()
     }, 2000)
@@ -52,10 +48,10 @@ const t1Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t1.reportLabel,
         this.currentAttempts,
-        this.currentPoints
+        this.currentPoints = 3
     )
     // Reset points
-    this.currentPoints = 3
+    this.currentPoints = 0
     // Reset attempts
     this.currentAttempts = 1
 
@@ -63,19 +59,16 @@ const t1Completed = function() {
 }
 
 // TASK 2: Constructor
-// Now set the timer for 15 minutes.
 const t2 = function() {
     this.currentTask = 't2a1'
     this.isClickable = false
-    console.log('second task', this.currentTask)
-    // drive gear
     this.$core.Activity.Audio.play(
         TaskData.t2.vo,
         TaskData.t2.cc
     )
 }
 
-// TASK 2: Action 2 (Click Up Button)
+// TASK 2: put car in drive
 const t2a1 = function() {
     this.isClickable = false
     this.currentTask = 't2a1'
@@ -89,22 +82,20 @@ const t2a1 = function() {
 
 // TASK 2: Completed
 const t2Completed = function() {
-    // Complete the task
     this.$core.Activity.taskComplete(
         TaskData.t2.reportLabel,
         this.currentAttempts,
-        this.currentPoints
+        this.currentPoints = 3
     )
     // Reset points
-    this.currentPoints = 3
+    this.currentPoints = 0
     // Reset attempts
     this.currentAttempts = 1
 
     this.t3()
 }
 
-// TASK 3: Constructor
-// Press the Start button.
+// TASK 3: Constructor.
 const t3 = function() {
     this.currentTask = 't3a1'
     this.isClickable = false
@@ -115,13 +106,9 @@ const t3 = function() {
     )
 }
 
-// TASK 3: Action 1 (Click Start Button)
+// TASK 3: Apply brake
 const t3a1 = function() {
     this.showCylinderFlow = true
-    let vm = this
-    window.setTimeout(() => {
-        vm.t3Completed()
-    }, 1000)
 }
 
 // TASK 3: Task Completed
@@ -130,10 +117,11 @@ const t3Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t3.reportLabel,
         this.currentAttempts,
-        this.currentPoints
+        this.currentPoints = 3
     )
     // Reset points
-    this.currentPoints = 3
+    this.currentPoints = 0
+
     // Reset attempts
     this.currentAttempts = 1
 
@@ -141,31 +129,34 @@ const t3Completed = function() {
 }
 
 // TASK 4: Constructor
-// Rotate the low-side hand valve to open it.
+// put car in park.
 const t4 = function() {
     this.currentTask = 't4a1'
-    console.log('current task', this.currentTask)
-    // park gear
     this.$core.Activity.Audio.play(
         TaskData.t4.vo,
         TaskData.t4.cc
     )
 }
 
-// TASK 4: Action 1 (Rotate low-side knob)
 const t4a1 = function() {
     this.t4Completed()
 }
 const t4Completed = function() {
+    this.$core.Activity.taskComplete(
+        TaskData.t3.reportLabel,
+        this.currentAttempts,
+        this.currentPoints = 3
+    )
+    this.currentPoints = 0
     this.t5()
 }
 
 // TASK 5: Constructor
-// Rotate the low-side hand valve to open it.
+// turn off ignition - lock
 const t5 = function() {
     this.isClickable = false
     this.currentTask = 't5a1'
-    // turn off ignition - lock
+    this.currentAction = 'lock'
     this.$core.Activity.Audio.play(
         TaskData.t5.vo,
         TaskData.t5.cc
@@ -183,7 +174,7 @@ const t5Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t5.reportLabel,
         this.currentAttempts,
-        this.currentPoints
+        this.currentPoints = 3
     )
     this.transitionToView()
 }
@@ -193,6 +184,7 @@ const t5Completed = function() {
 const transitionToView = function() {
     const vm = this
     this.$core.ContinueButton.show()
+    this.isClickable = true
     this.$core.ContinueButton.callback(() => {
         vm.$core.ContinueButton.hide()
         vm.$core.Activity.nextView('A1V2')

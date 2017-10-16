@@ -1,6 +1,8 @@
 <template>
     <div class="content-box" @click="clickable ? fn() : null">
-        <slot></slot>
+        <div class="box">
+             <slot></slot>
+        </div>       
     </div>
 </template>
 
@@ -35,5 +37,14 @@ export default {
     bottom: 0;
     height: 590px;
     z-index: 2; /* Must be a 2 */
+}
+.box{
+    background: #437b9e;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+    box-sizing: border-box;
+    min-height: 460px;
 }
 </style>

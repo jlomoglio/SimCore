@@ -10,7 +10,7 @@
         <div id="safe-continue" @click="narrative(); carVideoIsHide(); hideContinueButton()" v-if="$store.state.videoEndingFlag" title="Continue"></div>
 
         <!-- Content container required only for A1V1 -->
-        <content-box :clickable="isClickable" @action="incorrect(currentTask)" id="content">
+        <content-box :clickable="isClickable" @action="incorrect(currentTask)" id="content" v-show="showContentBox">
             <zoom-panel>
                 <div class="width-25 pull-left">
                 <div class="width-100 pull-left">
@@ -22,6 +22,7 @@
                             :lockHint="false"
                             :accHint="false"
                             :onHint="false"
+                            :currentAction= "currentAction"
                             :currentTask = "currentTask"
                             :tasks="['t1a1', 't5a1']"
                     >
@@ -44,33 +45,14 @@
                 </div>
             </div>
             <div class="width-75 pull-left">
-                <masterCylinderFlow v-if="showCylinderFlow"></masterCylinderFlow>
+                <masterCylinderFlow 
+                v-if="showCylinderFlow"
+                @completed="t3Completed()">
+                </masterCylinderFlow>
                 <div v-else class="masterCylinder" ></div>
             </div>
             </zoom-panel>
         </content-box>
-        <!-- <content-box :clickable="isClickable" @action="incorrect(currentTask)">
-            <zoom-panel :bgimg="zoomPanelBgImg"> -->
-                <!-- PARTS TRAY -->
-                <!-- <img id="parts-tray" src="assets/img/activities/parts_tray.png" /> -->
-
-                <!-- TASK 1: Hint & Blue Cap -->
-                <!-- <hint-box id="t1-hint" v-hint="t1ShowHint"></hint-box>
-                <img id="blue-ac-cap"
-                    @click="t1a1()"
-                    :class="{ on: blueCapOn, off: blueCapOff }"
-                    src="assets/img/activities/blue_ac_cap.png"
-                /> -->
-
-                <!-- TASK 2: Hint & Red Cap -->
-                <!-- <hint-box id="t2-hint" v-hint="t2ShowHint"></hint-box>
-                <img id="red-ac-cap"
-                    @click="t2a1()"
-                    :class="{ on: redCapOn, off: redCapOff }"
-                    src="assets/img/activities/red_ac_cap.png"
-                />
-            </zoom-panel>
-        </content-box> -->
     </view-box>
 </template>
 
@@ -126,7 +108,9 @@ export default {
             backgroundImg: 'engine_compartment_not_faded_with_AC_machine-a.png',
             // /////////////////////////////////////
             rotateRotors: false,
-            showCylinderFlow: false
+            showCylinderFlow: false,
+            currentAction: 'on',
+            showContentBox: false
         }
     },
 
@@ -217,14 +201,14 @@ export default {
 
 #content {
     position: absolute;
-    top: 63px;
+    top: 50px;
     left: 0;
     right: 0;
     bottom: 0;
     /* height: 590px; */
     z-index: 2; /* Must be a 2 */
     width: 940px;
-    height: 450px;
+    height: 460px;
     margin: 0 auto;
     background-color: #fff;
     box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.55);
@@ -238,7 +222,7 @@ export default {
 }
 .width-25 {
     width: 20%;
-    min-height: 450px;
+    min-height: 250px;
   }
   .temp {
     width: 200px;
@@ -246,20 +230,20 @@ export default {
   }
   .width-100 {
     width: 100%;
-    min-height: 20vh;
+    min-height: 125px;
   }
   .width-75 {
     width: 75%;
   }
   .brakeImg {
-    margin: 20px 10px;
+    margin: 25px 10px;
   }
   .gear-BG {
     background: url('/assets/img/module/gear_shift_movement_Sprite.png') no-repeat;
     background-size: 586% auto;
     border-radius: 50%;
     width: 120px;
-    margin-top: 21px;
+    margin-top: 12px;
     margin-left: 25px;
     height: 120px;
     background-position: 1.5% 0;
@@ -273,7 +257,7 @@ export default {
     position: relative;
   }
   .gearBG{
-    margin-top: 23px;
+    margin-top: 12px;
     margin-left: 25px;
   }
 #safe-continue {

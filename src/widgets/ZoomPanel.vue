@@ -18,7 +18,13 @@ export default {
     top: 0;
     right: 0;
     bottom: 0;
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
+    margin: 10px;
+    /* background: #fff; */
+    /* background: linear-gradient(0deg, #ffffb3, white); */
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 20%, rgba(251,248,203,1) 100%);
+    box-sizing: border-box;
+    box-shadow: 4px 5px 10px 3px rgba(0,0,0,0.6);
 }
 </style>

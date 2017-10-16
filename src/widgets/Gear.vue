@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="gear-container">
   <div id="gear-BG"></div>
   <div id="drive-hotspot" @click="clickable() ? drive() : ''"></div>
   <div id="park-hotspot" @click="clickable() ? park() : ''"></div>
@@ -40,7 +40,7 @@ export default {
         },
         putInDrive(row) {
             TweenMax.to(`#gear-BG`, 1, {
-                backgroundPosition: `-548px -${row}px`,
+                backgroundPosition: `-473px -${row}px`,
                 ease: SteppedEase.config(4),
                 onComplete: this.driveCallBack
             })
@@ -49,8 +49,8 @@ export default {
             this.row += 1
             if (this.row < 4) {
                 var sprite = document.getElementById('gear-BG')
-                var yPosition = this.row * 120
-                sprite.style.backgroundPosition = `-5px -${yPosition}px`
+                var yPosition = (this.row * 118) + (this.row - 1)
+                sprite.style.backgroundPosition = `0 -${yPosition}px`
                 this.putInDrive(yPosition)
             } else {
                 this.$emit('drive')
@@ -58,7 +58,7 @@ export default {
         },
         putInPark(yPosition) {
             TweenMax.to(`#gear-BG`, 1, {
-                backgroundPosition: `-5px -${yPosition}px`,
+                backgroundPosition: `0px -${yPosition}px`,
                 ease: SteppedEase.config(4),
                 onComplete: this.parkCallBack
             })
@@ -67,12 +67,15 @@ export default {
             this.row -= 1
             if (this.row >= 0) {
                 var sprite = document.getElementById('gear-BG')
-                var yPosition = this.row * 120
-                console.log(this.row, yPosition)
-                sprite.style.backgroundPosition = `-548px -${yPosition}px`
+                var yPosition
+                if (this.row > 0) {
+                    yPosition = (this.row * 118) + (this.row - 1)
+                } else {
+                    yPosition = 0
+                }
+                sprite.style.backgroundPosition = `-473px -${yPosition}px`
                 this.putInPark(yPosition)
             } else {
-                console.log('row value', this.row)
                 this.$emit('park')
             }
         }
@@ -82,17 +85,19 @@ export default {
 
 <style>
  #gear-BG {
-    background: url('/assets/img/module/gear_shift_movement_Sprite.png') no-repeat;
-    background-size: 566% auto;
+    background: url(/assets/img/module/gear_shift_movement_Sprite.png) no-repeat;
+    background-size: 593px 476px;
     border-radius: 50%;
     width: 120px;
     height: 120px;
-    background-position: -5px 0;
+    background-position: 0 0;
+    border: 2px solid #a6a6a6;
+    box-sizing: content-box;
   }
   #drive-hotspot {
     position: absolute;
-    bottom: 43px;
-    left: 70px;
+    bottom: 39px;
+    left: 45px;
     width: 7px;
     height: 8px;
     border-radius: 50%;
@@ -100,11 +105,14 @@ export default {
   }
   #park-hotspot {
     position: absolute;
-    bottom: 54px;
-    left: 56px;
+    bottom: 51px;
+    left: 34px;
     width: 6px;
-    height: 7px;
+    height: 8px;
     border-radius: 12px;
     z-index: 5;
+  }
+  .gear-container {
+    position: relative;
   }
 </style>

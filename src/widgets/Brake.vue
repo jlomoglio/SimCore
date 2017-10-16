@@ -53,13 +53,15 @@ export default {
     background: url('/assets/img/module/brake_pedal_sprite_BG.png') no-repeat;
     background-size: 184% auto;
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
+    margin-top: -7px;
+    border: 2px solid #a6a6a6;
     background-position: 62% 40%;
   }
  .brakeImg {
     background: url('/assets/img/module/brake_pedal_sprite.png') no-repeat;
-    margin-top: -119px;
+    margin-top: -130px;
     margin-left: 35px;
     z-index: 5;
     background-position: 0 0;
