@@ -7,39 +7,66 @@
                 <div class="width-100 pull-left">
                     <ignition-switch
                             left="15px"
+<<<<<<< HEAD
                             @lock="t10a1('t10Lock')"
                             @acc="incorrect('t10')"
                             @on="t6a1()"
+=======
+                            @lock="t5a2('t1Lock')"
+                            @acc="incorrect('t1')"
+                            @on="t1a2()"
+>>>>>>> Partially completed the kink image activity
                             :lockHint="false"
                             :accHint="false"
                             :onHint="false"
                             :currentAction= "currentAction"
                             :currentTask = "currentTask"
+<<<<<<< HEAD
                             :tasks="['t6a1', 't10a1']"
+=======
+                            :tasks="['t1a2', 't5a2']"
+>>>>>>> Partially completed the kink image activity
                     >
                     </ignition-switch>
                 </div>
                 <div class="width-100 pull-left brakeImg">
                     <Brake
+<<<<<<< HEAD
                     @onBrake="t8a1()"
                     :currentTask = "currentTask"
                     :task="'t8a1'"
+=======
+                    @onBrake="t3a2()"
+                    :currentTask = "currentTask"
+                    :task="'t3a2'"
+>>>>>>> Partially completed the kink image activity
                     ></Brake>
                 </div>
                 <div class="width-100 pull-left gearBG">
                     <Gear
+<<<<<<< HEAD
                         @park="t9a1('t2')"
                         @drive="t7a1()"
                         @correct="correct()"
                         :currentTask = "currentTask"
                         :tasks="['t7a1', 't9a1']"
+=======
+                        @park="t4a2('t2')"
+                        @drive="t2a2()"
+                        :currentTask = "currentTask"
+                        :tasks="['t2a2', 't4a2']"
+>>>>>>> Partially completed the kink image activity
                     ></Gear>
                 </div>
             </div>
             <div class="width-75 pull-left">
                 <masterCylinderFlow
                 v-if="showCylinderFlow"
+<<<<<<< HEAD
                 @completed="t8Completed()"
+=======
+                @completed="t3Completed()"
+>>>>>>> Partially completed the kink image activity
                 :cylinderFlow="'master-cylinder-kink'">
                 </masterCylinderFlow>
                 <div v-else class="masterCylinder" ></div>
@@ -50,7 +77,11 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import A1V2 from './a1v2-seq.js'
+=======
+import A2V1Seq from './a1v2-seq.js'
+>>>>>>> Partially completed the kink image activity
 import ViewBox from '../../widgets/ViewBox'
 import ContentBox from '../../widgets/ContentBox'
 import ZoomPanel from '../../widgets/ZoomPanel'
