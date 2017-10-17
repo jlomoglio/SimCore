@@ -25,9 +25,9 @@ export default {
     props: ['divClass', 'iframeClass'],
     mounted() {
 		// TODO, need to look for an alternative,
-        window.setTimeout(() => {
+        this.videoDOM = window.setTimeout(() => {
             this.$emit('load')
-        }, 100)
+        }, 1000)
     },
     methods: {
         ended: function () {
