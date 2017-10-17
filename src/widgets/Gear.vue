@@ -1,3 +1,4 @@
+
 <template>
 <div class="gear-container">
   <div id="gear-BG"></div>
@@ -83,7 +84,7 @@ export default {
 }
 </script>
 
-<style>
+<!--<style>
  #gear-BG {
     background: url(/assets/img/module/gear_shift_movement_Sprite.png) no-repeat;
     background-size: 593px 476px;
@@ -112,6 +113,39 @@ export default {
     border-radius: 12px;
     z-index: 5;
   }
+  .gear-container {
+    position: relative;
+  }
+</style> -->
+<style>
+ #gear-BG {
+    background: url('/assets/img/module/gear_shift_movement_Sprite.png') no-repeat;
+    background-size: 565% auto;
+    border-radius: 50%;
+    width: 120.95px;
+    height: 120.95px;
+    background-position: -5px 0;
+    border: 2px solid #a6a6a6;
+    margin-top: -25%;
+  }
+ #drive-hotspot {
+   position: absolute;
+   bottom: 41px;
+   left: 48px;
+   width: 7px;
+   height: 8px;
+   border-radius: 50%;
+   z-index: 5;
+ }
+ #park-hotspot {
+   position: absolute;
+   bottom: 51px;
+   left: 34px;
+   width: 6px;
+   height: 8px;
+   border-radius: 12px;
+   z-index: 5;
+ }
   .gear-container {
     position: relative;
   }

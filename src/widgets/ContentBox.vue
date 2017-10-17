@@ -28,7 +28,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<!-- <style scoped>
 .content-box {
     position: absolute;
     top: 0;
@@ -46,5 +46,16 @@ export default {
     position: relative;
     box-sizing: border-box;
     min-height: 460px;
+}
+</style> -->
+<style scoped>
+.content-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 590px;
+    z-index: 2; /* Must be a 2 */
 }
 </style>

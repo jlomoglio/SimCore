@@ -201,14 +201,14 @@ export default {
 
 #content {
     position: absolute;
-    top: 50px;
+    top: 45px;
     left: 0;
     right: 0;
     bottom: 0;
     /* height: 590px; */
     z-index: 2; /* Must be a 2 */
     width: 940px;
-    height: 460px;
+    height: 80%;
     margin: 0 auto;
     background-color: #fff;
     box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.55);
@@ -222,28 +222,29 @@ export default {
 }
 .width-25 {
     width: 20%;
-    min-height: 250px;
+    min-height: 450px;
+    margin-left: 1%;
   }
   .temp {
     width: 200px;
     height: 200px;
   }
-  .width-100 {
-    width: 100%;
-    min-height: 125px;
-  }
+    .width-100 {
+        width: 100%;
+        min-height: 150px;
+    }
   .width-75 {
     width: 75%;
   }
   .brakeImg {
-    margin: 25px 10px;
+    margin: 20px 10px;
   }
   .gear-BG {
     background: url('/assets/img/module/gear_shift_movement_Sprite.png') no-repeat;
     background-size: 586% auto;
     border-radius: 50%;
     width: 120px;
-    margin-top: 12px;
+    margin-top: 21px;
     margin-left: 25px;
     height: 120px;
     background-position: 1.5% 0;
@@ -257,7 +258,7 @@ export default {
     position: relative;
   }
   .gearBG{
-    margin-top: 12px;
+    margin-top: 23px;
     margin-left: 25px;
   }
 #safe-continue {
@@ -276,6 +277,5 @@ export default {
 	background: url('/assets/img/buttons/horizontal/continue_over.png');
     background-size: 100% 100%;
 }
-
 
 </style>

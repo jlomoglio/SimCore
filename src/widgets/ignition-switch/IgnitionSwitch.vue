@@ -188,6 +188,7 @@ export default {
     position: absolute;
     width: 150px;
     height: 150px;
+    margin-left: 1%;
 }
 
 #lock-hotspot {
