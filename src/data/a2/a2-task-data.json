@@ -1,57 +1,35 @@
 {
-    "narrative1": {
-        "vo": [
-            "../assets/audio/a2/A2.mp3",
-            "../assets/audio/a2/A2_Narrative1.mp3",
-            "../assets/audio/a2/A2_Narrative2.mp3"
-        ],
-        "cc": [
-            "Activity 2: System Evacuation",
-            "Before beginning a system evacuation, you would need to connect the AC machine to the vehicle, as demonstrated in Activity 1.",
-            "After a repair is completed, all the air and moisture need to be removed from the air conditioning system. Pulling a vacuum will remove all the air and moisture."
-        ]
-    },
     "t1": {
-        "vo": "../assets/audio/a2/A2_T1.mp3",
-        "cc": "To begin, select the vacuum button.",
-        "reportLabel": "Select the vacuum button."
+        "vo": "../assets/audio/a1/A1_T6.mp3",
+        "cc": "Now check the operation of brakes, To begin, turn on the Ignition.",
+        "reportLabel": "Turn on the Ignition."
     },
     "t2": {
-        "vo": "../assets/audio/a2/A2_T2.mp3",
-        "cc": "Now set the timer for 15 minutes.",
-        "reportLabel": "Set the timer."
+        "vo": "../assets/audio/a1/A1_T7.mp3",
+        "cc": "That's correct. Now put the vehicle in drive.",
+        "reportLabel": "Put the vehicle in drive."
     },
     "t3": {
-        "vo": "../assets/audio/a2/A2_T3.mp3",
-        "cc": "Press the Start button.",
-        "reportLabel": "Press the start button."
+        "vo": "../assets/audio/a1/A1_T8.mp3",
+        "cc": "Great, Now apply the brakes and observe the brake fluid flow from the master cylinder.",
+        "reportLabel": "Apply the Brakes."
     },
     "t4": {
-        "vo": "../assets/audio/a2/A2_T4.mp3",
-        "cc": "Rotate the low-side hand valve to open it.",
-        "reportLabel": "Open the low side hand valve."
+        "vo": "../assets/audio/a1/A1_T9.mp3",
+        "cc": "Put the vehicle in Park.",
+        "reportLabel": "Put the vehicle in Park."
     },
     "t5": {
-        "vo": "../assets/audio/a2/A2_T5.mp3",
-        "cc": "Now rotate the high-side hand valve to open it.",
-        "reportLabel": "Open the hide side hand valve."
-    },
-    "t6": {
-        "vo": "../assets/audio/a2/A2_T6.mp3",
-        "cc": "Now that the process has ended, rotate the low-side hand valve to close it.",
-        "reportLabel": "Close the low side hand valve."
-    },
-    "t7": {
-        "vo": "../assets/audio/a2/A2_T7.mp3",
-        "cc": "Rotate to close the other valve.",
-        "reportLabel": "Close the high side hand valve."
+        "vo": "../assets/audio/a1/A1_T10.mp3",
+        "cc": "Thats correct. Now Turn off the Ignition.",
+        "reportLabel": "Turn off the Ignition."
     },
     "narrative3": {
         "vo": [
-            "../assets/audio/a2/A2_Narrative3.mp3"
+            "../assets/audio/a1/A1_Summary.mp3"
         ],
         "cc": [
-            "Since the pressure stayed at 30” Hg, the system vacuum is good and you can move on to charging the vehicle with refrigerant."
+            "Based on your observations, what would be your diagnosis."
         ]
     }
 }
