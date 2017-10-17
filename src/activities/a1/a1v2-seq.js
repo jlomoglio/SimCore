@@ -193,7 +193,7 @@ const transitionToView = function() {
     this.isClickable = true
     this.$core.ContinueButton.callback(() => {
         vm.$core.ContinueButton.hide()
-        vm.$core.Activity.nextView('a2V2')
+        vm.$core.Activity.nextView('A1V3')
     })
 }
 
