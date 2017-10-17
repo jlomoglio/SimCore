@@ -55,5 +55,15 @@
 			"Cap the low side service port.",
 			"Cap the high side service port."
 		]
+	},
+    "A5": {
+		"description": "",
+		"tasks": [
+			"Select the charge button.",
+			"Adjust the machine to the correct weight of refrigerant.",
+			"Select the start button.",
+			"Open the high side hand valve.",
+			"Close the high side hand valve."
+		]
 	}
 }
