@@ -1,105 +1,133 @@
 <template>
-    <view-box id="a1v2" :background="backgroundImg">
-        <div id="t6a2-ani" v-show="aniIsShown"></div>
-        <div id="t6a2-ani-cone" v-show="aniIsShown"></div>
-
-        <content-box :clickable="isClickable" @action="incorrect(currentTask)">
-            <div id="wireContainer">
-                <div id="ac-machine-img"></div>
-
-                <hint-box id="t3-hint" v-hint="t3ShowHint"></hint-box>
-                <div @click="t6Clickable ? t6a1() : null" id="red-connector-container">
-                    <div id="red-connector"></div>
+    <view-box id="a2v1" :background="backgroundImg">
+        <!-- Content container required only for a2V1 -->
+        <content-box :clickable="isClickable" @action="incorrect(currentTask)" id="content">
+            <zoom-panel>
+                <div class="width-25 pull-left">
+                <div class="width-100 pull-left">
+                    <ignition-switch
+                            left="15px"
+                            @lock="t5a2('t1Lock')"
+                            @acc="incorrect('t1')"
+                            @on="t1a2()"
+                            :lockHint="false"
+                            :accHint="false"
+                            :onHint="false"
+                            :currentAction= "currentAction"
+                            :currentTask = "currentTask"
+                            :tasks="['t1a2', 't5a2']"
+                    >
+                    </ignition-switch>
                 </div>
-
-                <hint-box id="t4-hint" v-hint="t4ShowHint"></hint-box>
-                <div @click="t5Clickable ? t5a1() : null" id="blue-connector-container">
-                   <div id="blue-connector"></div>
+                <div class="width-100 pull-left brakeImg">
+                    <Brake
+                    @onBrake="t3a2()"
+                    :currentTask = "currentTask"
+                    :task="'t3a2'"
+                    ></Brake>
                 </div>
-
-                <hint-box id="t6-hint" v-hint="t6ShowHint"></hint-box>
-                <div id="blue-service-port"></div>
-
-                <hint-box id="t5-hint" v-hint="t5ShowHint"></hint-box>
-                <div id="red-service-port"></div>
-
-                <svg id="mysvg" width="1000px" height="582px">
-                    <path id="blueWire"
-                        d="m588,485 Q609,507 951,581"
-                        stroke="#0F093C"
-                        stroke-width="7px"
-                        fill="transparent"
-                    />
-                    <path id="redWire"
-                        d="M516,483, Q607,529, 851,581"
-                        stroke="#80030B"
-                        stroke-width="7px"
-                        fill="transparent"
-                    />
-                </svg>
+                <div class="width-100 pull-left gearBG">
+                    <Gear
+                        @park="t4a2('t2')"
+                        @drive="t2a2()"
+                        :currentTask = "currentTask"
+                        :tasks="['t2a2', 't4a2']"
+                    ></Gear>
+                </div>
             </div>
+            <div class="width-75 pull-left">
+                <masterCylinderFlow
+                v-if="showCylinderFlow"
+                @completed="t3Completed()"
+                :cylinderFlow="'master-cylinder-kink'">
+                </masterCylinderFlow>
+                <div v-else class="masterCylinder" ></div>
+            </div>
+            </zoom-panel>
         </content-box>
     </view-box>
 </template>
 
 <script>
-import A1V2Seq from './a1v2-seq.js'
+import A2V1Seq from './a1v2-seq.js'
 import ViewBox from '../../widgets/ViewBox'
 import ContentBox from '../../widgets/ContentBox'
 import ZoomPanel from '../../widgets/ZoomPanel'
 import HintBox from '../../widgets/HintBox'
-
-// let redWire = document.getElementById('redWire')
-// let blueWire = document.getElementById('blueWire')
+import HotSpot from '../../widgets/HotSpot'
+import ButtonsVideo from '../../sim-core/components/video-page/ButtonsVideo'
+import VideoPlayer from '../../sim-core/components/video-page/VideoPlayer'
+import ContinueButton from '../../sim-core/components/sim-page/ContinueButton'
+import masterCylinderFlow from '../../sim-core/components/sim-page/masterCylinderFlow'
+import IgnitionSwitch from '../../widgets/ignition-switch/IgnitionSwitch'
+import Brake from '../../widgets/Brake'
+import Gear from '../../widgets/Gear'
 
 export default {
-    name: 'A1V2',
+    name: 'A2V1',
+
+    // This is a required list of imported components (Widgets)
     components: {
         ViewBox,
         ContentBox,
         ZoomPanel,
-        HintBox
+        HintBox,
+        HotSpot,
+        VideoPlayer,
+        ContinueButton,
+        ButtonsVideo,
+        masterCylinderFlow,
+        IgnitionSwitch,
+        Brake,
+        Gear
     },
+
+    // Data contains properties that manage the state of the views
+    // Typical usage is for boolean properties and view text and
+    // properties used for scoring.
     data() {
         return {
             // Required Properties //////////////////
             isClickable: false,
-            currentTask: 't3',
+            currentTask: 't7',
             currentAttempts: 1,
             currentPoints: 3,
             backgroundImg: 'engine_compartment_not_faded_with_AC_machine-a.png',
             // /////////////////////////////////////
-
-            // Hints should always follow this naming convention
-            t3ShowHint: false,
-            t4ShowHint: false,
-            t5ShowHint: false,
-            t6ShowHint: false,
-
-            // Task properties
-            threshold: '100%',
-            snapMade: false,
-
-            // Check for task function
-            t5Clickable: false,
-            t6Clickable: false,
-
-            // Show animation
-            aniIsShown: false
+            rotateRotors: false,
+            showCylinderFlow: false,
+            currentAction: 'on'
         }
     },
+
+    computed: {
+        carVideoView () {
+            return this.$store.getters.getCurrentView
+        }
+    },
+
+    // Mounted is used for things that need to be active when the
+    // view first loads, such as configs and init and any icons
     mounted() {
         // Configure the view (Activity Title, View Mode[full/box], Activity ID)
-        this.$core.Activity.configView('System Recovery', 'full', 'A1')
+        this.$core.Activity.configView('', 'full', 'A2')
         // Initlize the activity view
-        this.$core.Activity.init([this.t3])
+        this.$core.Activity.init([this.t1])
 
-        // Show and Enable SI Menu IconBar
+        // Show Zoom Icons
+        this.$core.IconBar.Zoom.show()
+
+        // Show and Enable SI Menu Icon
         this.$core.IconBar.ServiceInfo.show()
         this.$core.IconBar.ServiceInfo.enable()
     },
+
+    // Methods imports the sequence functions. You should only add
+    // helper functions here. All task logic needs to be in the
+    // sequecnxe file.
     methods: {
-        ...A1V2Seq,
+        // Required for sequence file
+        ...A2V1Seq,
 
         // Required for inccorect responces and scoring
         incorrect(task) {
@@ -115,148 +143,87 @@ export default {
         }
     }
 }
+
 </script>
 
 <style scoped>
+/** View Required Styles ********************************/
+.content-box {
+    overflow: hidden; /* ZoomPanel */
+}
+
 /** View Specific Styles ********************************/
-#ac-machine-img {
-    background: url('/assets/img/activities/AC_machine_img.png');
-    height: 239px;
-    width: 350px;
-    bottom: 10px;
-    right: 53px;
+#a2v1 {
     position: absolute;
-    z-index: 5;
+    top: -30px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 590px;
+    background: url('/assets/img/activities/engine_compartment_not_faded_with_AC_machine-a.png');
+    background-size: 105%;
 }
 
-#wireContainer {
+#content {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* height: 590px; */
+    z-index: 2; /* Must be a 2 */
+    width: 940px;
+    height: 460px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.55);
+}
+
+/** View Specific Styles ********************************/
+
+/* Left & Right Side Popout */
+.pull-left {
+  float: left;
+}
+.width-25 {
+    width: 20%;
+    min-height: 250px;
+  }
+  .temp {
+    width: 200px;
+    height: 200px;
+  }
+  .width-100 {
     width: 100%;
-    height: 500px;
-}
-
-#redWire, #blueWire {
-    position: absolute;
-}
-
-#red-connector-container {
-    left: 470px;
-    position: absolute;
-    top: 431px;
-    z-index: 2;
-}
-
-#red-connector {
-    background-image: url('/assets/img/activities/red-connector-sm.png');
-    background-repeat: no-repeat;
-    height: 65px;
-    width: 65px;
-    z-index: 2;
-}
-
-#blue-connector-container {
-    position: absolute;
-    left: 540px;
-    top: 438px;
-    z-index: 1;
-}
-
-#blue-connector {
-    height: 65px;
-    width: 65px;
-    background-image: url('/assets/img/activities/blue-connector-sm.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 1;
-}
-
-#red-service-port {
-    background-color: red;
-    height: 20px;
-    left: 524px;
-    opacity: 0;
-    position: absolute;
-    top: 364px;
-    width: 20px;
-    z-index: 1;
-}
-
-#blue-service-port {
-    background-color: blue;
-    height: 20px;
-    left: 430px;
-    opacity: 0;
-    position: absolute;
-    top: 39px;
-    width: 20px;
-    z-index: 1;
-}
-
-#mysvg {
-    top: 0px;
-    left: 0px;
-    position:absolute;
-}
-
-#t3-hint {
-    position: absolute;
-    top: 31px;
-    left: 422px;
-    width: 30px;
-    height: 30px;
-    border-radius: 10px;
-}
-
-#t4-hint {
-    position: absolute;
-    top: 356px;
-    left: 516px;
-    width: 30px;
-    height: 30px;
-    border-radius: 10px;
-}
-#t5-hint {
-    position: absolute;
-    top: 29px;
-    left: 426px;
-    width: 30px;
-    height: 30px;
-    border-radius: 10px;
-}
-
-#t6-hint {
-    position: absolute;
-    top: 364px;
-    left: 524px;
-    width: 30px;
-    height: 30px;
-    border-radius: 10px;
-}
-
-#t6a2-ani {
-    position: absolute;
-    top: 60px;
-    left: 310px;
-    width: 400px;
-    height: 400px;
-    border-radius: 200px;
-    background: url('/assets/img/activities/refrig_sprite.png') no-repeat;
+    min-height: 125px;
+  }
+  .width-75 {
+    width: 75%;
+  }
+  .brakeImg {
+    margin: 25px 10px;
+  }
+  .gear-BG {
+    background: url('/assets/img/module/gear_shift_movement_Sprite.png') no-repeat;
+    background-size: 586% auto;
+    border-radius: 50%;
+    width: 120px;
+    margin-top: 12px;
+    margin-left: 25px;
+    height: 120px;
+    background-position: 1.5% 0;
+  }
+  .masterCylinder {
+    width: 690px;
+    height: 440px;
+    background: url(/assets/img/module/master_cylinder_flow_calipers_drums_sprite_kink.png) no-repeat;
     background-position: 0 0;
-    border: 2px solid #ccc;
-    box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.55);
-    z-index: 6;
-}
+    background-size: 1200% auto;
+    position: relative;
+  }
+  .gearBG{
+    margin-top: 12px;
+    margin-left: 25px;
+  }
 
-#t6a2-ani-cone {
-    position: absolute;
-    top: 330px;
-    left: 495px;
-    width: 0;
-    height: 0;
-    opacity: .5;
-    border-left: 165px solid transparent;
-    border-right: 165px solid transparent;
-    border-top: 280px solid #ccc;
-    transform: rotate(-35deg);
-    z-index: 5;
-}
 </style>
