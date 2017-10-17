@@ -1,6 +1,8 @@
 // Required to import Data file and Vue
 import ResponseData from '../../data/a1/a1-response-data.json'
 import TaskData from '../../data/a1/a1-task-data.json'
+import AssessmentData from '../../data/a1/a1-assessments.json'
+import Vue from 'vue'
 
 // IncorrectVO function calls common negitive responses
 const incorrectResponse = function() {
@@ -182,7 +184,41 @@ const t10Completed = function() {
     )
     // call next task
     this.isClickable = false
-    this.transitionToView()
+    // Show continue button & call assessment
+    this.$core.ContinueButton.show()
+    this.$core.ContinueButton.callback(() => {
+        Vue.core.ContinueButton.hide()
+        this.assessment()
+    })
+    // this.transitionToView()
+}
+// Assesment
+const assessment = function() {
+    // Config the assessment
+    this.$core.Activity.Assessment.config(AssessmentData.assessment1, () => {
+        // Call final narrative
+        this.$core.Activity.Audio.play(
+            TaskData.narrative3.vo,
+            TaskData.narrative3.cc,
+            () => {
+                // Disable incorrect
+                this.isClickable = false
+                // go to next screen
+                this.transitionToView()
+            }
+        )
+    })
+    // Show the assessment
+    this.$core.Activity.Assessment.show()
+    // Call assessment audio
+    this.$core.Activity.Audio.play(
+        AssessmentData.assessment1.vo,
+        null,
+        () => {
+            // Disable incorrect
+            this.isClickable = true
+        }
+    )
 }
 
 // Transistion To View (Required)
@@ -192,6 +228,7 @@ const transitionToView = function() {
     this.$core.ContinueButton.show()
     this.isClickable = true
     this.$core.ContinueButton.callback(() => {
+        this.$core.Activity.Assessment.hide()
         vm.$core.ContinueButton.hide()
         vm.$core.Activity.nextView('A1V3')
     })
@@ -215,5 +252,6 @@ export default {
     t10,
     t10a1,
     t10Completed,
-    transitionToView
+    transitionToView,
+    assessment
 }
