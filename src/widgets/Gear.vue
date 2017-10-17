@@ -33,9 +33,11 @@ export default {
             return false
         },
         drive() {
+            this.$emit('correct')
             this.putInDrive(this.row)
         },
         park() {
+            this.$emit('correct')
             this.row -= 1
             this.putInPark(360)
         },

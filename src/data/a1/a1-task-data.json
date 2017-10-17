@@ -24,6 +24,31 @@
         "cc": "Thats correct. Now Turn off the Ignition.",
         "reportLabel": "Turn off the Ignition."
     },
+    "t6": {
+        "vo": "../assets/audio/a1/A1_T6.mp3",
+        "cc": "Check the operation of the disk brakes on this vehicle, To begin, turn on the Ignition.",
+        "reportLabel": "Turn on the Ignition."
+    },
+    "t7": {
+        "vo": "../assets/audio/a1/A1_T7.mp3",
+        "cc": "That's correct. Now put the vehicle in drive.",
+        "reportLabel": "Put the vehicle in drive."
+    },
+    "t8": {
+        "vo": "../assets/audio/a1/A1_T8.mp3",
+        "cc": "Great, Now apply the brakes and observe the brake fluid flow from the master cylinder.",
+        "reportLabel": "Apply the Brakes."
+    },
+    "t9": {
+        "vo": "../assets/audio/a1/A1_T9.mp3",
+        "cc": "Put the vehicle in Park.",
+        "reportLabel": "Put the vehicle in Park."
+    },
+    "t10": {
+        "vo": "../assets/audio/a1/A1_T10.mp3",
+        "cc": "Thats correct. Now Turn off the Ignition.",
+        "reportLabel": "Turn off the Ignition."
+    },
     "narrative3": {
         "vo": [
             "../assets/audio/a1/A1_Summary.mp3"
