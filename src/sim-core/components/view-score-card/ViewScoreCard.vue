@@ -35,7 +35,7 @@
         mounted () {
             const scoreCardVO = '/assets/audio/' + (this.moduleData.passed ? 'Congratulations.mp3' : 'Sorry.mp3')
             playAudio(scoreCardVO, null)
-            //this.moduleData.totalScorePercent = (this.moduleData.reviewQuestions.totalScore / this.moduleData.reviewQuestions.totalPossibleScore) * 100
+            // this.moduleData.totalScorePercent = (this.moduleData.reviewQuestions.totalScore / this.moduleData.reviewQuestions.totalPossibleScore) * 100
             this.moduleData.totalScorePercent = Math.round(((this.moduleData.reviewQuestions.totalScore + this.moduleData.activities[0].totalScore + this.moduleData.activities[1].totalScore + this.moduleData.activities[2].totalScore) / this.moduleData.totalPossibleScore) * 100)
         },
         computed: mapGetters({
