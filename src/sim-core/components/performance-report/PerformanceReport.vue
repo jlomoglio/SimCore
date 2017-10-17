@@ -254,6 +254,7 @@
                             text-align: center;
                             border: 1px solid #000;
                             border-top: 0;
+                            color: #2c3e50;
                             box-sizing: border-box;
 
                             &:first-child {
