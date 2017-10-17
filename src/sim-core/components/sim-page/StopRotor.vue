@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div v-if="this.rotorName === 'LRRotor'" class="LRRotor" id="LRRotor">
+        <div v-if="this.rotorName === 'LRRotor'" class="lr-rotor" id="LRRotor">
         </div>
-        <div v-if="this.rotorName === 'LFRotor'"  class="LFRotor" id="LFRotor">
+        <div v-if="this.rotorName === 'LFRotor'"  class="lf-rotor" id="LFRotor">
         </div>
-        <div v-if="this.rotorName === 'RFRotor'" class="RFRotor" id="RFRotor">
+        <div v-if="this.rotorName === 'RFRotor'" class="rf-rotor" id="RFRotor">
         </div>
-        <div v-if="this.rotorName === 'RRRotor'" class="RRRotor" id="RRRotor">
+        <div v-if="this.rotorName === 'RRRotor'" class="rr-rotor" id="RRRotor">
         </div>
     </div>
 </template>
@@ -48,15 +48,15 @@ export default {
 }
 </script>
 <style scoped>
-  .LFRotor {
+  .lf-rotor {
     width: 200px;
     height: 200px;
-    /* background: url('/assets/img/module/disc_pad_piston_rotor_LF_sprite.png') no-repeat;
+    background: url('/assets/img/module/disc_pad_piston_rotor_LF_sprite.png') no-repeat;
     background-position: 0 0;
     background-size: 1000% auto;
-    position: relative; */
+    position: relative;
   }
-  .LRRotor {
+  .lr-rotor {
     width: 200px;
     height: 200px;
     background: url('/assets/img/module/disc_pad_piston_rotor_LR_sprite.png') no-repeat;
@@ -64,7 +64,7 @@ export default {
     background-size: 1000% auto;
     position: relative;
   }
-  .RFRotor {
+  .rf-rotor {
     width: 200px;
     height: 200px;
     background: url('/assets/img/module/disc_pad_piston_rotor_RF_sprite.png') no-repeat;
@@ -72,7 +72,7 @@ export default {
     background-size: 1000% auto;
     position: relative;
   }
-  .RRRotor {
+  .rr-rotor {
     width: 200px;
     height: 200px;
     background: url('/assets/img/module/disc_pad_piston_rotor_RR_sprite.png') no-repeat;

@@ -118,7 +118,7 @@ export default {
     top: 0;
     left: 50%;
     margin-left: -500px;
-    background: url('/assets/img/module/car.jpg');
+    background: url('/assets/img/activities/engine_compartment_not_faded_with_AC_machine-a.png');
     overflow: hidden;
 }
 
