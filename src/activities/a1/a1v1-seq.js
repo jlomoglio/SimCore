@@ -39,6 +39,7 @@ const t1a1 = function() {
     this.isClickable = false
     this.t1ShowHint = false
     window.setTimeout(function() {
+        vm.isClickable = true
         vm.t1Completed()
     }, 2000)
 }
@@ -54,7 +55,8 @@ const t1Completed = function() {
     this.currentPoints = 0
     // Reset attempts
     this.currentAttempts = 1
-
+    // call next task
+    this.isClickable = false
     this.t2()
 }
 
@@ -64,7 +66,8 @@ const t2 = function() {
     this.isClickable = false
     this.$core.Activity.Audio.play(
         TaskData.t2.vo,
-        TaskData.t2.cc
+        TaskData.t2.cc,
+        () => { this.isClickable = true }
     )
 }
 
@@ -76,6 +79,7 @@ const t2a1 = function() {
     console.log('task 2 action 1 drive')
     // Check if the hint is shown
     window.setTimeout(function() {
+        vm.isClickable = true
         vm.t2Completed()
     }, 2000)
 }
@@ -91,7 +95,8 @@ const t2Completed = function() {
     this.currentPoints = 0
     // Reset attempts
     this.currentAttempts = 1
-
+    // call next task
+    this.isClickable = false
     this.t3()
 }
 
@@ -102,13 +107,19 @@ const t3 = function() {
     // brake
     this.$core.Activity.Audio.play(
         TaskData.t3.vo,
-        TaskData.t3.cc
+        TaskData.t3.cc,
+        () => { this.isClickable = true }
     )
 }
 
 // TASK 3: Apply brake
 const t3a1 = function() {
+    this.isClickable = false
+    let vm = this
     this.showCylinderFlow = true
+    window.setTimeout(function() {
+        vm.isClickable = true
+    }, 1000)
 }
 
 // TASK 3: Task Completed
@@ -124,7 +135,8 @@ const t3Completed = function() {
 
     // Reset attempts
     this.currentAttempts = 1
-
+    // call next task
+    this.isClickable = false
     this.t4()
 }
 
@@ -134,12 +146,18 @@ const t4 = function() {
     this.currentTask = 't4a1'
     this.$core.Activity.Audio.play(
         TaskData.t4.vo,
-        TaskData.t4.cc
+        TaskData.t4.cc,
+        () => { this.isClickable = true }
     )
 }
 
 const t4a1 = function() {
-    this.t4Completed()
+    this.isClickable = false
+    let vm = this
+    window.setTimeout(function() {
+        vm.isClickable = true
+        vm.t4Completed()
+    }, 1000)
 }
 const t4Completed = function() {
     this.$core.Activity.taskComplete(
@@ -148,24 +166,31 @@ const t4Completed = function() {
         this.currentPoints = 3
     )
     this.currentPoints = 0
+    // call next task
+    this.isClickable = false
     this.t5()
 }
 
 // TASK 5: Constructor
 // turn off ignition - lock
 const t5 = function() {
-    this.isClickable = false
     this.currentTask = 't5a1'
     this.currentAction = 'lock'
     this.$core.Activity.Audio.play(
         TaskData.t5.vo,
-        TaskData.t5.cc
+        TaskData.t5.cc,
+        () => { this.isClickable = true }
     )
 }
 
-// TASK 5: Action 1 (Rotate high-side knob)
+// TASK 5: turn off the ignition
 const t5a1 = function() {
-    this.t5Completed()
+    this.isClickable = false
+    let vm = this
+    window.setTimeout(function() {
+        vm.isClickable = true
+        vm.t5Completed()
+    }, 1000)
 }
 
 // TASK 5: Completed
@@ -176,6 +201,8 @@ const t5Completed = function() {
         this.currentAttempts,
         this.currentPoints = 3
     )
+    // call next task
+    this.isClickable = false
     this.transitionToView()
 }
 
