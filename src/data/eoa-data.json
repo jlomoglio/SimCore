@@ -18,5 +18,10 @@
         "id": "A4",
         "content": "<p>You have completed Activity 4: Equalizing the Hoses and Disconnecting the AC Machine..<br> Hoses can hold several ounces of refrigerant. Equalizing the hoses ensures the majority of the refrigerant left in the hoses is put into the vehicle so the charge is accurate.</p>",
         "vo": "../assets/audio/a4/A4_summary.mp3"
+    },
+    {
+        "id": "A5",
+        "content": "<p>You have completed Activity 5: Equalizing the Hoses and Disconnecting the AC Machine..<br> Hoses can hold several ounces of refrigerant. Equalizing the hoses ensures the majority of the refrigerant left in the hoses is put into the vehicle so the charge is accurate.</p>",
+        "vo": "../assets/audio/a4/A4_summary.mp3"
     }
 ]

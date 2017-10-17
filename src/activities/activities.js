@@ -5,6 +5,7 @@ import A2V1 from './a2/A2V1.vue'
 import A3V1 from './a3/A3V1.vue'
 import A4V1 from './a4/A4V1.vue'
 import A4V2 from './a4/A4V2.vue'
+import A5V1 from './a5/A5V1.vue'
 
 export default {
     A1V1,
@@ -13,5 +14,6 @@ export default {
     A2V1,
     A3V1,
     A4V1,
-    A4V2
+    A4V2,
+    A5V1
 }
