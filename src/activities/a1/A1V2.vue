@@ -7,38 +7,39 @@
                 <div class="width-100 pull-left">
                     <ignition-switch
                             left="15px"
-                            @lock="t5a2('t1Lock')"
-                            @acc="incorrect('t1')"
-                            @on="t1a2()"
+                            @lock="t10a1('t10Lock')"
+                            @acc="incorrect('t10')"
+                            @on="t6a1()"
                             :lockHint="false"
                             :accHint="false"
                             :onHint="false"
                             :currentAction= "currentAction"
                             :currentTask = "currentTask"
-                            :tasks="['t1a2', 't5a2']"
+                            :tasks="['t6a1', 't10a1']"
                     >
                     </ignition-switch>
                 </div>
                 <div class="width-100 pull-left brakeImg">
                     <Brake
-                    @onBrake="t3a2()"
+                    @onBrake="t8a1()"
                     :currentTask = "currentTask"
-                    :task="'t3a2'"
+                    :task="'t8a1'"
                     ></Brake>
                 </div>
                 <div class="width-100 pull-left gearBG">
                     <Gear
-                        @park="t4a2('t2')"
-                        @drive="t2a2()"
+                        @park="t9a1('t2')"
+                        @drive="t7a1()"
+                        @correct="correct()"
                         :currentTask = "currentTask"
-                        :tasks="['t2a2', 't4a2']"
+                        :tasks="['t7a1', 't9a1']"
                     ></Gear>
                 </div>
             </div>
             <div class="width-75 pull-left">
                 <masterCylinderFlow
                 v-if="showCylinderFlow"
-                @completed="t3Completed()"
+                @completed="t8Completed()"
                 :cylinderFlow="'master-cylinder-kink'">
                 </masterCylinderFlow>
                 <div v-else class="masterCylinder" ></div>
@@ -49,7 +50,7 @@
 </template>
 
 <script>
-import A2V1Seq from './a1v2-seq.js'
+import A1V2 from './a1v2-seq.js'
 import ViewBox from '../../widgets/ViewBox'
 import ContentBox from '../../widgets/ContentBox'
 import ZoomPanel from '../../widgets/ZoomPanel'
@@ -64,7 +65,7 @@ import Brake from '../../widgets/Brake'
 import Gear from '../../widgets/Gear'
 
 export default {
-    name: 'A2V1',
+    name: 'A1V2',
 
     // This is a required list of imported components (Widgets)
     components: {
@@ -89,7 +90,7 @@ export default {
         return {
             // Required Properties //////////////////
             isClickable: false,
-            currentTask: 't7',
+            currentTask: 't6',
             currentAttempts: 1,
             currentPoints: 3,
             backgroundImg: 'engine_compartment_not_faded_with_AC_machine-a.png',
@@ -112,7 +113,7 @@ export default {
         // Configure the view (Activity Title, View Mode[full/box], Activity ID)
         this.$core.Activity.configView('', 'full', 'A2')
         // Initlize the activity view
-        this.$core.Activity.init([this.t1])
+        this.$core.Activity.init([this.t6])
 
         // Show Zoom Icons
         this.$core.IconBar.Zoom.show()
@@ -127,7 +128,7 @@ export default {
     // sequecnxe file.
     methods: {
         // Required for sequence file
-        ...A2V1Seq,
+        ...A1V2,
 
         // Required for inccorect responces and scoring
         incorrect(task) {
@@ -140,6 +141,9 @@ export default {
                 this[task + 'ShowHint'] = true
                 this.currentPoints = 0
             }
+        },
+        correct() {
+            this.isClickable = false
         }
     }
 }

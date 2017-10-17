@@ -39,6 +39,7 @@
                     <Gear
                         @park="t4a1('t2')"
                         @drive="t2a1()"
+                        @correct="correct()"
                         :currentTask = "currentTask"
                         :tasks="['t2a1', 't4a1']"
                     ></Gear>
@@ -47,7 +48,8 @@
             <div class="width-75 pull-left">
                 <masterCylinderFlow 
                 v-if="showCylinderFlow"
-                @completed="t3Completed()">
+                @completed="t3Completed()"
+                :cylinderFlow="'master-cylinder'">
                 </masterCylinderFlow>
                 <div v-else class="masterCylinder" ></div>
             </div>
@@ -154,6 +156,9 @@ export default {
                 this[task + 'ShowHint'] = true
                 this.currentPoints = 0
             }
+        },
+        correct() {
+            this.isClickable = false
         },
         carVideoIsHide() {
             this.$core.Activity.carVideoIsHide()
