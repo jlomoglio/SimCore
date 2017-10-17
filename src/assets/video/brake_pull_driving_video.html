@@ -16,7 +16,7 @@
 
 <body>
     <div id="container">
-        <video poster="../img/module/poster.png" id="videoPlayer" class="video-js vjs-default-skin" controls preload="none" width="1000" height="575" poster="" data-setup="{}">
+        <video poster="../img/module/poster.png" id="videoPlayer" class="video-js vjs-default-skin" controls preload="none" width="1000" height="540" poster="" data-setup="{}">
 				<source id="mp4Vid" src="brake_pull_driving_video.mp4" type="video/mp4">
 				<track id="capVid" kind="captions" src="uconcepts.captions.vtt" srclang="en" label="English"></track>
                 <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
@@ -55,4 +55,10 @@
     -moz-border-radius: 0.8em;
     border-radius: 0.8em;
 }
+    .video-js .vjs-tech {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
 </style>

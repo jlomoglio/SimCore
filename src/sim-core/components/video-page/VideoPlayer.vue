@@ -72,6 +72,7 @@ export default {
 .videoFrame {
 	width: 100%;
 	height: 100%;
+	top: 28px;
 	position: relative;
 	z-index: 9;
 }
