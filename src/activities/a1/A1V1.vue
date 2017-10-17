@@ -234,10 +234,10 @@ export default {
     width: 200px;
     height: 200px;
   }
-    .width-100 {
-        width: 100%;
-        min-height: 150px;
-    }
+  .width-100 {
+    width: 100%;
+    min-height: 150px;
+  }
   .width-75 {
     width: 75%;
   }
