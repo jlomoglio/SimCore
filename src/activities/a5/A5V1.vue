@@ -388,6 +388,10 @@
     top: 141px;
     transform: rotate(242deg);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 08009496c6be45fec2ec067e009ec18f0888e04b
     .caliper-2 .caliper-arrow-1 {
     left: 21px;
     top: 150px;

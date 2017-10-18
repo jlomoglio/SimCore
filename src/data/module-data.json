@@ -40,6 +40,14 @@
             "totalScore": 0,
             "totalPossibleScore": 0,
             "completedTasks": []
+        },
+        {
+            "id": "A5",
+            "title": "Final",
+            "completed": false,
+            "totalScore": 0,
+            "totalPossibleScore": 0,
+            "completedTasks": []
         }
     ],
     "reviewQuestions": {
