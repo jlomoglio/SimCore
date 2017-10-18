@@ -2,7 +2,7 @@
   <div id="brake" >
     <div class="brake-BG">
     </div>
-    <div class="brakeImg" @click="clickable() ? t3a1(brakeRow) : ''" id="brake"></div>
+    <div class="brakeImg" @click="clickable() ? brake(brakeRow) : ''" id="brake"></div>
   </div>
 </template>
 <script>
@@ -25,12 +25,11 @@ export default {
             }
             return false
         },
-        t3a1(row) {
-            this.$emit('onBrake')
+        brake(row) {
             TweenMax.to(`#brake`, 1, {
                 backgroundPosition: `-180px ${row}px`,
                 ease: SteppedEase.config(4),
-                onComplete: this.callBack
+                onComplete: this.brakeCallback
             })
         },
         brakeCallback() {
@@ -40,8 +39,10 @@ export default {
                 var sprite = document.getElementById('brake')
                 sprite.style.backgroundPositionX = '0px'
                 sprite.style.backgroundPositionY = `${yPosition}px`
-                console.log('yPosition', yPosition, sprite.style.backgroundPositionX)
-                this.t3a1(yPosition)
+                this.brake(yPosition)
+            } else {
+                console.log('brake applied')
+                this.$emit('onBrake')
             }
         }
     }

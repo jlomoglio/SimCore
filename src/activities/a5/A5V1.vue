@@ -6,31 +6,34 @@
                     <div class="width-100 pull-left">
                         <ignition-switch
                                 left="15px"
-                                @lock="t5a1('t1Lock')"
+                                @lock="t15a1('t1Lock')"
                                 @acc="incorrect('t1')"
-                                @on="t1a1()"
-                                :lockHint="false"
+                                @on="t11a1()"
+                                :lockHint="t15ShowHint"
                                 :accHint="false"
-                                :onHint="false"
+                                :onHint="t11ShowHint"
                                 :currentAction= "currentAction"
                                 :currentTask = "currentTask"
-                                :tasks="['t1a1', 't5a1']"
+                                :tasks="['t11', 't15']"
                         >
                         </ignition-switch>
                     </div>
                     <div class="width-100 pull-left brakeImg">
                         <Brake
-                                @onBrake="t3a1()"
+                                @onBrake="t13a1()"
                                 :currentTask = "currentTask"
-                                :task="'t3a1'"
+                                :brakeHint = "t13ShowHint"
+                                :task="'t13'"
                         ></Brake>
                     </div>
                     <div class="width-100 pull-left gearBG">
                         <Gear
-                                @park="t4a1('t2')"
-                                @drive="t2a1()"
+                                @park="t14a1('t14')"
+                                @drive="t12a1()"
                                 :currentTask = "currentTask"
-                                :tasks="['t2a1', 't4a1']"
+                                :tasks="['t12', 't14']"
+                                :driveHint= "t12ShowHint"
+                                :parkHint = "t14ShowHint"
                         ></Gear>
                         <button v-on:click="greet">apply brakes</button>
                     </div>
@@ -42,14 +45,16 @@
 							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
-                            <StopRotor rotorName='LFRotor'></StopRotor>
+                            <StopRotor rotorName='LFRotor' v-if="stopRotor"></StopRotor>
+                            <div class="lf-rotor" v-else></div>
 						</div>
 						<div class="caliper-br caliper-2">
                             <span class="lr-label">LR</span>
 							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
-                            <StopRotor rotorName='LRRotor'></StopRotor>
+                            <StopRotor rotorName='LRRotor' v-if="stopRotor"></StopRotor>
+                            <div class="lr-rotor" v-else></div>
 						</div>
 					</div>
 					<div class="middle-arrow">
@@ -61,14 +66,16 @@
 							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
-                             <StopRotor rotorName='RFRotor'></StopRotor>
+                             <StopRotor rotorName='RFRotor' v-if="stopRotor"></StopRotor>
+                             <div class="rf-rotor" v-else></div>
 						</div>
 						<div class="caliper-br caliper-4">
                             <span class="rr-label">RR</span>
 							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
-                            <StopRotor rotorName='RRRotor'></StopRotor>
+                            <StopRotor rotorName='RRRotor' v-if="stopRotor"></StopRotor>
+                            <div class="rr-rotor" v-else></div>
 						</div>
 					</div>
 				</div>
@@ -114,8 +121,10 @@
     import ZoomPanel from '../../widgets/ZoomPanel'
     import StopRotor from '../../sim-core/components/sim-page/StopRotor'
     import IgnitionSwitch from '../../widgets/ignition-switch/IgnitionSwitch'
-    import { TweenMax, SteppedEase } from 'gsap'
     import Brake from '../../widgets/Brake'
+    import Gear from '../../widgets/Gear'
+    import A5V1Seq from './a5v1-seq'
+    
     export default {
         name: 'A5V1',
 
@@ -126,7 +135,21 @@
             ZoomPanel,
             StopRotor,
             IgnitionSwitch,
-            Brake
+            Brake,
+            Gear
+        },
+        mounted() {
+            // Configure the view (Activity Title, View Mode[full/box], Activity ID)
+            this.$core.Activity.configView('', 'full', 'A5')
+            // Initlize the activity view
+            this.$core.Activity.init([this.t11])
+
+            // Show Zoom Icons
+            this.$core.IconBar.Zoom.show()
+
+            // Show and Enable SI Menu Icon
+            this.$core.IconBar.ServiceInfo.show()
+            this.$core.IconBar.ServiceInfo.enable()
         },
 
         // Data contains properties that manage the state of the views
@@ -134,38 +157,27 @@
         // properties used for scoring.
         data() {
             return {
-                currentTask: 't7',
+                currentTask: 't11',
                 currentAttempts: 1,
                 currentPoints: 3,
+                isClickable: false,
+                currentAction: 'on',
                 // Required Properties //////////////////
                 backgroundImg: 'engine_compartment_not_faded_with_AC_machine-a.png',
-                showLRRotor: false,
+                stopRotor: false,
                 brakeRow: 0,
-                breaksApplied: false
+                breaksApplied: false,
+                t11ShowHint: false,
+                t12ShowHint: false,
+                t13ShowHint: false,
+                t14ShowHint: false,
+                t15ShowHint: false
             }
         },
         methods: {
+            ...A5V1Seq,
             greet: function (event) {
                 this.breaksApplied = !this.breaksApplied
-            },
-            t3a1(row) {
-                TweenMax.to(`#brake`, 1, {
-                    repeat: 1,
-                    backgroundPosition: `-180px ${row}px`,
-                    ease: SteppedEase.config(4),
-                    onComplete: this.callBack
-                })
-            },
-            brakeCallback() {
-                this.row += 1
-                if (this.row < 2) {
-                    var yPosition = this.row * 66
-                    var sprite = document.getElementById('brake')
-                    sprite.style.backgroundPositionX = '0px'
-                    sprite.style.backgroundPositionY = `${yPosition}px`
-                    console.log('yPosition', yPosition, sprite.style.backgroundPositionX)
-                    this.t3a1(yPosition)
-                }
             },
             incorrect(task) {
                 if (this.currentAttempts < 3) {
@@ -177,10 +189,6 @@
                     this[task + 'ShowHint'] = true
                     this.currentPoints = 0
                 }
-            },
-            tempFun() {
-                console.log('temp function need to be updated')
-                this.showLRRotor = true
             }
         }
     }
@@ -282,14 +290,10 @@
         margin: 20px 10px;
     }
     .gearBG {
-        background: url('/assets/img/module/gear_shift_movement_Sprite.png') no-repeat;
-        background-size: 586% auto;
-        border-radius: 50%;
         margin-left: 25px;
         height: 120px;
         width: 145px;
-        margin-top: -32px;
-        background-position: 1.5% 0;
+        margin-top: 8px;
     }
     .brakeImg {
         margin: 20px 10px;
@@ -347,61 +351,61 @@
     }
     .caliper-1 .caliper-arrow-1 {
     left: 27px;
-    top: 42px;
+    top: 48px;
     }
     .caliper-1 .caliper-arrow-2 {
     left: 83px;
-    top: 44px;
+    top: 50px;
     transform: rotate(180deg);
     }
     .caliper-1 .caliper-arrow-3 {
     left: 130px;
-    top: 135px;
+    top: 141px;
     transform: rotate(242deg);
     }
 
     .caliper-2 .caliper-arrow-1 {
     left: 21px;
-    top: 144px;
+    top: 150px;
     }
     .caliper-2 .caliper-arrow-2 {
     left: 76px;
-    top: 144px;
+    top: 150px;
     transform: rotate(180deg);
     }
     .caliper-2 .caliper-arrow-3 {
     left: 130px;
-    top: 50px;
+    top: 56px;
     transform: rotate(117deg);
     }
 
     .caliper-3 .caliper-arrow-1 {
         left: 80px;
-        top: 45px;
+        top: 51px;
     }
     .caliper-3 .caliper-arrow-2 {
     left: 133px;
-    top: 45px;
+    top: 51px;
     transform: rotate(180deg);
     }
     .caliper-3 .caliper-arrow-3 {
     left: 30px;
-    top: 136px;
+    top: 142px;
     transform: rotate(-65deg);
     }
 
     .caliper-4 .caliper-arrow-1 {
     left: 80px;
-    top: 144px;
+    top: 150px;
     }
     .caliper-4 .caliper-arrow-2 {
     left: 134px;
-    top: 144px;
+    top: 150px;
     transform: rotate(180deg);
     }
     .caliper-4 .caliper-arrow-3 {
     left: 30px;
-    top: 52px;
+    top: 58px;
     transform: rotate(60deg);
     }
     .lr-label, .lf-label{
@@ -414,6 +418,43 @@
     position: absolute;
     top: 93px;
     left: 170px;
+    }
+    .lf-rotor {
+        width: auto;
+        height: 200px;
+        margin-left: -40px;
+        background: url('/assets/img/module/disc_pad_piston_rotor_LF_sprite_temp.png') no-repeat;
+        background-position: 0 0;
+        background-size: 1000% auto;
+        position: relative;
+        left:35px;
+    }
+    .lr-rotor {
+        width: auto;
+        height: 200px;
+        margin-left: -40px;
+        background: url('/assets/img/module/disc_pad_piston_rotor_LR_sprite.png') no-repeat;
+        background-position: 0 0;
+        background-size: 1000% auto;
+        position: relative;
+    }
+    .rf-rotor {
+        width: auto;
+        height: 200px;
+        margin-right: -40px;
+        background: url('/assets/img/module/disc_pad_piston_rotor_RF_sprite.png') no-repeat;
+        background-position: 0 0;
+        background-size: 1000% auto;
+        position: relative;
+    }
+    .rr-rotor {
+        width: auto;
+        height: 200px;
+        margin-right: -40px;
+        background: url('/assets/img/module/disc_pad_piston_rotor_RR_sprite.png') no-repeat;
+        background-position: 0 0;
+        background-size: 1000% auto;
+        position: relative;
     }
 
 

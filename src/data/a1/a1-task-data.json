@@ -24,6 +24,31 @@
         "cc": "Thats correct. Now Turn off the Ignition.",
         "reportLabel": "Turn off the Ignition."
     },
+    "t11": {
+        "vo": "../assets/audio/a1/A1_T11.mp3",
+        "cc": "Now check the operation of brakes, To begin, turn on the Ignition.",
+        "reportLabel": "Turn on the Ignition."
+    },
+    "t12": {
+        "vo": "../assets/audio/a1/A1_T12.mp3",
+        "cc": "That's correct. Now put the vehicle in drive.",
+        "reportLabel": "Put the vehicle in drive."
+    },
+    "t13": {
+        "vo": "../assets/audio/a1/A1_T13.mp3",
+        "cc": "Great, Now apply the brakes and observe the brake fluid flow from the master cylinder.",
+        "reportLabel": "Apply the Brakes."
+    },
+    "t14": {
+        "vo": "../assets/audio/a1/A1_T14.mp3",
+        "cc": "Put the vehicle in Park.",
+        "reportLabel": "Put the vehicle in Park."
+    },
+    "t15": {
+        "vo": "../assets/audio/a1/A1_T15.mp3",
+        "cc": "Thats correct. Now Turn off the Ignition.",
+        "reportLabel": "Turn off the Ignition."
+    },
     "narrative3": {
         "vo": [
             "../assets/audio/a1/A1_Summary.mp3"
