@@ -35,7 +35,6 @@
                                 :driveHint= "t12ShowHint"
                                 :parkHint = "t14ShowHint"
                         ></Gear>
-                        <button v-on:click="greet">apply brakes</button>
                     </div>
                 </div>
                 <div class="width-50 calipers-container">
@@ -79,61 +78,6 @@
 						</div>
 					</div>
 				</div>
-                <!-- <div class="width-50 pull-left">
-                    <div class="width-50 pull-left caliper-br caliper-1">
-                        <div class="caliper-arrow caliper-arrow-1"></div>
-                        <div class="caliper-arrow caliper-arrow-2"></div>
-                        <div class="caliper-arrow caliper-arrow-3"></div>
-                       
-                        <StopRotor rotorName='LFRotor'></StopRotor>
-                    </div>
-                    <div class="width-50 pull-left caliper-br caliper-3">
-                        <div class="caliper-arrow caliper-arrow-1"></div>
-                        <div class="caliper-arrow caliper-arrow-2"></div>
-                        <div class="caliper-arrow caliper-arrow-3"></div>
-                        <StopRotor rotorName='RFRotor'></StopRotor>
-                    </div>
-                    
-                    <div class="width-50 pull-left caliper-br caliper-2">
-                        <div class="caliper-arrow caliper-arrow-1"></div>
-                        <div class="caliper-arrow caliper-arrow-2"></div>
-                        <div class="caliper-arrow caliper-arrow-3"></div>
-                        <StopRotor rotorName='LRRotor'></StopRotor>
-                    </div>
-                    <div class="width-50 pull-left caliper-br caliper-4">
-                        <div class="caliper-arrow caliper-arrow-1"></div>
-                        <div class="caliper-arrow caliper-arrow-2"></div>
-                        <div class="caliper-arrow caliper-arrow-3"></div>
-                        <button v-on:click="greet">show arrow</button>
-                    </div>
-                </div>
-                <div class="width-50 pull-left">
-                    <div class="width-50 pull-left">
-                        <div class="temp"></div>
-                        <StopRotor rotorName='LFRotor'></StopRotor>
-                    </div>
-                    <div class="width-50 pull-left caliper-br caliper-3">
-                        <div class="caliper-arrow caliper-arrow-1"></div>
-                        <div class="caliper-arrow caliper-arrow-2"></div>
-                        <div class="caliper-arrow caliper-arrow-3"></div>
-                        <StopRotor rotorName='RFRotor'></StopRotor>
-                    </div>
-                    
-                    <div class="width-50 pull-left caliper-br caliper-2">
-                        <div class="caliper-arrow caliper-arrow-1"></div>
-                        <div class="caliper-arrow caliper-arrow-2"></div>
-                        <div class="caliper-arrow caliper-arrow-3"></div>
-                        <StopRotor rotorName='LRRotor'></StopRotor>
-                    </div>
-                    <div class="width-50 pull-left caliper-br caliper-4">
-                        <div class="caliper-arrow caliper-arrow-1"></div>
-                        <div class="caliper-arrow caliper-arrow-2"></div>
-                        <div class="caliper-arrow caliper-arrow-3"></div>
-                        <StopRotor rotorName='RRRotor'></StopRotor>
-                    </div>
-                    <div class="red-arrow" v-show="breaksApplied">BREAK</div>
-
-                </div>-->
             </zoom-panel>
             
         </content-box>
@@ -388,10 +332,6 @@
     top: 141px;
     transform: rotate(242deg);
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 08009496c6be45fec2ec067e009ec18f0888e04b
     .caliper-2 .caliper-arrow-1 {
     left: 21px;
     top: 150px;
