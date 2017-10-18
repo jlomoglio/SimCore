@@ -105,14 +105,23 @@
                         <div class="temp"></div>
                         <StopRotor rotorName='LFRotor'></StopRotor>
                     </div>
-                    <div class="width-50 pull-left">
+                    <div class="width-50 pull-left caliper-br caliper-3">
+                        <div class="caliper-arrow caliper-arrow-1"></div>
+                        <div class="caliper-arrow caliper-arrow-2"></div>
+                        <div class="caliper-arrow caliper-arrow-3"></div>
                         <StopRotor rotorName='RFRotor'></StopRotor>
                     </div>
-                    <div class="blue-arrow"></div>
-                    <div class="width-50 pull-left">
+                    
+                    <div class="width-50 pull-left caliper-br caliper-2">
+                        <div class="caliper-arrow caliper-arrow-1"></div>
+                        <div class="caliper-arrow caliper-arrow-2"></div>
+                        <div class="caliper-arrow caliper-arrow-3"></div>
                         <StopRotor rotorName='LRRotor'></StopRotor>
                     </div>
-                    <div class="width-50 pull-left">
+                    <div class="width-50 pull-left caliper-br caliper-4">
+                        <div class="caliper-arrow caliper-arrow-1"></div>
+                        <div class="caliper-arrow caliper-arrow-2"></div>
+                        <div class="caliper-arrow caliper-arrow-3"></div>
                         <StopRotor rotorName='RRRotor'></StopRotor>
                     </div>
                     <div class="red-arrow" v-show="breaksApplied">BREAK</div>
@@ -375,7 +384,6 @@
     top: 135px;
     transform: rotate(242deg);
     }
-
     .caliper-2 .caliper-arrow-1 {
     left: 21px;
     top: 144px;
