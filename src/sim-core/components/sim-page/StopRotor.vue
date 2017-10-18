@@ -48,36 +48,41 @@ export default {
 }
 </script>
 <style scoped>
-  .lf-rotor {
-    width: 200px;
-    height: 200px;
-    background: url('/assets/img/module/disc_pad_piston_rotor_LF_sprite.png') no-repeat;
-    background-position: 0 0;
-    background-size: 1000% auto;
-    position: relative;
-  }
-  .lr-rotor {
-    width: 200px;
-    height: 200px;
-    background: url('/assets/img/module/disc_pad_piston_rotor_LR_sprite.png') no-repeat;
-    background-position: 0 0;
-    background-size: 1000% auto;
-    position: relative;
-  }
-  .rf-rotor {
-    width: 200px;
-    height: 200px;
-    background: url('/assets/img/module/disc_pad_piston_rotor_RF_sprite.png') no-repeat;
-    background-position: 0 0;
-    background-size: 1000% auto;
-    position: relative;
-  }
-  .rr-rotor {
-    width: 200px;
-    height: 200px;
-    background: url('/assets/img/module/disc_pad_piston_rotor_RR_sprite.png') no-repeat;
-    background-position: 0 0;
-    background-size: 1000% auto;
-    position: relative;
-  }
+    .lf-rotor {
+        width: auto;
+        height: 200px;
+        margin-left: -40px;
+        background: url('/assets/img/module/disc_pad_piston_rotor_LF_sprite_temp.png') no-repeat;
+        background-position: 0 0;
+        background-size: 1000% auto;
+        position: relative;
+        left:35px;
+    }
+    .lr-rotor {
+        width: auto;
+        height: 200px;
+        margin-left: -40px;
+        background: url('/assets/img/module/disc_pad_piston_rotor_LR_sprite.png') no-repeat;
+        background-position: 0 0;
+        background-size: 1000% auto;
+        position: relative;
+    }
+    .rf-rotor {
+        width: auto;
+        height: 200px;
+        margin-right: -40px;
+        background: url('/assets/img/module/disc_pad_piston_rotor_RF_sprite.png') no-repeat;
+        background-position: 0 0;
+        background-size: 1000% auto;
+        position: relative;
+    }
+    .rr-rotor {
+        width: auto;
+        height: 200px;
+        margin-right: -40px;
+        background: url('/assets/img/module/disc_pad_piston_rotor_RR_sprite.png') no-repeat;
+        background-position: 0 0;
+        background-size: 1000% auto;
+        position: relative;
+    }
 </style>
