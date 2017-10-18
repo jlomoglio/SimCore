@@ -32,27 +32,76 @@
                                 :currentTask = "currentTask"
                                 :tasks="['t2a1', 't4a1']"
                         ></Gear>
-                        <button v-on:click="greet">show arrow</button>
+                        <button v-on:click="greet">apply brakes</button>
                     </div>
                 </div>
-                <div class="width-50 pull-left">
-                    <div class="width-50 pull-left">
-                        <!--<div class="temp"></div>-->
+                <div class="width-50 calipers-container">
+					<div class="left-calipers">
+						<div class="caliper-br caliper-1">
+                            <span class="lf-label">LF</span>
+							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
+                            <StopRotor rotorName='LFRotor'></StopRotor>
+						</div>
+						<div class="caliper-br caliper-2">
+                            <span class="lr-label">LR</span>
+							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
+                            <StopRotor rotorName='LRRotor'></StopRotor>
+						</div>
+					</div>
+					<div class="middle-arrow">
+
+					</div>
+					<div class="right-calipers">
+						<div class="caliper-br caliper-3">
+                            <span class="rf-label">RF</span>
+							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
+                             <StopRotor rotorName='RFRotor'></StopRotor>
+						</div>
+						<div class="caliper-br caliper-4">
+                            <span class="rr-label">RR</span>
+							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
+                            <StopRotor rotorName='RRRotor'></StopRotor>
+						</div>
+					</div>
+				</div>
+                <!-- <div class="width-50 pull-left">
+                    <div class="width-50 pull-left caliper-br caliper-1">
+                        <div class="caliper-arrow caliper-arrow-1"></div>
+                        <div class="caliper-arrow caliper-arrow-2"></div>
+                        <div class="caliper-arrow caliper-arrow-3"></div>
+                       
                         <StopRotor rotorName='LFRotor'></StopRotor>
                     </div>
-                    <div class="width-50 pull-left">
+                    <div class="width-50 pull-left caliper-br caliper-3">
+                        <div class="caliper-arrow caliper-arrow-1"></div>
+                        <div class="caliper-arrow caliper-arrow-2"></div>
+                        <div class="caliper-arrow caliper-arrow-3"></div>
                         <StopRotor rotorName='RFRotor'></StopRotor>
                     </div>
-                    <div class="blue-arrow"></div>
-                    <div class="width-50 pull-left">
+                    
+                    <div class="width-50 pull-left caliper-br caliper-2">
+                        <div class="caliper-arrow caliper-arrow-1"></div>
+                        <div class="caliper-arrow caliper-arrow-2"></div>
+                        <div class="caliper-arrow caliper-arrow-3"></div>
                         <StopRotor rotorName='LRRotor'></StopRotor>
                     </div>
-                    <div class="width-50 pull-left">
+                    <div class="width-50 pull-left caliper-br caliper-4">
+                        <div class="caliper-arrow caliper-arrow-1"></div>
+                        <div class="caliper-arrow caliper-arrow-2"></div>
+                        <div class="caliper-arrow caliper-arrow-3"></div>
                         <StopRotor rotorName='RRRotor'></StopRotor>
                     </div>
                     <div class="red-arrow" v-show="breaksApplied">BREAK</div>
 
-                </div>
+                </div> -->
             </zoom-panel>
             
         </content-box>
@@ -261,5 +310,111 @@
         background: url('/assets/img/buttons/horizontal/continue_over.png');
         background-size: 100% 100%;
     }
+    .calipers-container {
+    width: 412px;
+    height: auto;
+    float: left;
+    }
+    .left-calipers, .middle-arrow, .right-calipers {
+    float: left;
+    }
+    .middle-arrow {
+    width: 40px;
+    height: 460px;
+    margin: 0 10px;
+    background-image: url('/assets/img/activities/long_blue_arrow.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center 25px;
+    }
+    .caliper-br {
+    position: relative;
+    width: 170px;
+    height: 200px;
+    margin-top: 15px;
+    /* border: 1px solid red; */
+    }
+
+    .caliper-arrow {
+    position: absolute;
+    width: 15px;
+    height: 10px;
+    z-index: 99;
+    background-image: url('/assets/img/activities/short_red_arrow.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center center;
+    }
+    .caliper-1 .caliper-arrow-1 {
+    left: 27px;
+    top: 42px;
+    }
+    .caliper-1 .caliper-arrow-2 {
+    left: 83px;
+    top: 44px;
+    transform: rotate(180deg);
+    }
+    .caliper-1 .caliper-arrow-3 {
+    left: 130px;
+    top: 135px;
+    transform: rotate(242deg);
+    }
+
+    .caliper-2 .caliper-arrow-1 {
+    left: 21px;
+    top: 144px;
+    }
+    .caliper-2 .caliper-arrow-2 {
+    left: 76px;
+    top: 144px;
+    transform: rotate(180deg);
+    }
+    .caliper-2 .caliper-arrow-3 {
+    left: 130px;
+    top: 50px;
+    transform: rotate(117deg);
+    }
+
+    .caliper-3 .caliper-arrow-1 {
+        left: 80px;
+        top: 45px;
+    }
+    .caliper-3 .caliper-arrow-2 {
+    left: 133px;
+    top: 45px;
+    transform: rotate(180deg);
+    }
+    .caliper-3 .caliper-arrow-3 {
+    left: 30px;
+    top: 136px;
+    transform: rotate(-65deg);
+    }
+
+    .caliper-4 .caliper-arrow-1 {
+    left: 80px;
+    top: 144px;
+    }
+    .caliper-4 .caliper-arrow-2 {
+    left: 134px;
+    top: 144px;
+    transform: rotate(180deg);
+    }
+    .caliper-4 .caliper-arrow-3 {
+    left: 30px;
+    top: 52px;
+    transform: rotate(60deg);
+    }
+    .lr-label, .lf-label{
+    position: absolute; 
+    top: 93px;
+    left: -20px;
+    }
+
+    .rr-label, .rf-label{
+    position: absolute;
+    top: 93px;
+    left: 170px;
+    }
+
 
 </style>
