@@ -230,7 +230,7 @@ const transitionToView = function() {
     this.$core.ContinueButton.callback(() => {
         this.$core.Activity.Assessment.hide()
         vm.$core.ContinueButton.hide()
-        vm.$core.Activity.nextView('A1V3')
+        vm.$core.Activity.nextView('A5V1')
     })
 }
 
