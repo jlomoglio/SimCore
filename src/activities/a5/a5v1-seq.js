@@ -99,6 +99,7 @@ const t13a1 = function() {
     let vm = this
     this.isClickable = false
     this.stopRotor = true
+    this.showArrows()
     window.setTimeout(function() {
         vm.t13Completed()
         vm.isClickable = true
@@ -231,7 +232,7 @@ const transitionToView = function() {
     this.$core.ContinueButton.callback(() => {
         this.$core.Activity.Assessment.hide()
         vm.$core.ContinueButton.hide()
-        vm.$core.Activity.nextView('A1V3')
+        vm.$core.Activity.end()
     })
 }
 

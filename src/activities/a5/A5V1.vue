@@ -145,7 +145,7 @@
         },
         methods: {
             ...A5V1Seq,
-            greet: function (event) {
+            showArrows: function (event) {
                 this.breaksApplied = !this.breaksApplied
             },
             incorrect(task) {
@@ -424,6 +424,4 @@
         background-size: 1000% auto;
         position: relative;
     }
-
-
 </style>
