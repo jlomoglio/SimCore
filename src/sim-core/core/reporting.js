@@ -18,7 +18,7 @@ export const setModuleStartTime = () => {
 
 export const setModulePass = () => {
     const moduleData = store.state.moduleData
-    moduleData.totalScorePercent = Math.round(((moduleData.reviewQuestions.totalScore + moduleData.activities[0].totalScore + moduleData.activities[1].totalScore + moduleData.activities[2].totalScore) / moduleData.totalPossibleScore) * 100)
+    moduleData.totalScorePercent = Math.round(((moduleData.reviewQuestions.totalScore + moduleData.activities[0].totalScore) / moduleData.totalPossibleScore) * 100)
     return (moduleData.totalScorePercent > moduleData.passingScore)
 }
 
