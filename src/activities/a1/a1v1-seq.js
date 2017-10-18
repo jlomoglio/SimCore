@@ -23,7 +23,7 @@ const narrative = function() {
 // TASK 1: Constructor
 // turn the ignition on.
 const t1 = function() {
-    this.currentTask = 't1a1'
+    this.currentTask = 't1'
     this.$core.Activity.showLightBox()
 
     this.$core.Activity.Audio.play(
@@ -62,7 +62,7 @@ const t1Completed = function() {
 
 // TASK 2: Constructor
 const t2 = function() {
-    this.currentTask = 't2a1'
+    this.currentTask = 't2'
     this.isClickable = false
     this.$core.Activity.Audio.play(
         TaskData.t2.vo,
@@ -76,7 +76,6 @@ const t2a1 = function() {
     this.isClickable = false
     this.currentTask = 't2a1'
     var vm = this
-    console.log('task 2 action 1 drive')
     // Check if the hint is shown
     window.setTimeout(function() {
         vm.isClickable = true
@@ -102,7 +101,7 @@ const t2Completed = function() {
 
 // TASK 3: Constructor.
 const t3 = function() {
-    this.currentTask = 't3a1'
+    this.currentTask = 't3'
     this.isClickable = false
     // brake
     this.$core.Activity.Audio.play(
@@ -143,7 +142,7 @@ const t3Completed = function() {
 // TASK 4: Constructor
 // put car in park.
 const t4 = function() {
-    this.currentTask = 't4a1'
+    this.currentTask = 't4'
     this.$core.Activity.Audio.play(
         TaskData.t4.vo,
         TaskData.t4.cc,
@@ -174,7 +173,7 @@ const t4Completed = function() {
 // TASK 5: Constructor
 // turn off ignition - lock
 const t5 = function() {
-    this.currentTask = 't5a1'
+    this.currentTask = 't5'
     this.currentAction = 'lock'
     this.$core.Activity.Audio.play(
         TaskData.t5.vo,

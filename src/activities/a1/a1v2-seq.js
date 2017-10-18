@@ -14,7 +14,7 @@ const incorrectResponse = function() {
 // TASK 1: Constructor
 // turn the ignition on.
 const t6 = function() {
-    this.currentTask = 't6a1'
+    this.currentTask = 't6'
     this.$core.Activity.showLightBox()
 
     this.$core.Activity.Audio.play(
@@ -53,7 +53,7 @@ const t6Completed = function() {
 
 // TASK 7: Constructor
 const t7 = function() {
-    this.currentTask = 't7a1'
+    this.currentTask = 't7'
     this.$core.Activity.Audio.play(
         TaskData.t7.vo,
         TaskData.t7.cc,
@@ -85,7 +85,7 @@ const t7Completed = function() {
 
 // TASK 8: Constructor.
 const t8 = function() {
-    this.currentTask = 't8a1'
+    this.currentTask = 't8'
     // brake
     this.$core.Activity.Audio.play(
         TaskData.t8.vo,
@@ -125,7 +125,7 @@ const t8Completed = function() {
 // TASK 9: Constructor
 // put car in park.
 const t9 = function() {
-    this.currentTask = 't9a1'
+    this.currentTask = 't9'
     this.$core.Activity.Audio.play(
         TaskData.t9.vo,
         TaskData.t9.cc,
@@ -156,7 +156,7 @@ const t9Completed = function() {
 // TASK 10: Constructor
 // turn off ignition - lock
 const t10 = function() {
-    this.currentTask = 't10a1'
+    this.currentTask = 't10'
     this.currentAction = 'lock'
     this.$core.Activity.Audio.play(
         TaskData.t10.vo,

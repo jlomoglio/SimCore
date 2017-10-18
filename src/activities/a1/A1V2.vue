@@ -10,12 +10,12 @@
                             @lock="t10a1('t10Lock')"
                             @acc="incorrect('t10')"
                             @on="t6a1()"
-                            :lockHint="false"
+                            :lockHint="t10ShowHint"
                             :accHint="false"
-                            :onHint="false"
+                            :onHint="t6ShowHint"
                             :currentAction= "currentAction"
                             :currentTask = "currentTask"
-                            :tasks="['t6a1', 't10a1']"
+                            :tasks="['t6', 't10']"
                     >
                     </ignition-switch>
                 </div>
@@ -23,16 +23,19 @@
                     <Brake
                     @onBrake="t8a1()"
                     :currentTask = "currentTask"
-                    :task="'t8a1'"
+                    :task="'t8'"
+                    :brakeHint="t8ShowHint"
                     ></Brake>
                 </div>
                 <div class="width-100 pull-left gearBG">
                     <Gear
-                        @park="t9a1('t2')"
+                        @park="t9a1()"
                         @drive="t7a1()"
                         @correct="correct()"
+                        :driveHint="t7ShowHint"
+                        :parkHint="t9ShowHint"                        
                         :currentTask = "currentTask"
-                        :tasks="['t7a1', 't9a1']"
+                        :tasks="['t7', 't9']"
                     ></Gear>
                 </div>
             </div>
@@ -97,7 +100,12 @@ export default {
             // /////////////////////////////////////
             rotateRotors: false,
             showCylinderFlow: false,
-            currentAction: 'on'
+            currentAction: 'on',
+            t6ShowHint: false,
+            t7ShowHint: false,
+            t8ShowHint: false,
+            t9ShowHint: false,
+            t10ShowHint: false
         }
     },
 

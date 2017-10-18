@@ -8,7 +8,7 @@
 
         <hint-box id="lock-hint" v-hint="lockShowHint"></hint-box>
         <hint-box id="acc-hint" v-hint="accShowHint"></hint-box>
-        <hint-box id="on-start-hint" v-hint="onShowHint"></hint-box>
+        <hint-box id="on-hint" v-hint="onShowHint"></hint-box>
 
         <div id="lock-hotspot" @click="clickable ? setMode('lock') : ''"></div>
         <div id="acc-hotspot" @click="clickable ? setMode('acc') : ''"></div>

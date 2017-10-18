@@ -5,6 +5,9 @@
       <img id="gear-img" class="gear-img" src="/assets/img/module/gear_shift_movement_Sprite.png"/>
   </div>
   <div class="hot-spots">
+    <hint-box id="drive-hint" v-hint="driveShowHint"></hint-box>
+    <hint-box id="park-hint" v-hint="parkShowHint"></hint-box>
+
     <div id="drive-hotspot" @click="clickable() ? drive() : ''"></div>
     <div id="park-hotspot" @click="clickable() ? park() : ''"></div>
   </div>
@@ -13,14 +16,30 @@
 </template>
 <script>
 import { TweenMax, SteppedEase } from 'gsap'
+import HintBox from './HintBox'
 export default {
     props: [
         'currentTask',
-        'tasks'
+        'tasks',
+        'driveHint',
+        'parkHint'
     ],
     data() {
         return {
-            row: 0
+            row: 0,
+            driveShowHint: this.driveHint,
+            parkShowHint: this.parkHint
+        }
+    },
+    components: {
+        HintBox
+    },
+    watch: {
+        driveHint(newVal) {
+            return this.driveShowHint = newVal
+        },
+        parkHint(newVal) {
+            return this.parkShowHint = newVal
         }
     },
     methods: {
@@ -37,10 +56,12 @@ export default {
             return false
         },
         drive() {
+            this.driveShowHint = false
             this.$emit('correct')
             this.putInDrive()
         },
         park() {
+            this.parkShowHint = false
             this.$emit('correct')
             this.row -= 1
             this.putInPark()
@@ -112,6 +133,22 @@ export default {
    height: 8px;
    border-radius: 12px;
    z-index: 5;
+ }
+  #drive-hint{
+   position: absolute;
+   bottom: 38px;
+   left: 45px;
+   width: 7px;
+   height: 8px;
+   border-radius: 50%;
+ }
+ #park-hint {
+   position: absolute;
+   bottom: 49px;
+   left: 33px;
+   width: 6px;
+   height: 8px;
+   border-radius: 12px;
  }
  .gear-img {
     width: 500%;

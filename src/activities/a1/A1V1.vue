@@ -19,20 +19,21 @@
                             @lock="t5a1('t1Lock')"
                             @acc="incorrect('t1')"
                             @on="t1a1()"
-                            :lockHint="false"
+                            :lockHint="t5ShowHint"
                             :accHint="false"
-                            :onHint="false"
+                            :onHint="t1ShowHint"
                             :currentAction= "currentAction"
                             :currentTask = "currentTask"
-                            :tasks="['t1a1', 't5a1']"
+                            :tasks="['t1', 't5']"
                     >
                     </ignition-switch>
                 </div>
                 <div class="width-100 pull-left brakeImg">
                     <Brake
                     @onBrake="t3a1()"
+                    :brakeHint= "t3ShowHint"
                     :currentTask = "currentTask"
-                    :task="'t3a1'"
+                    :task="'t3'"
                     ></Brake>
                 </div>
                 <div class="width-100 pull-left gearBG">
@@ -40,8 +41,10 @@
                         @park="t4a1('t2')"
                         @drive="t2a1()"
                         @correct="correct()"
+                        :driveHint="t2ShowHint"
+                        :parkHint="t4ShowHint"
                         :currentTask = "currentTask"
-                        :tasks="['t2a1', 't4a1']"
+                        :tasks="['t2', 't4']"
                     ></Gear>
                 </div>
             </div>
@@ -112,7 +115,12 @@ export default {
             rotateRotors: false,
             showCylinderFlow: false,
             currentAction: 'on',
-            showContentBox: false
+            showContentBox: false,
+            t1ShowHint: false,
+            t2ShowHint: false,
+            t3ShowHint: false,
+            t4ShowHint: false,
+            t5ShowHint: false
         }
     },
 
@@ -263,7 +271,7 @@ export default {
     position: relative;
   }
   .gearBG{
-    margin-top: 23px;
+    margin-top: -10px;
     margin-left: 25px;
   }
 #safe-continue {
