@@ -27,18 +27,20 @@ export default {
     methods: {
         callBack() {
             this.row += 1
-            if (this.row < 4) {
-                var yPosition = this.row * 20
+            if (this.row < 5) {
+                var yPosition = this.row * 19.8
                 var sprite = document.getElementById(this.rotorName)
                 sprite.style.backgroundPositionX = '0%'
                 sprite.style.backgroundPositionY = `${yPosition}%`
                 console.log('yPosition', yPosition, sprite.style.backgroundPositionX)
                 this.loadRows(yPosition)
+            } else {
+                this.$emit('onComplete')
             }
         },
         loadRows(row) {
+            console.log('loadRows')
             TweenMax.to(`#${this.rotorName}`, 1, {
-                repeat: 1,
                 backgroundPosition: `99.99% ${row}%`,
                 ease: SteppedEase.config(9),
                 onComplete: this.callBack

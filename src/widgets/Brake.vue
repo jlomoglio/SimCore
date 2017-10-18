@@ -43,7 +43,7 @@ export default {
             TweenMax.to(`#brake`, 1, {
                 backgroundPosition: `-180px ${row}px`,
                 ease: SteppedEase.config(4),
-                onComplete: this.callBack
+                onComplete: this.brakeCallback
             })
         },
         brakeCallback() {
