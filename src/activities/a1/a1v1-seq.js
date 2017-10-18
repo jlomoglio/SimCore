@@ -160,7 +160,7 @@ const t4a1 = function() {
 }
 const t4Completed = function() {
     this.$core.Activity.taskComplete(
-        TaskData.t3.reportLabel,
+        TaskData.t4.reportLabel,
         this.currentAttempts,
         this.currentPoints = 3
     )

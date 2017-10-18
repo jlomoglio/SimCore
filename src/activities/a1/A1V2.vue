@@ -119,7 +119,7 @@ export default {
     // view first loads, such as configs and init and any icons
     mounted() {
         // Configure the view (Activity Title, View Mode[full/box], Activity ID)
-        this.$core.Activity.configView('', 'full', 'A2')
+        this.$core.Activity.configView('', 'full', 'A1')
         // Initlize the activity view
         this.$core.Activity.init([this.t6])
 

@@ -74,6 +74,6 @@ export default {
 	height: 100%;
 	top: 28px;
 	position: relative;
-	z-index: 9;
+	z-index: 99;
 }
 </style>

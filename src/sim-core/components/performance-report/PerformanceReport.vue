@@ -54,10 +54,6 @@
                         </div>
                     </div>
                 </div>
-                <div id="review-questions-data">
-                    Review Questions: {{this.moduleData.reviewQuestions.totalScore}}
-                    out of {{this.moduleData.reviewQuestions.totalPossibleScore}}
-                </div>
             </div>
 
             <div id="performance-report-btns">
@@ -66,9 +62,7 @@
             </div>
         </div>
     </div>
-
 </template>
-
 <script>
     import { mapGetters } from 'vuex'
     import { downloadReportAsPDF } from '../../core/reporting'

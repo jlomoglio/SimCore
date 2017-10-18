@@ -177,7 +177,6 @@ export default {
         videoLoaded() {
             var frame = document.getElementById('videoFrame')
             var frameContent = frame.contentWindow.document.body
-            // console.log('frameContent', frameContent, frameContent.querySelector('video'))
             frameContent.querySelector('video').addEventListener('ended', this.myHandler, false)
         },
         myHandler(e) {
@@ -185,7 +184,6 @@ export default {
         },
         stopAudio() {
             pause('moduleAudioPlayer')
-            console.log('aaaaaaaaaaaaaaaa')
             this.$store.dispatch('setVideoSource', '../../../assets/video/brake_pull_driving_video.html')
             this.$store.dispatch('setLoadedVideo', 'brake_pull_driving_video')
         }
@@ -283,7 +281,7 @@ export default {
     cursor: pointer;
     width: 150px;
     height: 32px;
-    z-index: 25;
+    z-index: 99;
 }
 
 #safe-continue:active {

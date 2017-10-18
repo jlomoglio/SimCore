@@ -7,7 +7,7 @@
     "performanceModuleName": "Diagnosing Brake Pull",
     "moduleType": "equipment",
     "passingScore": 70,
-    "totalPossibleScore": 0,
+    "totalPossibleScore": 51,
 
     "passed": true,
     "totalScore": 0,
@@ -19,31 +19,7 @@
     "activities": [
         {
             "id": "A1",
-            "title": "System Recovery",
-            "completed": false,
-            "totalScore": 0,
-            "totalPossibleScore": 0,
-            "completedTasks": []
-        },
-        {
-            "id": "A2",
-            "title": "System Evacuation",
-            "completed": false,
-            "totalScore": 0,
-            "totalPossibleScore": 0,
-            "completedTasks": []
-        },
-        {
-            "id": "A3",
-            "title": "System Charging",
-            "completed": false,
-            "totalScore": 0,
-            "totalPossibleScore": 0,
-            "completedTasks": []
-        },
-        {
-            "id": "A4",
-            "title": "System Servicing",
+            "title": "Working Process of Brake System",
             "completed": false,
             "totalScore": 0,
             "totalPossibleScore": 0,

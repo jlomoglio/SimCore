@@ -7,6 +7,7 @@
             <div class="no-header" v-if="currentRQViewId > 1"></div>
             <review-questions-template></review-questions-template>
         </div>
+        <module-footer></module-footer>
     </div>
 </template>
 
@@ -15,13 +16,15 @@
     import ModuleHeader from '../module-shell/ModuleHeader'
     import ModuleFooter from '../module-shell/module-footer/ModuleFooter'
     import ReviewQuestionsTemplate from '../../../review-questions/ReviewQuestionsTemplate'
+    import IconBar from '../module-shell/icon-bar/IconBar'
 
     export default {
         name: 'ReviewQuestions',
         components: {
             ModuleHeader,
             ModuleFooter,
-            ReviewQuestionsTemplate
+            ReviewQuestionsTemplate,
+            IconBar
         },
         computed: mapGetters({
             currentRQViewId: 'getCurrentReviewQuestionsViewId'
@@ -191,6 +194,12 @@
                     }
                 }
 
+                @-moz-document url-prefix() {
+                    .btn-submit {
+                        top: 335px;
+                    }
+                }   
+
                 .btn-continue {
                     position: absolute;
                     margin: auto;
@@ -224,6 +233,12 @@
                         background-size: 100% 100%;
                     }
                 }
+
+                @-moz-document url-prefix() {
+                    .btn-view-scorecard {
+                        top: 335px;
+                    }  
+                }   
             }
         }
 

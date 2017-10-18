@@ -1,22 +1,7 @@
 [
     {
         "id": "A1",
-        "content": "<p>You have completed Activity 1: System Recovery.<br>The AC system can now be repaired, since all the refrigerant has been removed and will not be vented into the atmosphere.</p>",
+        "content": "<p>You have completed the simulation Diagnosing Brake Pull.<br>A vehicle with a brake pull condition can be very dangerous to operate. Brake pull can cause loss of vehicle control and possibly cause the vehicle to veer into the opposite lane or leave the roadway. If you notice a brake pull condition during a road test, you should inform the customer that this condition should be serviced immediately for safe vehicle operation.</p>",
         "vo": "../assets/audio/a1/A1_summary.mp3"
-    },
-    {
-        "id": "A2",
-        "content": "<p>You have completed Activity 2: System Evacuation.<br>All the air and moisture have been removed from the system, so the system will not be contaminated.</p>",
-        "vo": "../assets/audio/a2/A2_summary.mp3"
-    },
-    {
-        "id": "A3",
-        "content": "<p>You have completed Activity 3: System Charging.<br> It is very important to put the correct amount of refrigerant into the AC system to ensure optimal performance.</p>",
-        "vo": "../assets/audio/a2/A3_summary.mp3"
-    },
-    {
-        "id": "A4",
-        "content": "<p>You have completed Activity 4: Equalizing the Hoses and Disconnecting the AC Machine..<br> Hoses can hold several ounces of refrigerant. Equalizing the hoses ensures the majority of the refrigerant left in the hoses is put into the vehicle so the charge is accurate.</p>",
-        "vo": "../assets/audio/a4/A4_summary.mp3"
     }
 ]

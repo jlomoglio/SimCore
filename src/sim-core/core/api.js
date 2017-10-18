@@ -211,11 +211,9 @@ const api = {
             return store.getters.getSafetyScreenIsShown
         },
         carVideoIsShown: () => {
-            console.log('Inside carVideo file', store.getters.getcarVideoIsShown)
             return store.getters.getcarVideoIsShown
         },
         carVideoIsHide: () => {
-            console.log('Inside carVideo file', store.getters.getcarVideoIsHide)
             return store.commit('hideCarVideoScreen')
         },
         introComplete: () => {
