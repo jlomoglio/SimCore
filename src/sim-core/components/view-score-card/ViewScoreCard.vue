@@ -73,7 +73,7 @@
         right: 0;
         bottom: 0;
         margin: 0 auto;
-        background: url('/assets/img/module/car.jpg');
+        background: url('/assets/img/activities/engine_compartment_not_faded_with_AC_machine-a.png');
 
         #view-score-card-container {
             position: absolute;
