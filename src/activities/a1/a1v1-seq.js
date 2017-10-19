@@ -49,7 +49,7 @@ const t1Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t1.reportLabel,
         this.currentAttempts,
-        this.currentPoints = 3
+        this.currentPoints
     )
     // Reset points
     this.currentPoints = 0
@@ -88,7 +88,7 @@ const t2Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t2.reportLabel,
         this.currentAttempts,
-        this.currentPoints = 3
+        this.currentPoints
     )
     // Reset points
     this.currentPoints = 0
@@ -127,7 +127,7 @@ const t3Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t3.reportLabel,
         this.currentAttempts,
-        this.currentPoints = 3
+        this.currentPoints
     )
     // Reset points
     this.currentPoints = 0
@@ -162,7 +162,7 @@ const t4Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t4.reportLabel,
         this.currentAttempts,
-        this.currentPoints = 3
+        this.currentPoints
     )
     this.currentPoints = 0
     // call next task
@@ -198,7 +198,7 @@ const t5Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t5.reportLabel,
         this.currentAttempts,
-        this.currentPoints = 3
+        this.currentPoints
     )
     // call next task
     this.isClickable = false

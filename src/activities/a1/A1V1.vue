@@ -250,16 +250,6 @@ export default {
   .brakeImg {
     margin: 20px 10px;
   }
-  .gear-BG {
-    background: url('/assets/img/module/gear_shift_movement_Sprite.png') no-repeat;
-    background-size: 586% auto;
-    border-radius: 50%;
-    width: 120px;
-    margin-top: 21px;
-    margin-left: 25px;
-    height: 120px;
-    background-position: 1.5% 0;
-  }
   .masterCylinder {
     width: 690px;
     height: 440px;

@@ -73,7 +73,7 @@
 							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
-                            <StopRotor rotorName='RRRotor' v-if="stopRotor"></StopRotor>
+                            <StopRotor rotorName='RRRotor' v-if="stopRotor" @onComplete="t13Completed()"></StopRotor>
                             <div class="rr-rotor" v-else></div>
 						</div>
 					</div>
@@ -259,13 +259,8 @@
         margin: 20px 10px;
     }
     .gearBG {
+        margin-top: -10px;
         margin-left: 25px;
-        height: 120px;
-        width: 145px;
-        margin-top: 8px;
-    }
-    .brakeImg {
-        margin: 20px 10px;
     }
     #safe-continue {
         position: absolute;

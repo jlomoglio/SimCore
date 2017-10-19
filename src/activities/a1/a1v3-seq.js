@@ -40,7 +40,7 @@ const t11Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t11.reportLabel,
         this.currentAttempts,
-        this.currentPoints = 3
+        this.currentPoints
     )
     // Reset points
     this.currentPoints = 0
@@ -51,9 +51,10 @@ const t11Completed = function() {
     this.t12()
 }
 
-// TASK 7: Constructor
+// TASK 2: Constructor
 const t12 = function() {
     this.currentTask = 't12'
+    this.isClickable = false
     this.$core.Activity.Audio.play(
         TaskData.t12.vo,
         TaskData.t12.cc,
@@ -63,16 +64,22 @@ const t12 = function() {
 
 // TASK 2: put car in drive
 const t12a1 = function() {
-    this.isClickable = true
-    this.t12Completed()
+    this.isClickable = false
+    this.currentTask = 't12a1'
+    var vm = this
+    // Check if the hint is shown
+    window.setTimeout(function() {
+        vm.isClickable = true
+        vm.t12Completed()
+    }, 2000)
 }
 
-// TASK 7: Completed
+// TASK 2: Completed
 const t12Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t12.reportLabel,
         this.currentAttempts,
-        this.currentPoints = 3
+        this.currentPoints
     )
     // Reset points
     this.currentPoints = 0
@@ -101,7 +108,6 @@ const t13a1 = function() {
     this.stopRotor = true
     this.showArrows()
     window.setTimeout(function() {
-        vm.t13Completed()
         vm.isClickable = true
     }, 1000)
 }
@@ -112,7 +118,7 @@ const t13Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t13.reportLabel,
         this.currentAttempts,
-        this.currentPoints = 3
+        this.currentPoints
     )
     // Reset points
     this.currentPoints = 0
@@ -124,7 +130,7 @@ const t13Completed = function() {
     this.t14()
 }
 
-// TASK 9: Constructor
+// TASK 4: Constructor
 // put car in park.
 const t14 = function() {
     this.currentTask = 't14'
@@ -136,18 +142,18 @@ const t14 = function() {
 }
 
 const t14a1 = function() {
-    let vm = this
     this.isClickable = false
+    let vm = this
     window.setTimeout(function() {
         vm.isClickable = true
         vm.t14Completed()
-    }, 2000)
+    }, 1000)
 }
 const t14Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t14.reportLabel,
         this.currentAttempts,
-        this.currentPoints = 3
+        this.currentPoints
     )
     this.currentPoints = 0
     // call next task
@@ -182,7 +188,7 @@ const t15Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t15.reportLabel,
         this.currentAttempts,
-        this.currentPoints = 3
+        this.currentPoints
     )
     // call next task
     this.isClickable = false

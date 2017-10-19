@@ -40,7 +40,7 @@ const t6Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t6.reportLabel,
         this.currentAttempts,
-        this.currentPoints = 3
+        this.currentPoints
     )
     // Reset points
     this.currentPoints = 0
@@ -72,7 +72,7 @@ const t7Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t7.reportLabel,
         this.currentAttempts,
-        this.currentPoints = 3
+        this.currentPoints
     )
     // Reset points
     this.currentPoints = 0
@@ -110,7 +110,7 @@ const t8Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t8.reportLabel,
         this.currentAttempts,
-        this.currentPoints = 3
+        this.currentPoints
     )
     // Reset points
     this.currentPoints = 0
@@ -145,7 +145,7 @@ const t9Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t9.reportLabel,
         this.currentAttempts,
-        this.currentPoints = 3
+        this.currentPoints
     )
     this.currentPoints = 0
     // call next task
@@ -180,7 +180,7 @@ const t10Completed = function() {
     this.$core.Activity.taskComplete(
         TaskData.t10.reportLabel,
         this.currentAttempts,
-        this.currentPoints = 3
+        this.currentPoints
     )
     // call next task
     this.isClickable = false
@@ -190,30 +190,22 @@ const t10Completed = function() {
         Vue.core.ContinueButton.hide()
         this.assessment()
     })
-    // this.transitionToView()
 }
 // Assesment
 const assessment = function() {
     // Config the assessment
     this.$core.Activity.Assessment.config(AssessmentData.assessment1, () => {
-        // Call final narrative
-        this.$core.Activity.Audio.play(
-            TaskData.narrative3.vo,
-            TaskData.narrative3.cc,
-            () => {
-                // Disable incorrect
-                this.isClickable = false
-                // go to next screen
-                this.transitionToView()
-            }
-        )
+        // Disable incorrect
+        this.isClickable = false
+        // go to next screen
+        this.transitionToView()
     })
     // Show the assessment
     this.$core.Activity.Assessment.show()
     // Call assessment audio
     this.$core.Activity.Audio.play(
         AssessmentData.assessment1.vo,
-        null,
+        AssessmentData.assessment1.cc,
         () => {
             // Disable incorrect
             this.isClickable = true
