@@ -33,7 +33,7 @@
                                @click="userCheckedAnswer($event)"
                         >
 
-                        <label v-bind:for="'question_'+ assessment.id +'_radioBtn_' + answer.id">{{ answer.answer }}</label>
+                        <label class="option-label" v-bind:for="'question_'+ assessment.id +'_radioBtn_' + answer.id">{{ answer.answer }}</label>
                     </div>
                 </div>
             </div>
@@ -328,5 +328,11 @@ export default {
 
 #assessment-window .assessment .answers .option.incorrect {
     background: url(/assets/img/icons/cross.png) no-repeat 0px -3px;
+}
+
+.option-label {
+    margin-top: -17px;
+    margin-left: 1px !important;
+    line-height: 25px;
 }
 </style>

@@ -64,12 +64,14 @@ export default {
             onRelease: function() {
                 // LOCK Mode
                 if (this.rotation >= 55 && this.rotation < 70) {
-                    TweenMax.set('#ignition-key', {
-                        rotation: 55
-                    })
-                    vm.lockShowHint = false
-                    vm.ignitionOn = false
-                    vm.$emit('lock')
+                    if (this.currentAction === 'lock') {
+                        TweenMax.set('#ignition-key', {
+                            rotation: 55
+                        })
+                        vm.lockShowHint = false
+                        vm.ignitionOn = false
+                        vm.$emit('lock')
+                    }
                 }
                 // ACC Mode
                 else if (this.rotation > 80 && this.rotation < 112) {
@@ -82,12 +84,14 @@ export default {
                 }
                 // ON Mode
                 else if (this.rotation > 115 && this.rotation < 125) {
-                    TweenMax.set('#ignition-key', {
-                        rotation: 122
-                    })
-                    vm.onShowHint = false
-                    vm.ignitionOn = true
-                    vm.$emit('on')
+                    if (this.currentAction === 'on') {
+                        TweenMax.set('#ignition-key', {
+                            rotation: 122
+                        })
+                        vm.onShowHint = false
+                        vm.ignitionOn = true
+                        vm.$emit('on')
+                    }
                 }
                 // START Mode
                 else if (this.rotation > 135 && this.rotation <= 160) {

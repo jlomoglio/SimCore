@@ -43,7 +43,7 @@ const t11Completed = function() {
         this.currentPoints
     )
     // Reset points
-    this.currentPoints = 0
+    this.currentPoints = 3
     // Reset attempts
     this.currentAttempts = 1
     // Call next task
@@ -82,7 +82,7 @@ const t12Completed = function() {
         this.currentPoints
     )
     // Reset points
-    this.currentPoints = 0
+    this.currentPoints = 3
     // Reset attempts
     this.currentAttempts = 1
     // call next task
@@ -121,7 +121,7 @@ const t13Completed = function() {
         this.currentPoints
     )
     // Reset points
-    this.currentPoints = 0
+    this.currentPoints = 3
 
     // Reset attempts
     this.currentAttempts = 1
@@ -155,7 +155,8 @@ const t14Completed = function() {
         this.currentAttempts,
         this.currentPoints
     )
-    this.currentPoints = 0
+    this.currentPoints = 3
+    this.currentAttempts = 1
     // call next task
     this.isClickable = false
     this.t15()
@@ -203,7 +204,7 @@ const t15Completed = function() {
 // Assesment
 const assessment = function() {
     // Config the assessment
-    this.$core.Activity.Assessment.config(AssessmentData.assessment1, () => {
+    this.$core.Activity.Assessment.config(AssessmentData.assessment2, () => {
         // Call final narrative
         this.$core.Activity.Audio.play(
             TaskData.narrative3.vo,
@@ -220,8 +221,8 @@ const assessment = function() {
     this.$core.Activity.Assessment.show()
     // Call assessment audio
     this.$core.Activity.Audio.play(
-        AssessmentData.assessment1.vo,
-        null,
+        AssessmentData.assessment2.vo,
+        AssessmentData.assessment2.cc,
         () => {
             // Disable incorrect
             this.isClickable = true

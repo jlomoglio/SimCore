@@ -1,7 +1,40 @@
 {
     "assessment1": {
         "id": 1,
-        "vo": "../assets/audio/a2/A1_T15_Question1.mp3",
+        "vo": "../assets/audio/a1/A1_T10_Question1.mp3",
+        "question": "Based on your observations, what would be your diagnosis?",
+        "possiblePoints": "1",
+        "randomize": true,
+        "answers": [
+            {
+                "id": 1,
+                "answer": "The master cylinder is leaking internally",
+                "correct": false,
+                "type": "radio"
+            },
+            {
+                "id": 2,
+                "answer": "The right front caliper is seized",
+                "correct": false,
+                "type": "radio"
+            },
+            {
+                "id": 3,
+                "answer": "There is a restriction in the brake line to the left front caliper",
+                "correct": true,
+                "type": "radio"
+            },
+            {
+                "id": 4,
+                "answer": "The left rear wheel cylinder is seized",
+                "correct": false,
+                "type": "radio"
+            }
+        ]
+    },
+    "assessment2": {
+        "id": 1,
+        "vo": "../assets/audio/a1/A1_T15_Question1.mp3",
         "question": "Based on your observations, what would be your diagnosis?",
         "possiblePoints": "1",
         "randomize": true,

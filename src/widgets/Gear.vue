@@ -68,7 +68,7 @@ export default {
         },
         putInDrive(ro) {
             TweenMax.to(`#gear-img`, 1, {
-                left: `-464px`,
+                marginLeft: `-464px`,
                 ease: SteppedEase.config(4),
                 onComplete: this.driveCallBack
             })
@@ -78,8 +78,8 @@ export default {
             if (this.row < 4) {
                 var sprite = document.getElementById('gear-img')
                 var yPosition = this.row * 116
-                sprite.style.left = '0px'
-                sprite.style.top = `-${yPosition}px`
+                sprite.style.marginLeft = '0px'
+                sprite.style.marginTop = `-${yPosition}px`
                 this.putInDrive()
             } else {
                 this.$emit('drive')
@@ -87,7 +87,7 @@ export default {
         },
         putInPark() {
             TweenMax.to(`#gear-img`, 1, {
-                left: `0px`,
+                marginLeft: `0px`,
                 ease: SteppedEase.config(4),
                 onComplete: this.parkCallBack
             })
@@ -97,8 +97,8 @@ export default {
             if (this.row >= 0) {
                 var sprite = document.getElementById('gear-img')
                 var yPosition = this.row * 116
-                sprite.style.left = '-464px'
-                sprite.style.top = `-${yPosition}px`
+                sprite.style.marginLeft = '-464px'
+                sprite.style.marginTop = `-${yPosition}px`
                 this.putInPark()
             } else {
                 this.$emit('park')
@@ -115,11 +115,12 @@ export default {
     overflow: hidden;
     box-sizing: border-box;
     border: 2px solid #a6a6a6;
+    position: fixed;
   }
  #drive-hotspot {
    position: absolute;
-   bottom: 38px;
-   left: 45px;
+   bottom: -82px;
+   left: 44px;
    width: 7px;
    height: 8px;
    border-radius: 50%;
@@ -127,7 +128,7 @@ export default {
  }
  #park-hotspot {
    position: absolute;
-   bottom: 49px;
+   bottom: -70px;
    left: 33px;
    width: 6px;
    height: 8px;
@@ -136,15 +137,15 @@ export default {
  }
   #drive-hint{
    position: absolute;
-   bottom: 38px;
-   left: 45px;
+   bottom: -83px;
+   left: 44px;
    width: 7px;
    height: 8px;
    border-radius: 50%;
  }
  #park-hint {
    position: absolute;
-   bottom: 49px;
+   bottom: -70px;
    left: 33px;
    width: 6px;
    height: 8px;
@@ -153,7 +154,8 @@ export default {
  .gear-img {
     width: 500%;
     height: 400%;
-    left: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
     position: relative;
  }
  .hot-spots {

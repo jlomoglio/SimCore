@@ -66,7 +66,7 @@ export default {
     border-radius: 50%;
     width: 160px;
     height: 160px;
-    margin-top: -14%;
+    margin-top: -11%;
     border: 2px solid #a6a6a6;
     background-position: 62% 40%;
 

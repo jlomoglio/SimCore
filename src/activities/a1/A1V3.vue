@@ -31,6 +31,7 @@
                                 @park="t14a1('t14')"
                                 @drive="t12a1()"
                                 :currentTask = "currentTask"
+                                @correct="correct()"
                                 :tasks="['t12', 't14']"
                                 :driveHint= "t12ShowHint"
                                 :parkHint = "t14ShowHint"
@@ -158,6 +159,9 @@
                     this[task + 'ShowHint'] = true
                     this.currentPoints = 0
                 }
+            },
+            correct() {
+                this.isClickable = false
             }
         }
     }

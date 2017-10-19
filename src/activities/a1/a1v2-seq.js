@@ -43,7 +43,7 @@ const t6Completed = function() {
         this.currentPoints
     )
     // Reset points
-    this.currentPoints = 0
+    this.currentPoints = 3
     // Reset attempts
     this.currentAttempts = 1
     // Call next task
@@ -75,7 +75,7 @@ const t7Completed = function() {
         this.currentPoints
     )
     // Reset points
-    this.currentPoints = 0
+    this.currentPoints = 3
     // Reset attempts
     this.currentAttempts = 1
     // call next task
@@ -113,7 +113,7 @@ const t8Completed = function() {
         this.currentPoints
     )
     // Reset points
-    this.currentPoints = 0
+    this.currentPoints = 3
 
     // Reset attempts
     this.currentAttempts = 1
@@ -147,7 +147,8 @@ const t9Completed = function() {
         this.currentAttempts,
         this.currentPoints
     )
-    this.currentPoints = 0
+    this.currentPoints = 3
+    this.currentAttempts = 1
     // call next task
     this.isClickable = false
     this.t10()
