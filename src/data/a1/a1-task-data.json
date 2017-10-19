@@ -61,7 +61,7 @@
     },
     "t13": {
         "vo": "../assets/audio/a1/A1_T13.mp3",
-        "cc": "Great, Now apply the brakes and observe the brake fluid flow from the master cylinder.",
+        "cc": "Great. Now apply the brakes and observe what happens.",
         "reportLabel": "Apply the Brakes."
     },
     "t14": {
@@ -71,15 +71,15 @@
     },
     "t15": {
         "vo": "../assets/audio/a1/A1_T15.mp3",
-        "cc": "Thats correct. Now Turn off the Ignition.",
+        "cc": "That's correct. Now Turn off the Ignition.",
         "reportLabel": "Turn off the Ignition."
     },
     "narrative3": {
         "vo": [
-            "../assets/audio/a1/A1_Summary.mp3"
+            "../../assets/audio/a1/A1_Summary.mp3"
         ],
         "cc": [
-            "Based on your observations, what would be your diagnosis."
+            "You have completed the simulation Diagnosing Brake Pull. A vehicle with a brake pull condition can be very dangerous to operate. Brake pull can cause loss of vehicle control and possibly cause the vehicle to veer into the opposite lane or leave the roadway. If you notice a brake pull condition during a road test, you should inform the customer that this condition should be serviced immediately for safe vehicle operation."
         ]
     }
 }

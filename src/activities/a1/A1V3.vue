@@ -1,559 +1,427 @@
 <template>
-    <view-box id="a1v3" :background="backgroundImg">
-        <content-box :clickable="isClickable" @action="incorrect(currentTask)">
-            <!-- AC MACHINE (POPOUT: Full) -->
-            <div id="popout-full" v-show="fullPopOutIsShown">
-                <div id="low-side-mask" v-show="lowSideMaskIsShow"></div>
-                <div id="needle-low-small"></div>
-                <div id="high-side-mask" v-show="highSideMaskIsShow"></div>
-                <div id="needle-high-small"></div>
-
-                <div id="lcd-screen-small">
-                    <div id="screen-txt-1-small">{{ screenTxt1 }}</div>
-                    <div id="screen-txt-2-small">{{ screenTxt2 }}</div>
-                    <div id="screen-txt-3-small">{{ screenTxt3 }}</div>
-                    <div id="screen-txt-4-small">{{ screenTxt4 }}</div>
-                </div>
-
-                <hint-box id="t7-hint" v-hint="t7ShowHint"></hint-box>
-                <div id="power-button"
-                    :class="powerButtonOn ? 'on' : 'off'"
-                    @click="t7a1()"
-                >
-                </div>
-            </div>
-
-            <!-- AC MACHINE (POPOUT: Left/Right) -->
-            <div id="popout-left-right" v-show="leftRightPopOutIsShown">
-                <div id="left-side">
-                    <div id="needle-low"></div>
-                    <hint-box id="t10-hint" v-hint="t10ShowHint"></hint-box>
-                    <hint-box id="t12-hint" v-hint="t12ShowHint"></hint-box>
-                    <div id="knob-low" @click="whichTask()"></div>
-
-                    <div id="needle-high"></div>
-                    <hint-box id="t11-hint" v-hint="t11ShowHint"></hint-box>
-                    <hint-box id="t13-hint" v-hint="t13ShowHint"></hint-box>
-                    <div id="knob-high" @click="whichTask()"></div>
-                </div>
-                <div id="right-side">
-                    <div id="lcd-screen">
-                        <div id="screen-txt-1">{{ screenTxt1 }}</div>
-                        <div id="screen-txt-2">{{ screenTxt2 }}</div>
-                        <div id="screen-txt-3">{{ screenTxt3 }}</div>
-                        <div id="screen-txt-4">{{ screenTxt4 }}</div>
+    <view-box id="a5v1" :background="backgroundImg">
+        <content-box :clickable="isClickable" @action="incorrect(currentTask)" id="content">
+            <zoom-panel>
+                <div class="width-25 pull-left">
+                    <div class="width-100 pull-left">
+                        <ignition-switch
+                                left="15px"
+                                @lock="t15a1('t1Lock')"
+                                @acc="incorrect('t1')"
+                                @on="t11a1()"
+                                :lockHint="t15ShowHint"
+                                :accHint="false"
+                                :onHint="t11ShowHint"
+                                :currentAction= "currentAction"
+                                :currentTask = "currentTask"
+                                :tasks="['t11', 't15']"
+                        >
+                        </ignition-switch>
                     </div>
-
-                    <!-- Recover Button -->
-                    <hint-box id="t8-hint" v-hint="t8ShowHint"></hint-box>
-                    <hot-spot id="t8-hotspot" :currentTask="currentTask" task="t8" @action="t8a1()"></hot-spot>
-
-                    <!-- Start Button -->
-                    <hint-box id="t9-hint" v-hint="t9ShowHint"></hint-box>
-                    <hot-spot id="t9-hotspot" :currentTask="currentTask" task="t9" @action="t9a1()"></hot-spot>
+                    <div class="width-100 pull-left brakeImg">
+                        <Brake
+                                @onBrake="t13a1()"
+                                :currentTask = "currentTask"
+                                :brakeHint = "t13ShowHint"
+                                :task="'t13'"
+                        ></Brake>
+                    </div>
+                    <div class="width-100 pull-left gearBG">
+                        <Gear
+                                @park="t14a1('t14')"
+                                @drive="t12a1()"
+                                :currentTask = "currentTask"
+                                :tasks="['t12', 't14']"
+                                :driveHint= "t12ShowHint"
+                                :parkHint = "t14ShowHint"
+                        ></Gear>
+                    </div>
                 </div>
-            </div>
+                <div class="width-50 calipers-container">
+					<div class="left-calipers">
+						<div class="caliper-br caliper-1">
+                            <span class="lf-label">LF</span>
+							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
+                            <StopRotor rotorName='LFRotor' v-if="stopRotor"></StopRotor>
+                            <div class="lf-rotor" v-else></div>
+						</div>
+						<div class="caliper-br caliper-2">
+                            <span class="lr-label">LR</span>
+							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
+                            <StopRotor rotorName='LRRotor' v-if="stopRotor"></StopRotor>
+                            <div class="lr-rotor" v-else></div>
+						</div>
+					</div>
+					<div class="middle-arrow">
+
+					</div>
+					<div class="right-calipers">
+						<div class="caliper-br caliper-3">
+                            <span class="rf-label">RF</span>
+							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
+                             <StopRotor rotorName='RFRotor' v-if="stopRotor"></StopRotor>
+                             <div class="rf-rotor" v-else></div>
+						</div>
+						<div class="caliper-br caliper-4">
+                            <span class="rr-label">RR</span>
+							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
+							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
+                            <StopRotor rotorName='RRRotor' v-if="stopRotor"></StopRotor>
+                            <div class="rr-rotor" v-else></div>
+						</div>
+					</div>
+				</div>
+            </zoom-panel>
+            
         </content-box>
     </view-box>
 </template>
 
 <script>
-import A1V1Seq from './a1v3-seq.js'
-import ViewBox from '../../widgets/ViewBox'
-import ContentBox from '../../widgets/ContentBox'
-import HintBox from '../../widgets/HintBox'
-import HotSpot from '../../widgets/HotSpot'
+    import ViewBox from '../../widgets/ViewBox'
+    import ContentBox from '../../widgets/ContentBox'
+    import ZoomPanel from '../../widgets/ZoomPanel'
+    import StopRotor from '../../sim-core/components/sim-page/StopRotor'
+    import IgnitionSwitch from '../../widgets/ignition-switch/IgnitionSwitch'
+    import Brake from '../../widgets/Brake'
+    import Gear from '../../widgets/Gear'
+    import A1V3Seq from './a1v3-seq'
+    
+    export default {
+        name: 'A1V3',
 
-export default {
-    name: 'A1V3',
+        // This is a required list of imported components (Widgets)
+        components: {
+            ViewBox,
+            ContentBox,
+            ZoomPanel,
+            StopRotor,
+            IgnitionSwitch,
+            Brake,
+            Gear
+        },
+        mounted() {
+            // Configure the view (Activity Title, View Mode[full/box], Activity ID)
+            this.$core.Activity.configView('', 'full', 'A1')
+            // Initlize the activity view
+            this.$core.Activity.init([this.t11])
 
-    // This is a required list of imported components (Widgets)
-    components: {
-        ViewBox,
-        ContentBox,
-        HintBox,
-        HotSpot
-    },
+            // Show Zoom Icons
+            this.$core.IconBar.Zoom.show()
 
-    // Data contains properties that manage the state of the views
-    // Typical usage is for boolean properties and view text and
-    // properties used for scoring.
-    data() {
-        return {
-            // Required Properties //////////////////
-            isClickable: false,
-            currentTask: 't7',
-            currentAttempts: 1,
-            currentPoints: 3,
-            backgroundImg: 'engine_compartment_not_faded_with_AC_machine-a.png',
-            // /////////////////////////////////////
+            // Show and Enable SI Menu Icon
+            this.$core.IconBar.ServiceInfo.show()
+            this.$core.IconBar.ServiceInfo.enable()
+        },
 
-            // View Specific properties ////////////
-            fullPopOutIsShown: true, // true
-            lowSideMaskIsShow: true,
-            highSideMaskIsShow: true,
-            powerButtonOn: false,
-
-            leftRightPopOutIsShown: false,
-            screenTxt1: '',
-            screenTxt2: '',
-            screenTxt3: '',
-            screenTxt4: '',
-
-            // Hints should always follow this naming convention
-            t7ShowHint: false,
-            t8ShowHint: false,
-            t9ShowHint: false,
-            t10ShowHint: false,
-            t11ShowHint: false,
-            t12ShowHint: false,
-            t13ShowHint: false
-        }
-    },
-
-    // Mounted is used for things that need to be active when the
-    // view first loads, such as configs and init and any icons
-    mounted() {
-        // Configure the view (Activity Title, View Mode[full/box], Activity ID)
-        this.$core.Activity.configView('System Recovery', 'full', 'A1')
-        // Initlize the activity view
-        this.$core.Activity.init([this.t7])
-
-        // Show and Enable SI Menu IconBar
-        this.$core.IconBar.ServiceInfo.show()
-        this.$core.IconBar.ServiceInfo.enable()
-    },
-
-    // Methods imports the sequence functions. You should only add
-    // helper functions here. All task logic needs to be in the
-    // sequecnxe file.
-    methods: {
-        // Required for sequence file
-        ...A1V1Seq,
-
-        // Required for inccorect responces and scoring
-        incorrect(task) {
-            if (this.currentAttempts < 3) {
-                this.incorrectResponse()
-                this.currentAttempts = (this.currentAttempts + 1)
-                this.currentPoints = (this.currentPoints - 1)
-            } else if (this.currentAttempts === 3) {
-                this.incorrectResponse()
-                this[task + 'ShowHint'] = true
-                this.currentPoints = 0
+        // Data contains properties that manage the state of the views
+        // Typical usage is for boolean properties and view text and
+        // properties used for scoring.
+        data() {
+            return {
+                currentTask: 't11',
+                currentAttempts: 1,
+                currentPoints: 3,
+                isClickable: false,
+                currentAction: 'on',
+                // Required Properties //////////////////
+                backgroundImg: 'engine_compartment_not_faded_with_AC_machine-a.png',
+                stopRotor: false,
+                brakeRow: 0,
+                breaksApplied: false,
+                t11ShowHint: false,
+                t12ShowHint: false,
+                t13ShowHint: false,
+                t14ShowHint: false,
+                t15ShowHint: false
             }
         },
-
-        // The click event needs to call a diffrent function
-        // based on what the current task is when it's clicked.
-        whichTask() {
-            if (this.currentTask === 't10') {
-                this.t10a2()
-            } else if (this.currentTask === 't11') {
-                this.t11a2()
-            } else if (this.currentTask === 't12') {
-                this.t12a2()
-            } else if (this.currentTask === 't13') {
-                this.t13a2()
+        methods: {
+            ...A1V3Seq,
+            showArrows: function (event) {
+                this.breaksApplied = !this.breaksApplied
+            },
+            incorrect(task) {
+                if (this.currentAttempts < 3) {
+                    this.incorrectResponse()
+                    this.currentAttempts = (this.currentAttempts + 1)
+                    this.currentPoints = (this.currentPoints - 1)
+                } else if (this.currentAttempts === 3) {
+                    this.incorrectResponse()
+                    this[task + 'ShowHint'] = true
+                    this.currentPoints = 0
+                }
             }
-        },
-
-        recoverUpdate1() {
-            // Set screen text
-            this.screenTxt1 = 'RECOVER IN PROGRESS'
-            this.screenTxt2 = 'RECOVERED 3LB 04OZ'
-            this.screenTxt3 = ''
-            this.screenTxt4 = 'STOP TO PAUSE'
-
-            setTimeout(this.recoverUpdate2, 3000)
-        },
-
-        recoverUpdate2() {
-            // Set screen text
-            this.screenTxt1 = 'DRAINING OIL'
-            this.screenTxt2 = ''
-            this.screenTxt3 = 'PLEASE WAIT'
-            this.screenTxt4 = ''
-
-            setTimeout(this.recoverUpdate3, 3000)
-        },
-
-        recoverUpdate3() {
-            // Set screen text
-            this.screenTxt1 = 'RECOVER COMPLETE'
-            this.screenTxt2 = 'RECOVERED 3LB 04OZ'
-            this.screenTxt3 = ''
-            this.screenTxt4 = 'CHECK OIL BOTTLE'
-
-            setTimeout(this.t11Completed(), 4000)
         }
     }
-}
 </script>
 
 <style scoped>
-/** View Specific Styles ********************************/
+    .pull-left {
+        float: left;
+    }
+    .width-50 {
+        width: 50%;
+    }
+    .width-50 .width-50 {
+        min-height: auto;
+    }
+    .width-25 {
+        width: 25%;
+    }
+    .temp {
+        width: 200px;
+        height: 200px;
+    }
+    .width-100 {
+        width: 100vh;
+        min-height: 20vh;
+    }
+    .blue-arrow{
+        background: url('/assets/img/activities/long_blue_arrow.png') no-repeat;
+        position: relative;
+        top: 50px; 
+        left: 200px;
+        right: 0;
+        bottom: 0;
+        height: 590px;
+    }
+    .red-arrow{
+        background: url('/assets/img/activities/short_red_arrow.png') no-repeat;
+        position: relative;
+        right: 0;
+        bottom: 0;
+        top:-300px;
+    }
+    /** View Specific Styles ********************************/
+    #a5v1 {
+        position: absolute;
+        top: -30px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 590px;
+        background: url('/assets/img/activities/engine_compartment_not_faded_with_AC_machine-a.png');
+        background-size: 105%;
+    }
 
-/** TASK 7 **/
-#popout-full {
-    position: absolute;
-    top: 40px;
-    left: 100px;
-    width: 850px;
-    height: 650px;
-    background: url('/assets/img/activities/ac_machine_control_panel_full.png') no-repeat;
-    background-size: 100%;
-    z-index: 5px;
-}
+    #content {
+        position: absolute;
+        top: 45px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /* height: 590px; */
+        z-index: 2; /* Must be a 2 */
+        width: 940px;
+        height: 80%;
+        margin: 0 auto;
+        background-color: #fff;
+        box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.55);
+    }
 
-#low-side-mask {
-    position: absolute;
-    top: 92px;
-    left: 194px;
-    width: 100px;
-    height: 100px;
-    background-color: #000;
-    border-radius: 50px;
-    opacity: 0.6;
-    z-index: 7px;
-}
+    /** View Specific Styles ********************************/
 
-#needle-low-small {
-    position: absolute;
-    top: 92px;
-    left: 194px;
-    width: 100px;
-    height: 100px;
-    background: url('/assets/img/activities/ac_machine_control_panel_needle.png') no-repeat;
-    background-size: 44%;
-    background-position: 17px 41px;
-    transform: rotate(-52deg);
-    z-index: 6px;
-}
+    /* Left & Right Side Popout */
+    .pull-left {
+        float: left;
+    }
+    .width-25 {
+        width: 20%;
+        min-height: 450px;
+        margin-left: 1%;
+    }
+    .width-50 {
+        width: 50%;
+    }
+    .width-50 .width-50 {
+        min-height: auto;
+    }
+    .width-25 {
+        width: 25%;
+    }
+    .temp {
+        width: 200px;
+        height: 200px;
+    }
+    .width-100 {
+        width: 100%;
+        min-height: 150px;
+    }
+    .brakeImg {
+        margin: 20px 10px;
+    }
+    .gearBG {
+        margin-left: 25px;
+        height: 120px;
+        width: 145px;
+        margin-top: 8px;
+    }
+    .brakeImg {
+        margin: 20px 10px;
+    }
+    #safe-continue {
+        position: absolute;
+        right: 45px;
+        bottom: 88px;
+        background: url('/assets/img/buttons/horizontal/continue.png');
+        background-size: 100% 100%;
+        cursor: pointer;
+        width: 150px;
+        height: 32px;
+        z-index: 25;
+    }
 
-#high-side-mask {
-    position: absolute;
-    top: 92px;
-    left: 316px;
-    width: 100px;
-    height: 100px;
-    background-color: #000;
-    border-radius: 50px;
-    opacity: 0.6;
-    z-index: 7px;
-}
-
-#needle-high-small {
-    position: absolute;
-    top: 92px;
-    left: 316px;
-    width: 100px;
-    height: 100px;
-    background: url('/assets/img/activities/ac_machine_control_panel_needle.png') no-repeat;
-    background-size: 44%;
-    background-position: 17px 41px;
-    transform: rotate(-52deg);
-    z-index: 6px;
-}
-
-#lcd-screen-small {
-    position: absolute;
-    top: 60px;
-    left: 482px;
-    width: 136px;
-    height: 85px;
-}
-
-#screen-txt-1-small {
-    position: absolute;
-    left: 0px;
-    top: 10px;
-    width: 136px;
-    height: 15px;
-    text-align: center;
-    font-family: LiquidCrystal-Normal;
-    font-size: 12px;
-    color: black;
-}
-
-#screen-txt-2-small {
-    position: absolute;
-    left: 0px;
-    top: 30px;
-    width: 136px;
-    height: 15px;
-    text-align: center;
-    font-family: LiquidCrystal-Normal;
-    font-size: 12px;
-    color: black;
-}
-
-#screen-txt-3-small {
-    position: absolute;
-    left: 0px;
-    top: 55px;
-    width: 136px;
-    height: 15px;
-    text-align: center;
-    font-family: LiquidCrystal-Normal;
-    font-size: 12px;
-    color: black;
-}
-
-#screen-txt-4-small {
-    position: absolute;
-    left: 0px;
-    top: 60px;
-    width: 136px;
-    height: 15px;
-    text-align: center;
-    font-family: LiquidCrystal-Normal;
-    font-size: 12px;
-    color: black;
-}
-
-#power-button.off {
-    position: absolute;
-    bottom: 189px;
-    right: 167px;
+    #safe-continue:active {
+        background: url('/assets/img/buttons/horizontal/continue_over.png');
+        background-size: 100% 100%;
+    }
+    .calipers-container {
+    width: 412px;
+    height: auto;
+    float: left;
+    }
+    .left-calipers, .middle-arrow, .right-calipers {
+    float: left;
+    }
+    .middle-arrow {
     width: 40px;
-    height: 85px;
-    background: url('/assets/img/activities/AC_OFF_button.png') no-repeat;
-    background-size: 100%;
-    z-index: 6px;
-}
+    height: 460px;
+    margin: 0 10px;
+    background-image: url('/assets/img/activities/long_blue_arrow.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center 25px;
+    }
+    .caliper-br {
+    position: relative;
+    width: 170px;
+    height: 200px;
+    margin-top: 15px;
+    /* border: 1px solid red; */
+    }
 
-#power-button.on {
+    .caliper-arrow {
     position: absolute;
-    bottom: 189px;
-    right: 167px;
-    width: 40px;
-    height: 85px;
-    background: url('/assets/img/activities/AC_ON_button.png') no-repeat;
-    background-size: 100%;
-    z-index: 6px;
-}
-
-#t7-hint {
-    position: absolute;
-    bottom: 205px;
-    right: 162px;
-    width: 45px;
-    height: 70px;
-    border-radius: 10px;
-    z-index: 1px;
-}
-
-/* Left & Right Side Popout */
-#popout-left-right {
-    position: absolute;
-    top: 40px;
-    left: 80px;
-    width: 850px;
-    height: 480px;
-    border: 2px solid #ccc;
-    background: url('/assets/img/activities/ac_machine_control_panel.png') no-repeat;
-    z-index: 5px;
-}
-
-#left-side {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 500px;
-    height: 480px;
-}
-
-#right-side {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 350px;
-    height: 480px;
-}
-
-/** TASK 8 **/
-#lcd-screen {
-    position: absolute;
-    top: 47px;
-    left: 82px;
-    width: 236px;
-    height: 150px;
-}
-
-#screen-txt-1 {
-    position: absolute;
-    left: 0px;
-    top: 20px;
-    width: 236px;
-    height: 20px;
-    text-align: center;
-    font-family: LiquidCrystal-Normal;
-    font-size: 22px;
-    color: black;
-}
-
-#screen-txt-2 {
-    position: absolute;
-    left: 0px;
+    width: 15px;
+    height: 10px;
+    z-index: 99;
+    background-image: url('/assets/img/activities/short_red_arrow.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center center;
+    }
+    .caliper-1 .caliper-arrow-1 {
+    left: 27px;
+    top: 48px;
+    }
+    .caliper-1 .caliper-arrow-2 {
+    left: 83px;
     top: 50px;
-    width: 236px;
-    height: 20px;
-    text-align: center;
-    font-family: LiquidCrystal-Normal;
-    font-size: 22px;
-    color: black;
-}
+    transform: rotate(180deg);
+    }
+    .caliper-1 .caliper-arrow-3 {
+    left: 130px;
+    top: 141px;
+    transform: rotate(242deg);
+    }
+    .caliper-2 .caliper-arrow-1 {
+    left: 21px;
+    top: 150px;
+    }
+    .caliper-2 .caliper-arrow-2 {
+    left: 76px;
+    top: 150px;
+    transform: rotate(180deg);
+    }
+    .caliper-2 .caliper-arrow-3 {
+    left: 130px;
+    top: 56px;
+    transform: rotate(117deg);
+    }
 
-#screen-txt-3 {
-    position: absolute;
-    left: 0px;
-    top: 85px;
-    width: 236px;
-    height: 20px;
-    text-align: center;
-    font-family: LiquidCrystal-Normal;
-    font-size: 22px;
-    color: black;
-}
+    .caliper-3 .caliper-arrow-1 {
+        left: 80px;
+        top: 51px;
+    }
+    .caliper-3 .caliper-arrow-2 {
+    left: 133px;
+    top: 51px;
+    transform: rotate(180deg);
+    }
+    .caliper-3 .caliper-arrow-3 {
+    left: 30px;
+    top: 142px;
+    transform: rotate(-65deg);
+    }
 
-#screen-txt-4 {
-    position: absolute;
-    left: 0px;
-    top: 120px;
-    width: 236px;
-    height: 20px;
-    text-align: center;
-    font-family: LiquidCrystal-Normal;
-    font-size: 22px;
-    color: black;
-}
+    .caliper-4 .caliper-arrow-1 {
+    left: 80px;
+    top: 150px;
+    }
+    .caliper-4 .caliper-arrow-2 {
+    left: 134px;
+    top: 150px;
+    transform: rotate(180deg);
+    }
+    .caliper-4 .caliper-arrow-3 {
+    left: 30px;
+    top: 58px;
+    transform: rotate(60deg);
+    }
+    .lr-label, .lf-label{
+    position: absolute; 
+    top: 93px;
+    left: -20px;
+    }
 
-#t8-hotspot {
+    .rr-label, .rf-label{
     position: absolute;
-    left: 185px;
-    top: 354px;
-    width: 100px;
-    height: 25px;
-}
-
-#t8-hint {
-    position: absolute;
-    left: 181px;
-    top: 352px;
-    width: 102px;
-    height: 25px;
-    border-radius: 10px;
-}
-
-/** TASK 9 **/
-#t9-hotspot {
-    position: absolute;
-    left: 81px;
-    top: 262px;
-    width: 104px;
-    height: 55px;
-}
-
-#t9-hint {
-    position: absolute;
-    left: 79px;
-    top: 261px;
-    width: 104px;
-    height: 55px;
-    border-radius: 10px;
-}
-
-/** TASK 10 , 11, 12, 13 **/
-#needle-low {
-    position: absolute;
-    top: 118px;
-    left: 79px;
-    width: 172px;
-    height: 172px;
-    background: url('/assets/img/activities/ac_machine_control_panel_needle.png') no-repeat;
-    background-size: 45%;
-    background-position: 27px 70px;
-    transform: rotate(141deg);
-    z-index: 6px;
-}
-
-#needle-high {
-    position: absolute;
-    top: 118px;
-    left: 288px;
-    width: 172px;
-    height: 172px;
-    background: url('/assets/img/activities/ac_machine_control_panel_needle.png') no-repeat;
-    background-size: 45%;
-    background-position: 27px 70px;
-    transform: rotate(-2deg);
-    z-index: 6px;
-}
-
-#knob-low {
-    position: absolute;
-    top: 295px;
-    left: 129px;
-    width: 53px;
-    height: 160px;
-    background: url('/assets/img/activities/blue_AC_knob.png') no-repeat;
-    background-size: 70%;
-    background-position: 10px 48px;
-    transform: rotate(0deg); /* -90 */
-    z-index: 6px;
-}
-
-#knob-high {
-    position: absolute;
-    top: 295px;
-    left: 346px;
-    width: 53px;
-    height: 160px;
-    background: url('/assets/img/activities/red_AC_knob.png') no-repeat;
-    background-size: 70%;
-    background-position: 10px 48px;
-    transform: rotate(0deg); /* -90 */
-    z-index: 6px;
-}
-
-#t10-hint {
-    position: absolute;
-    left: 115px;
-    top: 345px;
-    width: 102px;
-    height: 25px;
-    border-radius: 10px;
-    z-index: 6px;
-}
-
-#t11-hint {
-    position: absolute;
-    left: 320px;
-    top: 345px;
-    width: 102px;
-    height: 25px;
-    border-radius: 10px;
-    z-index: 6px;
-}
-
-#t12-hint {
-    position: absolute;
-    left: 136px;
-    top: 323px;
-    width: 25px;
-    height: 102px;
-    border-radius: 10px;
-    z-index: 6px;
-}
-
-#t13-hint {
-    position: absolute;
-    left: 343px;
-    top: 323px;
-    width: 25px;
-    height: 102px;
-    border-radius: 10px;
-    z-index: 6px;
-}
+    top: 93px;
+    left: 170px;
+    }
+    .lf-rotor {
+        width: auto;
+        height: 200px;
+        margin-left: -40px;
+        background: url('/assets/img/module/disc_pad_piston_rotor_LF_sprite_temp.png') no-repeat;
+        background-position: 0 0;
+        background-size: 1000% auto;
+        position: relative;
+        left:35px;
+    }
+    .lr-rotor {
+        width: auto;
+        height: 200px;
+        margin-left: -40px;
+        background: url('/assets/img/module/disc_pad_piston_rotor_LR_sprite.png') no-repeat;
+        background-position: 0 0;
+        background-size: 1000% auto;
+        position: relative;
+    }
+    .rf-rotor {
+        width: auto;
+        height: 200px;
+        margin-right: -40px;
+        background: url('/assets/img/module/disc_pad_piston_rotor_RF_sprite.png') no-repeat;
+        background-position: 0 0;
+        background-size: 1000% auto;
+        position: relative;
+    }
+    .rr-rotor {
+        width: auto;
+        height: 200px;
+        margin-right: -40px;
+        background: url('/assets/img/module/disc_pad_piston_rotor_RR_sprite.png') no-repeat;
+        background-position: 0 0;
+        background-size: 1000% auto;
+        position: relative;
+    }
 </style>

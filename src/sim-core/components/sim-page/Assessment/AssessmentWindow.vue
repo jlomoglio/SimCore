@@ -238,7 +238,7 @@ export default {
 #assessment-window  > #assessment-content > .question > .answers > .option {
 	position: relative;
 	width: 100%;
-	height: 26px;
+	height: auto;
 	padding-left: 30px;
 	text-align: left;
 }
@@ -264,7 +264,7 @@ export default {
     pointer-events: all;
 }
 #assessment-window  > #assessment-content > .question > .answers > .option > input[type="radio"]:not(old) + label {
-    display: inline-block;
+    display: block;
     margin-left: -25px;
     padding-left: 25px;
     min-height: 18px;
