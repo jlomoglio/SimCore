@@ -32,19 +32,26 @@ export default {
                 var sprite = document.getElementById(this.rotorName)
                 sprite.style.backgroundPositionX = '0%'
                 sprite.style.backgroundPositionY = `${yPosition}%`
-                console.log('yPosition', yPosition, sprite.style.backgroundPositionX)
                 this.loadRows(yPosition)
-            } else {
+            } else if (this.rotorName === 'LFRotor') {
                 this.$emit('onComplete')
             }
         },
         loadRows(row) {
-            console.log('loadRows')
-            TweenMax.to(`#${this.rotorName}`, 1, {
-                backgroundPosition: `99.99% ${row}%`,
-                ease: SteppedEase.config(9),
-                onComplete: this.callBack
-            })
+            if (this.rotorName === 'LFRotor' && this.row === 4) {
+                TweenMax.to(`#${this.rotorName}`, 1, {
+                    repeat: 2,
+                    backgroundPosition: `99.99% ${row}%`,
+                    ease: SteppedEase.config(9),
+                    onComplete: this.callBack
+                })
+            } else {
+                TweenMax.to(`#${this.rotorName}`, 1, {
+                    backgroundPosition: `99.99% ${row}%`,
+                    ease: SteppedEase.config(9),
+                    onComplete: this.callBack
+                })
+            }
         }
     }
 }

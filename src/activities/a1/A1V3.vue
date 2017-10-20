@@ -45,7 +45,7 @@
 							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
-                            <StopRotor rotorName='LFRotor' v-if="stopRotor"></StopRotor>
+                            <StopRotor rotorName='LFRotor' v-if="stopRotor" @onComplete="t13Completed()"></StopRotor>
                             <div class="lf-rotor" v-else></div>
 						</div>
 						<div class="caliper-br caliper-2">
@@ -74,7 +74,7 @@
 							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
-                            <StopRotor rotorName='RRRotor' v-if="stopRotor" @onComplete="t13Completed()"></StopRotor>
+                            <StopRotor rotorName='RRRotor' v-if="stopRotor"></StopRotor>
                             <div class="rr-rotor" v-else></div>
 						</div>
 					</div>
