@@ -45,16 +45,18 @@
 							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
-                            <StopRotor rotorName='LFRotor' v-if="stopRotor" @onComplete="t13Completed()"></StopRotor>
-                            <div class="lf-rotor" v-else></div>
+                            <StopRotor rotorName='LFRotor' v-if="stopRotor && !startRotor" @onComplete="t13Completed()"></StopRotor>
+                            <startRotor rotorName='LFRotor' v-if="startRotor"></startRotor>
+                            <div class="lf-rotor" v-if="!stopRotor && !startRotor"></div>
 						</div>
 						<div class="caliper-br caliper-2">
                             <span class="lr-label">LR</span>
 							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
-                            <StopRotor rotorName='LRRotor' v-if="stopRotor"></StopRotor>
-                            <div class="lr-rotor" v-else></div>
+                            <StopRotor rotorName='LRRotor' v-if="stopRotor && !startRotor"></StopRotor>
+                            <startRotor rotorName='LRRotor' v-if="startRotor"></startRotor>
+                            <div class="lr-rotor" v-if="!stopRotor && !startRotor"></div>
 						</div>
 					</div>
 					<div class="middle-arrow">
@@ -66,16 +68,18 @@
 							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
-                             <StopRotor rotorName='RFRotor' v-if="stopRotor"></StopRotor>
-                             <div class="rf-rotor" v-else></div>
+                            <StopRotor rotorName='RFRotor' v-if="stopRotor && !startRotor"></StopRotor>
+                            <startRotor rotorName='RFRotor' v-if="startRotor"></startRotor>                             
+                            <div class="rf-rotor" v-if="!stopRotor && !startRotor"></div>
 						</div>
 						<div class="caliper-br caliper-4">
                             <span class="rr-label">RR</span>
 							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
-                            <StopRotor rotorName='RRRotor' v-if="stopRotor"></StopRotor>
-                            <div class="rr-rotor" v-else></div>
+                            <StopRotor rotorName='RRRotor' v-if="stopRotor && !startRotor"></StopRotor>
+                            <startRotor rotorName='RRRotor' v-if="startRotor"></startRotor>                                                         
+                            <div class="rr-rotor" v-if="!stopRotor && !startRotor"></div>
 						</div>
 					</div>
 				</div>
@@ -90,6 +94,7 @@
     import ContentBox from '../../widgets/ContentBox'
     import ZoomPanel from '../../widgets/ZoomPanel'
     import StopRotor from '../../sim-core/components/sim-page/StopRotor'
+    import StartRotor from '../../sim-core/components/sim-page/StartRotor'
     import IgnitionSwitch from '../../widgets/ignition-switch/IgnitionSwitch'
     import Brake from '../../widgets/Brake'
     import Gear from '../../widgets/Gear'
@@ -104,6 +109,7 @@
             ContentBox,
             ZoomPanel,
             StopRotor,
+            StartRotor,
             IgnitionSwitch,
             Brake,
             Gear
@@ -134,6 +140,7 @@
                 currentAction: 'on',
                 // Required Properties //////////////////
                 backgroundImg: 'engine_compartment_not_faded_with_AC_machine-a.png',
+                startRotor: false,
                 stopRotor: false,
                 brakeRow: 0,
                 breaksApplied: false,

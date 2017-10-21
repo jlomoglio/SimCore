@@ -69,6 +69,7 @@ const t12a1 = function() {
     var vm = this
     // Check if the hint is shown
     window.setTimeout(function() {
+        vm.startRotor = true
         vm.isClickable = true
         vm.t12Completed()
     }, 2000)
@@ -105,6 +106,8 @@ const t13 = function() {
 const t13a1 = function() {
     let vm = this
     this.isClickable = false
+    this.startRotor = false
+    console.log('this.startRotor')
     this.stopRotor = true
     this.showArrows()
     window.setTimeout(function() {
@@ -115,6 +118,7 @@ const t13a1 = function() {
 // TASK 8: Task Completed
 const t13Completed = function() {
     // Complete the task
+    console.log('t13 completed')
     this.$core.Activity.taskComplete(
         TaskData.t13.reportLabel,
         this.currentAttempts,
