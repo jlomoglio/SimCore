@@ -297,12 +297,12 @@ export default {
 }
 
 #ignition-switch-plate.on {
-    background: url('./ignition_key_switch_on.png');
+    background: url('/assets/img/module/ignition_key_switch_on.png');
     background-size: 100%;
 }
 
 #ignition-switch-plate.off {
-    background: url('./ignition_key_switch_off.png');
+    background: url('/assets/img/module/ignition_key_switch_off.png');
     background-size: 100%;
 }
 
@@ -310,7 +310,7 @@ export default {
     margin: 0 auto;
     width: 126px;
     height: 126px;
-    background: url('./key_use.png') no-repeat;
+    background: url('/assets/img/module/key_use.png') no-repeat;
     background-size: 105%;
     background-position: -320% 280%;
     transform: rotate(0deg); /* lock: 55deg, acc: 100, on: 120, start: 155 */
