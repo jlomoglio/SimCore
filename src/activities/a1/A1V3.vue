@@ -45,18 +45,16 @@
 							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
-                            <StopRotor rotorName='LFRotor' v-if="stopRotor && !startRotor" @onComplete="t13Completed()"></StopRotor>
-                            <startRotor rotorName='LFRotor' v-if="startRotor"></startRotor>
-                            <div class="lf-rotor" v-if="!stopRotor && !startRotor"></div>
+                            <StopRotor rotorName='LFRotor' v-if="stopRotor" @onComplete="t13Completed()"></StopRotor>
+                            <div class="lf-rotor" v-else></div>
 						</div>
 						<div class="caliper-br caliper-2">
                             <span class="lr-label">LR</span>
 							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
-                            <StopRotor rotorName='LRRotor' v-if="stopRotor && !startRotor"></StopRotor>
-                            <startRotor rotorName='LRRotor' v-if="startRotor"></startRotor>
-                            <div class="lr-rotor" v-if="!stopRotor && !startRotor"></div>
+                            <StopRotor rotorName='LRRotor' v-if="stopRotor"></StopRotor>
+                            <div class="lr-rotor" v-else></div>
 						</div>
 					</div>
 					<div class="middle-arrow">
@@ -68,18 +66,16 @@
 							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
-                            <StopRotor rotorName='RFRotor' v-if="stopRotor && !startRotor"></StopRotor>
-                            <startRotor rotorName='RFRotor' v-if="startRotor"></startRotor>                             
-                            <div class="rf-rotor" v-if="!stopRotor && !startRotor"></div>
+                             <StopRotor rotorName='RFRotor' v-if="stopRotor"></StopRotor>
+                             <div class="rf-rotor" v-else></div>
 						</div>
 						<div class="caliper-br caliper-4">
                             <span class="rr-label">RR</span>
 							<div class="caliper-arrow caliper-arrow-1" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-2" v-if="breaksApplied"></div>
 							<div class="caliper-arrow caliper-arrow-3" v-if="breaksApplied"></div>
-                            <StopRotor rotorName='RRRotor' v-if="stopRotor && !startRotor"></StopRotor>
-                            <startRotor rotorName='RRRotor' v-if="startRotor"></startRotor>                                                         
-                            <div class="rr-rotor" v-if="!stopRotor && !startRotor"></div>
+                            <StopRotor rotorName='RRRotor' v-if="stopRotor"></StopRotor>
+                            <div class="rr-rotor" v-else></div>
 						</div>
 					</div>
 				</div>
@@ -94,7 +90,6 @@
     import ContentBox from '../../widgets/ContentBox'
     import ZoomPanel from '../../widgets/ZoomPanel'
     import StopRotor from '../../sim-core/components/sim-page/StopRotor'
-    import StartRotor from '../../sim-core/components/sim-page/StartRotor'
     import IgnitionSwitch from '../../widgets/ignition-switch/IgnitionSwitch'
     import Brake from '../../widgets/Brake'
     import Gear from '../../widgets/Gear'
@@ -109,7 +104,6 @@
             ContentBox,
             ZoomPanel,
             StopRotor,
-            StartRotor,
             IgnitionSwitch,
             Brake,
             Gear
@@ -140,7 +134,6 @@
                 currentAction: 'on',
                 // Required Properties //////////////////
                 backgroundImg: 'engine_compartment_not_faded_with_AC_machine-a.png',
-                startRotor: false,
                 stopRotor: false,
                 brakeRow: 0,
                 breaksApplied: false,
@@ -325,32 +318,32 @@
     background-position: center center;
     }
     .caliper-1 .caliper-arrow-1 {
-    left: 27px;
-    top: 48px;
+        left: 27px;
+        top: 48px;
     }
     .caliper-1 .caliper-arrow-2 {
-    left: 83px;
-    top: 50px;
-    transform: rotate(180deg);
+        left: 83px;
+        top: 50px;
+        transform: rotate(180deg);
     }
     .caliper-1 .caliper-arrow-3 {
-    left: 130px;
-    top: 141px;
-    transform: rotate(242deg);
+        left: 154px;
+        top: 101px;
+        transform: rotate(117deg);
     }
     .caliper-2 .caliper-arrow-1 {
-    left: 21px;
-    top: 150px;
+        left: 21px;
+        top: 150px;
     }
     .caliper-2 .caliper-arrow-2 {
-    left: 76px;
-    top: 150px;
-    transform: rotate(180deg);
+        left: 76px;
+        top: 150px;
+        transform: rotate(180deg);
     }
     .caliper-2 .caliper-arrow-3 {
-    left: 130px;
-    top: 56px;
-    transform: rotate(117deg);
+        left: 130px;
+        top: 56px;
+        transform: rotate(117deg);
     }
 
     .caliper-3 .caliper-arrow-1 {
@@ -358,19 +351,19 @@
         top: 51px;
     }
     .caliper-3 .caliper-arrow-2 {
-    left: 133px;
-    top: 51px;
-    transform: rotate(180deg);
+        left: 133px;
+        top: 51px;
+        transform: rotate(180deg);
     }
     .caliper-3 .caliper-arrow-3 {
-    left: 30px;
-    top: 142px;
-    transform: rotate(-65deg);
+        left: 30px;
+        top: 142px;
+        transform: rotate(-65deg);
     }
 
     .caliper-4 .caliper-arrow-1 {
-    left: 80px;
-    top: 150px;
+        left: 80px;
+        top: 150px;
     }
     .caliper-4 .caliper-arrow-2 {
     left: 134px;
@@ -394,14 +387,33 @@
     left: 170px;
     }
     .lf-rotor {
-        width: auto;
+        /* width: auto;
+        height: 200px;
+        margin-left: -41px;
+        background: url('/assets/img/module/disc_pad_piston_rotor_LF_sprite.png') no-repeat;
+        background-position: 0 0;
+        background-size: 537% auto;
+        position: relative;
+        left: 35px;
+        top: 20px; */
+        /* width: auto;
         height: 200px;
         margin-left: -40px;
-        background: url('/assets/img/module/disc_pad_piston_rotor_LF_sprite_temp.png') no-repeat;
+        background: url('/assets/img/module/disc_pad_piston_rotor_LF_sprite.png') no-repeat;
         background-position: 0 0;
         background-size: 1000% auto;
         position: relative;
-        left:35px;
+        left:35px; */
+
+        width: auto;
+        height: 200px;
+        margin-left: -43px;
+        background: url('/assets/img/module/disc_pad_piston_rotor_LF_sprite.png') no-repeat;
+        background-position: 0 0;
+        background-size: 892% auto;
+        position: relative;
+        left: 34px;
+        top: 16px;
     }
     .lr-rotor {
         width: auto;

@@ -37,13 +37,26 @@ export default {
                 this.$emit('onComplete')
             }
         },
+        callNextRow() {
+            this.row += 1
+            if (this.row < 4) {
+                var yPosition = this.row * 25.5
+                var sprite = document.getElementById(this.rotorName)
+                sprite.style.backgroundPositionX = '0%'
+                sprite.style.backgroundPositionY = `${yPosition}%`
+                this.loadRows(yPosition)
+            } else if (this.rotorName === 'LFRotor') {
+                this.$emit('onComplete')
+            }
+        },
         loadRows(row) {
-            if (this.rotorName === 'LFRotor' && this.row === 4) {
+            if (this.rotorName === 'LFRotor') {
                 TweenMax.to(`#${this.rotorName}`, 1, {
-                    repeat: 2,
-                    backgroundPosition: `99.99% ${row}%`,
+                    repeat: 1,
+                    backgroundPosition: `101.22% ${row}%`,
                     ease: SteppedEase.config(9),
-                    onComplete: this.callBack
+                    // onComplete: this.callBack
+                    onComplete: this.callNextRow
                 })
             } else {
                 TweenMax.to(`#${this.rotorName}`, 1, {
@@ -58,14 +71,15 @@ export default {
 </script>
 <style scoped>
     .lf-rotor {
-        width: auto;
+        width: 206px;
         height: 200px;
-        margin-left: -40px;
-        background: url('/assets/img/module/disc_pad_piston_rotor_LF_sprite_temp.png') no-repeat;
+        margin-left: -43px;
+        background: url('/assets/img/module/disc_pad_piston_rotor_LF_sprite.png') no-repeat;
         background-position: 0 0;
-        background-size: 1000% auto;
+        background-size: 903% auto;
         position: relative;
-        left:35px;
+        left: 34px;
+        top: 16px;
     }
     .lr-rotor {
         width: auto;
