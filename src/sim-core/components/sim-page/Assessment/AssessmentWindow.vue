@@ -33,7 +33,8 @@
                                @click="userCheckedAnswer($event)"
                         >
 
-                        <label class="option-label" v-bind:for="'question_'+ assessment.id +'_radioBtn_' + answer.id">{{ answer.answer }}</label>
+                        <label v-if="answer.type == 'radio'" @click="userSelectedAnswer($event)" class="option-label" v-bind:for="'question_'+ assessment.id +'_radioBtn_' + answer.id" v-html="answer.answer"></label>
+                        <label v-else @click="userCheckedAnswer($event)" class="option-label" v-bind:for="'question_'+ assessment.id +'_radioBtn_' + answer.id" v-html="answer.answer"></label>                        
                     </div>
                 </div>
             </div>
@@ -120,7 +121,7 @@ export default {
         },
         userSelectedAnswer: function (elem) {
             const qid = elem.target.parentNode.parentNode.parentNode.id.replace('question_', '')
-            this.userAnswers = addRadioAnswer(this.userAnswers, {qid: qid, answers: [{ id: parseInt(elem.target.value) }]})
+            this.userAnswers = addRadioAnswer(this.userAnswers, {qid: qid, answers: [{ id: parseInt(elem.target.parentNode.id.replace('answer_', '')) }]})
         },
         userCheckedAnswer: function (elem) {
             const qid = elem.target.parentNode.parentNode.parentNode.id.replace('question_', '')
