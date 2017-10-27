@@ -54,6 +54,7 @@ const t11Completed = function() {
 // TASK 2: Constructor
 const t12 = function() {
     this.currentTask = 't12'
+    this.currentAction = 'drive'
     this.isClickable = false
     this.$core.Activity.Audio.play(
         TaskData.t12.vo,
@@ -134,6 +135,7 @@ const t13Completed = function() {
 // put car in park.
 const t14 = function() {
     this.currentTask = 't14'
+    this.currentAction = 'park'
     this.$core.Activity.Audio.play(
         TaskData.t14.vo,
         TaskData.t14.cc,
@@ -199,31 +201,15 @@ const t15Completed = function() {
         Vue.core.ContinueButton.hide()
         this.assessment()
     })
-    // this.transitionToView()
-}
-
-const ccSecondaryText = function() {
-    var line3 = setTimeout(() => {
-        document.getElementById('closed-caption-bar').innerText = TaskData.narrative3.cc2
-        clearTimeout(line3)
-    }, 14840)
-    return TaskData.narrative3.cc1
 }
 // Assesment
 const assessment = function() {
     // Config the assessment
     this.$core.Activity.Assessment.config(AssessmentData.assessment2, () => {
-        // Call final narrative
-        this.$core.Activity.Audio.play(
-            TaskData.narrative3.vo,
-            ccSecondaryText(),
-            () => {
-                // Disable incorrect
-                this.isClickable = false
-                // go to next screen
-                this.transitionToView()
-            }
-        )
+        // Disable incorrect
+        this.isClickable = false
+        // go to next screen
+        this.transitionToView()
     })
     // Show the assessment
     this.$core.Activity.Assessment.show()

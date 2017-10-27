@@ -32,10 +32,10 @@
                         @park="t9a1()"
                         @drive="t7a1()"
                         @correct="correct()"
+                        @incorrect="incorrect(currentTask)"
                         :driveHint="t7ShowHint"
                         :parkHint="t9ShowHint"                        
-                        :currentTask = "currentTask"
-                        :tasks="['t7', 't9']"
+                        :currentAction = "currentAction"
                     ></Gear>
                 </div>
             </div>

@@ -28,7 +28,7 @@ export default {
         callBack() {
             this.row += 1
             if (this.row < 5) {
-                var yPosition = this.row * 19.8
+                var yPosition = this.row * 19.475
                 var sprite = document.getElementById(this.rotorName)
                 sprite.style.backgroundPositionX = '0%'
                 sprite.style.backgroundPositionY = `${yPosition}%`
@@ -60,7 +60,7 @@ export default {
                 })
             } else {
                 TweenMax.to(`#${this.rotorName}`, 1, {
-                    backgroundPosition: `99.99% ${row}%`,
+                    backgroundPosition: `99% ${row}%`,
                     ease: SteppedEase.config(9),
                     onComplete: this.callBack
                 })
@@ -79,7 +79,7 @@ export default {
         background-size: 903% auto;
         position: relative;
         left: 34px;
-        top: 16px;
+        top: 27px;
     }
     .lr-rotor {
         width: auto;
@@ -87,7 +87,7 @@ export default {
         margin-left: -40px;
         background: url('/assets/img/module/disc_pad_piston_rotor_LR_sprite.png') no-repeat;
         background-position: 0 0;
-        background-size: 1000% auto;
+        background-size: 1100% auto;
         position: relative;
     }
     .rf-rotor {
@@ -96,7 +96,7 @@ export default {
         margin-right: -40px;
         background: url('/assets/img/module/disc_pad_piston_rotor_RF_sprite.png') no-repeat;
         background-position: 0 0;
-        background-size: 1000% auto;
+        background-size: 1100% auto;
         position: relative;
     }
     .rr-rotor {
@@ -105,7 +105,7 @@ export default {
         margin-right: -40px;
         background: url('/assets/img/module/disc_pad_piston_rotor_RR_sprite.png') no-repeat;
         background-position: 0 0;
-        background-size: 1000% auto;
+        background-size: 1100% auto;
         position: relative;
     }
 </style>

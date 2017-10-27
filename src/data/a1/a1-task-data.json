@@ -1,62 +1,77 @@
 {
     "t1": {
         "vo": "../assets/audio/a1/A1_T1.mp3",
-        "cc": "Now check the operation of brakes, To begin, turn on the Ignition.",
+        "cc": "Now, check the operation of the brakes. To begin, turn on the ignition.",
         "reportLabel": "Turn on the Ignition."
     },
     "t2": {
         "vo": "../assets/audio/a1/A1_T2.mp3",
-        "cc": "That's correct. Now put the vehicle in drive.",
+        "cc": "That’s correct. Now put the vehicle in drive.",
         "reportLabel": "Put the vehicle in drive."
     },
     "t3": {
         "vo": "../assets/audio/a1/A1_T3.mp3",
-        "cc": "Great, Now apply the brakes and observe the brake fluid flow from the master cylinder.",
+        "cc": "Great. Now apply the brakes and observe the brake fluid flowing from the master cylinder.",
+        "reportLabel": "Apply the Brakes."
+    },
+    "t3p1": {
+        "vo": "../assets/audio/a1/A1_T3_P1.mp3",
+        "cc": "Good job. The brake pedal travel is normal, and the vehicle tracks straight when brakes are applied.",
         "reportLabel": "Apply the Brakes."
     },
     "t4": {
         "vo": "../assets/audio/a1/A1_T4.mp3",
-        "cc": "Put the vehicle in Park.",
+        "cc": "Put the vehicle in park.",
         "reportLabel": "Put the vehicle in Park."
     },
     "t5": {
         "vo": "../assets/audio/a1/A1_T5.mp3",
-        "cc": "Thats correct. Now Turn off the Ignition.",
+        "cc": "That’s correct. Now turn off the ignition.",
+        "reportLabel": "Turn off the Ignition."
+    },
+    "t5p1": {
+        "vo": "../assets/audio/a1/A1_T5_P1.mp3",
+        "cc": "Good job.",
         "reportLabel": "Turn off the Ignition."
     },
     "t6": {
         "vo": "../assets/audio/a1/A1_T6.mp3",
-        "cc": "Check the operation of the disk brakes on this vehicle, To begin, turn on the Ignition.",
+        "cc": "Check the operation of the disc brakes on this vehicle. To begin, turn on the ignition.",
         "reportLabel": "Turn on the Ignition."
     },
     "t7": {
         "vo": "../assets/audio/a1/A1_T7.mp3",
-        "cc": "That's correct. Now put the vehicle in drive.",
+        "cc": "That’s correct. Now put the vehicle in drive.",
         "reportLabel": "Put the vehicle in drive."
     },
     "t8": {
         "vo": "../assets/audio/a1/A1_T8.mp3",
-        "cc": "Great, Now apply the brakes and observe the brake fluid flow from the master cylinder.",
+        "cc": "Great. Now apply the brakes and observe the brake fluid flowing from the master cylinder.",
+        "reportLabel": "Apply the Brakes."
+    },
+    "t8p1": {
+        "vo": "../assets/audio/a1/A1_T8_P1.mp3",
+        "cc": "Good job. The brake pedal travel is normal, but the vehicle veers right when the brakes are applied.",
         "reportLabel": "Apply the Brakes."
     },
     "t9": {
         "vo": "../assets/audio/a1/A1_T9.mp3",
-        "cc": "Put the vehicle in Park.",
+        "cc": "Put the vehicle in park.",
         "reportLabel": "Put the vehicle in Park."
     },
     "t10": {
         "vo": "../assets/audio/a1/A1_T10.mp3",
-        "cc": "Thats correct. Now Turn off the Ignition.",
+        "cc": "That’s correct. Now turn off the ignition.",
         "reportLabel": "Turn off the Ignition."
     },
     "t11": {
         "vo": "../assets/audio/a1/A1_T11.mp3",
-        "cc": "Now check the operation of brakes, To begin, turn on the Ignition.",
+        "cc": "Check the operation of the disc and drum brakes on this vehicle. To begin, turn on the ignition. ",
         "reportLabel": "Turn on the Ignition."
     },
     "t12": {
         "vo": "../assets/audio/a1/A1_T12.mp3",
-        "cc": "That's correct. Now put the vehicle in drive.",
+        "cc": "That’s correct. Now put the vehicle in drive.",
         "reportLabel": "Put the vehicle in drive."
     },
     "t13": {
@@ -66,23 +81,20 @@
     },
     "t14": {
         "vo": "../assets/audio/a1/A1_T14.mp3",
-        "cc": "Put the vehicle in Park.",
+        "cc": "Good job. Put the vehicle in park.",
         "reportLabel": "Put the vehicle in Park."
     },
     "t15": {
         "vo": "../assets/audio/a1/A1_T15.mp3",
-        "cc": "That's correct. Now Turn off the Ignition.",
+        "cc": "That’s correct. Now turn off the ignition.",
         "reportLabel": "Turn off the Ignition."
     },
-    "narrative3": {
+    "narrative1": {
         "vo": [
-            "../../assets/audio/a1/A1_Summary.mp3"
+            "../assets/audio/a1/A1.mp3"
         ],
-        "cc1": [
-            "You have completed the simulation Diagnosing Brake Pull. A vehicle with a brake pull condition can be very dangerous to operate. Brake pull can cause loss of vehicle control and possibly cause the vehicle to veer into the opposite lane or leave"
-        ],
-        "cc2": [
-            "the roadway. If you notice a brake pull condition during a road test, you should inform the customer that this condition should be serviced immediately for safe vehicle operation."
+        "cc": [
+            "Brake pull can occur due to multiple types of failures. Before you begin checking brake operation, should be sure to check the inflation of the tires and the tread condition, and verify that the tires on each axle are the same size."
         ]
     }
 }

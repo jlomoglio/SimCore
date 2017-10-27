@@ -8,8 +8,8 @@
     <hint-box id="drive-hint" v-hint="driveShowHint"></hint-box>
     <hint-box id="park-hint" v-hint="parkShowHint"></hint-box>
 
-    <div id="drive-hotspot" @click="clickable() ? drive() : ''"></div>
-    <div id="park-hotspot" @click="clickable() ? park() : ''"></div>
+    <div id="drive-hotspot" @click="drive()"></div>
+    <div id="park-hotspot" @click="park()"></div>
   </div>
   
 </div>
@@ -17,10 +17,10 @@
 <script>
 import { TweenMax, SteppedEase } from 'gsap'
 import HintBox from './HintBox'
+
 export default {
     props: [
-        'currentTask',
-        'tasks',
+        'currentAction',
         'driveHint',
         'parkHint'
     ],
@@ -43,28 +43,24 @@ export default {
         }
     },
     methods: {
-        clickable() {
-            let key = -1
-            this.tasks.map((task, i) => {
-                if (this.currentTask === task) {
-                    key = i
-                }
-            })
-            if (key !== -1) {
-                return true
-            }
-            return false
-        },
         drive() {
-            this.driveShowHint = false
-            this.$emit('correct')
-            this.putInDrive()
+            if (this.currentAction === 'drive') {
+                this.driveShowHint = false
+                this.$emit('correct')
+                this.putInDrive()
+            } else {
+                this.$emit('incorrect')
+            }
         },
         park() {
-            this.parkShowHint = false
-            this.$emit('correct')
-            this.row -= 1
-            this.putInPark()
+            if (this.currentAction === 'park') {
+                this.parkShowHint = false
+                this.$emit('correct')
+                this.row -= 1
+                this.putInPark()
+            } else {
+                this.$emit('incorrect')
+            }
         },
         putInDrive(ro) {
             TweenMax.to(`#gear-img`, 1, {
@@ -121,34 +117,34 @@ export default {
    position: absolute;
    bottom: -82px;
    left: 44px;
-   width: 7px;
-   height: 8px;
+   width: 8px;
+   height: 9px;
    border-radius: 50%;
    z-index: 5;
  }
  #park-hotspot {
-   position: absolute;
-   bottom: -70px;
-   left: 33px;
-   width: 6px;
-   height: 8px;
-   border-radius: 12px;
-   z-index: 5;
+    position: absolute;
+    bottom: -72px;
+    left: 31px;
+    width: 8px;
+    height: 9px;
+    border-radius: 12px;
+    z-index: 5;
  }
   #drive-hint{
    position: absolute;
    bottom: -83px;
    left: 44px;
-   width: 7px;
-   height: 8px;
+   width: 8px;
+   height: 9px;
    border-radius: 50%;
  }
  #park-hint {
    position: absolute;
-   bottom: -70px;
-   left: 33px;
-   width: 6px;
-   height: 8px;
+   bottom: -72px;
+   left: 31px;
+   width: 8px;
+   height: 9px;
    border-radius: 12px;
  }
  .gear-img {

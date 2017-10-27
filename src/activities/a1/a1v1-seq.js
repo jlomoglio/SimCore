@@ -18,7 +18,11 @@ const introScreen = function() {
 // NARRATIVE
 const narrative = function() {
     this.showContentBox = true
-    this.t1()
+    this.$core.Activity.Audio.play(
+        TaskData.narrative1.vo,
+        TaskData.narrative1.cc,
+        () => { this.t1() }
+    )
 }
 // TASK 1: Constructor
 // turn the ignition on.
@@ -67,7 +71,10 @@ const t2 = function() {
     this.$core.Activity.Audio.play(
         TaskData.t2.vo,
         TaskData.t2.cc,
-        () => { this.isClickable = true }
+        () => {
+            this.isClickable = true
+            this.currentAction = 'drive'
+        }
     )
 }
 
@@ -124,19 +131,25 @@ const t3a1 = function() {
 // TASK 3: Task Completed
 const t3Completed = function() {
     // Complete the task
-    this.$core.Activity.taskComplete(
-        TaskData.t3.reportLabel,
-        this.currentAttempts,
-        this.currentPoints
+    this.$core.Activity.Audio.play(
+        TaskData.t3p1.vo,
+        TaskData.t3p1.cc,
+        () => {
+            this.$core.Activity.taskComplete(
+                TaskData.t3.reportLabel,
+                this.currentAttempts,
+                this.currentPoints
+            )
+            // Reset points
+            this.currentPoints = 3
+        
+            // Reset attempts
+            this.currentAttempts = 1
+            // call next task
+            this.isClickable = false
+            this.t4()
+        }
     )
-    // Reset points
-    this.currentPoints = 3
-
-    // Reset attempts
-    this.currentAttempts = 1
-    // call next task
-    this.isClickable = false
-    this.t4()
 }
 
 // TASK 4: Constructor
@@ -146,7 +159,10 @@ const t4 = function() {
     this.$core.Activity.Audio.play(
         TaskData.t4.vo,
         TaskData.t4.cc,
-        () => { this.isClickable = true }
+        () => {
+            this.isClickable = true
+            this.currentAction = 'park'
+        }
     )
 }
 
@@ -186,11 +202,14 @@ const t5 = function() {
 // TASK 5: turn off the ignition
 const t5a1 = function() {
     this.isClickable = false
-    let vm = this
-    window.setTimeout(function() {
-        vm.isClickable = true
-        vm.t5Completed()
-    }, 1000)
+    this.$core.Activity.Audio.play(
+        TaskData.t5p1.vo,
+        TaskData.t5p1.cc,
+        () => {
+            this.isClickable = true
+            this.t5Completed()
+        }
+    )
 }
 
 // TASK 5: Completed

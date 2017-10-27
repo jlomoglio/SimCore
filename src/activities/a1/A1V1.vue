@@ -41,10 +41,10 @@
                         @park="t4a1('t2')"
                         @drive="t2a1()"
                         @correct="correct()"
+                        @incorrect="incorrect(currentTask)"
                         :driveHint="t2ShowHint"
                         :parkHint="t4ShowHint"
-                        :currentTask = "currentTask"
-                        :tasks="['t2', 't4']"
+                        :currentAction = "currentAction"
                     ></Gear>
                 </div>
             </div>
@@ -107,7 +107,7 @@ export default {
         return {
             // Required Properties //////////////////
             isClickable: false,
-            currentTask: 't7',
+            currentTask: 't1',
             currentAttempts: 1,
             currentPoints: 3,
             backgroundImg: 'engine_compartment_not_faded_with_AC_machine-a.png',

@@ -54,6 +54,7 @@ const t6Completed = function() {
 // TASK 7: Constructor
 const t7 = function() {
     this.currentTask = 't7'
+    this.currentAction = 'drive'
     this.$core.Activity.Audio.play(
         TaskData.t7.vo,
         TaskData.t7.cc,
@@ -107,25 +108,32 @@ const t8a1 = function() {
 // TASK 8: Task Completed
 const t8Completed = function() {
     // Complete the task
-    this.$core.Activity.taskComplete(
-        TaskData.t8.reportLabel,
-        this.currentAttempts,
-        this.currentPoints
+    this.$core.Activity.Audio.play(
+        TaskData.t8p1.vo,
+        TaskData.t8p1.cc,
+        () => {
+            this.$core.Activity.taskComplete(
+                TaskData.t8.reportLabel,
+                this.currentAttempts,
+                this.currentPoints
+            )
+            // Reset points
+            this.currentPoints = 3
+        
+            // Reset attempts
+            this.currentAttempts = 1
+            // call next task
+            this.isClickable = false
+            this.t9()
+        }
     )
-    // Reset points
-    this.currentPoints = 3
-
-    // Reset attempts
-    this.currentAttempts = 1
-    // call next task
-    this.isClickable = false
-    this.t9()
 }
 
 // TASK 9: Constructor
 // put car in park.
 const t9 = function() {
     this.currentTask = 't9'
+    this.currentAction = 'park'
     this.$core.Activity.Audio.play(
         TaskData.t9.vo,
         TaskData.t9.cc,

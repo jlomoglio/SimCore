@@ -30,9 +30,9 @@
                         <Gear
                                 @park="t14a1('t14')"
                                 @drive="t12a1()"
-                                :currentTask = "currentTask"
                                 @correct="correct()"
-                                :tasks="['t12', 't14']"
+                                @incorrect="incorrect()"
+                                :currentAction = "currentAction"
                                 :driveHint= "t12ShowHint"
                                 :parkHint = "t14ShowHint"
                         ></Gear>
@@ -283,9 +283,10 @@
         background-size: 100% 100%;
     }
     .calipers-container {
-    width: 412px;
-    height: auto;
-    float: left;
+        width: 412px;
+        height: auto;
+        float: left;
+        margin-left: 95px;
     }
     .left-calipers, .middle-arrow, .right-calipers {
     float: left;
@@ -318,62 +319,65 @@
     background-position: center center;
     }
     .caliper-1 .caliper-arrow-1 {
-        left: 27px;
-        top: 48px;
+        left: 16px;
+        top: 57px;
     }
     .caliper-1 .caliper-arrow-2 {
-        left: 83px;
-        top: 50px;
+        left: 74px;
+        top: 60px;
         transform: rotate(180deg);
     }
     .caliper-1 .caliper-arrow-3 {
-        left: 154px;
-        top: 101px;
+        left: 175px;
+        top: 74px;
         transform: rotate(117deg);
     }
     .caliper-2 .caliper-arrow-1 {
-        left: 21px;
-        top: 150px;
+        left: 27px;
+        top: 167px;
     }
     .caliper-2 .caliper-arrow-2 {
-        left: 76px;
-        top: 150px;
+        left: 88px;
+        top: 163px;
         transform: rotate(180deg);
     }
     .caliper-2 .caliper-arrow-3 {
-        left: 130px;
-        top: 56px;
-        transform: rotate(117deg);
+        left: 171px;
+        top: 64px;
+        -webkit-transform: rotate(154deg);
+        transform: rotate(154deg);
     }
 
     .caliper-3 .caliper-arrow-1 {
-        left: 80px;
-        top: 51px;
+        left: 88px;
+        top: 55px;
     }
     .caliper-3 .caliper-arrow-2 {
-        left: 133px;
-        top: 51px;
+        left: 148px;
+        top: 56px;
         transform: rotate(180deg);
     }
     .caliper-3 .caliper-arrow-3 {
-        left: 30px;
-        top: 142px;
-        transform: rotate(-65deg);
+        left: -18px;
+        top: 146px;
+        -webkit-transform: rotate(30deg);
+        transform: rotate(30deg);
     }
 
     .caliper-4 .caliper-arrow-1 {
-        left: 80px;
-        top: 150px;
+        left: 89px;
+        top: 163px;
     }
     .caliper-4 .caliper-arrow-2 {
-    left: 134px;
-    top: 150px;
+    left: 148px;
+    top: 165px;
     transform: rotate(180deg);
     }
     .caliper-4 .caliper-arrow-3 {
-    left: 30px;
-    top: 58px;
-    transform: rotate(60deg);
+    left: -17px;
+    top: 68px;
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg);
     }
     .lr-label, .lf-label{
     position: absolute; 
@@ -405,15 +409,15 @@
         position: relative;
         left:35px; */
 
-        width: auto;
+        width: 206px;
         height: 200px;
         margin-left: -43px;
         background: url('/assets/img/module/disc_pad_piston_rotor_LF_sprite.png') no-repeat;
         background-position: 0 0;
-        background-size: 892% auto;
+        background-size: 903% auto;
         position: relative;
         left: 34px;
-        top: 16px;
+        top: 27px;
     }
     .lr-rotor {
         width: auto;
@@ -421,7 +425,7 @@
         margin-left: -40px;
         background: url('/assets/img/module/disc_pad_piston_rotor_LR_sprite.png') no-repeat;
         background-position: 0 0;
-        background-size: 1000% auto;
+        background-size: 1100% auto;
         position: relative;
     }
     .rf-rotor {
@@ -430,7 +434,7 @@
         margin-right: -40px;
         background: url('/assets/img/module/disc_pad_piston_rotor_RF_sprite.png') no-repeat;
         background-position: 0 0;
-        background-size: 1000% auto;
+        background-size: 1100% auto;
         position: relative;
     }
     .rr-rotor {
@@ -439,7 +443,7 @@
         margin-right: -40px;
         background: url('/assets/img/module/disc_pad_piston_rotor_RR_sprite.png') no-repeat;
         background-position: 0 0;
-        background-size: 1000% auto;
+        background-size: 1100% auto;
         position: relative;
     }
 </style>
