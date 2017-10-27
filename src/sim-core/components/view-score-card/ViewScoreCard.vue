@@ -4,13 +4,13 @@
         <div id="view-score-card-container">
             <div id="congratulations" v-if="moduleData.passed">
                 <h2 class="congrats-title">Congratulations!</h2>
-                <p class="congrats-message">You have successfully completed<br />the simulation on {{ this.moduleData.performanceModuleName }}</p>
+                <p class="congrats-message">You have successfully completed<br />the simulation on {{ this.moduleData.performanceModuleName }}.</p>
             </div>
             <div id="no-congratulations" v-else>
-                <p class="congrats-message">Sorry. You have not successfully completed<br />the simulation on {{ this.moduleData.performanceModuleName }}</p>
+                <p class="congrats-message">Sorry. You have not successfully completed<br />the simulation on {{ this.moduleData.performanceModuleName }}.</p>
             </div>
             <div id="results-score">
-                Your Score is: {{ this.moduleData.totalScorePercent }}%
+                Here is your score: {{ this.moduleData.totalScorePercent }}%
             </div>
             <div id="time-elapsed">
                 Time elapsed: {{ this.moduleData.totalTimeElapsed }}

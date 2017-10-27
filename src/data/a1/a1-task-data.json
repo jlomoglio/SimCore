@@ -78,11 +78,8 @@
         "vo": [
             "../../assets/audio/a1/A1_Summary.mp3"
         ],
-        "cc1": [
-            "You have completed the simulation Diagnosing Brake Pull. A vehicle with a brake pull condition can be very dangerous to operate. Brake pull can cause loss of vehicle control and possibly cause the vehicle to veer into the opposite lane or leave"
-        ],
-        "cc2": [
-            "the roadway. If you notice a brake pull condition during a road test, you should inform the customer that this condition should be serviced immediately for safe vehicle operation."
+        "cc": [
+            "You have completed the simulation Diagnosing Brake Pull. A vehicle with a brake pull condition can be very dangerous to operate. Brake pull can cause loss of vehicle control and possibly cause the vehicle to veer into the opposite lane or leave the roadway. If you notice a brake pull condition during a road test, you should inform the customer that this condition should be serviced immediately for safe vehicle operation."
         ]
     }
 }

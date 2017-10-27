@@ -377,7 +377,7 @@
     transform: rotate(60deg);
     }
     .lr-label, .lf-label{
-    position: absolute; 
+    position: absolute;
     top: 93px;
     left: -20px;
     }
