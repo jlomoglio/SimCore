@@ -1,13 +1,13 @@
 {
     "introScreen": {
         "vo": "../assets/audio/Welcome.mp3",
-        "cc": "Welcome to the Virtual shop. In this simulation, we will be reviewing what to look for when diagnosing brake pull."
+        "cc": "Welcome to the Virtual Shop. In this simulation, we will be reviewing what to look for when diagnosing brake pull."
     },
 
     "safetyScreen": {
         "vo": "../assets/audio/Safety.mp3",
         "p1": "When working in the shop, always follow the safety guidelines provided in service information, tool operation manuals, and other technical literature.",
         "p2": "To protect yourself from injury, wear personal protective equipment (PPE), dress appropriately, work professionally, and correctly handle tools and equipment.",
-        "acknowledge": "Click on the continue button to acknowledge that you understand the importance of safety in the automotive shop."
+        "acknowledge": "Click on the Continue button to acknowledge that you understand the importance of safety in the automotive shop."
     }
 }

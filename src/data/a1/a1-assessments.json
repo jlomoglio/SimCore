@@ -8,25 +8,25 @@
         "answers": [
             {
                 "id": 1,
-                "answer": "The master cylinder is leaking internally",
+                "answer": "The master cylinder is leaking internally.",
                 "correct": false,
                 "type": "radio"
             },
             {
                 "id": 2,
-                "answer": "The right front caliper is seized",
+                "answer": "The right front caliper is seized.",
                 "correct": false,
                 "type": "radio"
             },
             {
                 "id": 3,
-                "answer": "There is a restriction in the brake line to the left front caliper",
+                "answer": "There is a restriction in the brake line to the left front caliper.",
                 "correct": true,
                 "type": "radio"
             },
             {
                 "id": 4,
-                "answer": "The left rear wheel cylinder is seized",
+                "answer": "The left rear wheel cylinder is seized.",
                 "correct": false,
                 "type": "radio"
             }
@@ -41,25 +41,25 @@
         "answers": [
             {
                 "id": 1,
-                "answer": "The master cylinder is leaking internally",
+                "answer": "The master cylinder is leaking internally.",
                 "correct": false,
                 "type": "radio"
             },
             {
                 "id": 2,
-                "answer": "The right front caliper is seized",
+                "answer": "The right front caliper is seized.",
                 "correct": false,
                 "type": "radio"
             },
             {
                 "id": 3,
-                "answer": "There is a restriction in the brake line to the left front caliper",
+                "answer": "There is a restriction in the brake line to the left front caliper.",
                 "correct": true,
                 "type": "radio"
             },
             {
                 "id": 4,
-                "answer": "The left rear wheel cylinder is seized",
+                "answer": "The left rear wheel cylinder is seized.",
                 "correct": false,
                 "type": "radio"
             }

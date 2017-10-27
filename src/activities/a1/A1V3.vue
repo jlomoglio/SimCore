@@ -147,7 +147,7 @@
         methods: {
             ...A1V3Seq,
             showArrows: function (event) {
-                this.breaksApplied = !this.breaksApplied
+                this.breaksApplied = true
             },
             incorrect(task) {
                 if (this.currentAttempts < 3) {
@@ -380,13 +380,15 @@
     transform: rotate(2deg);
     }
     .lr-label, .lf-label{
-    position: absolute; 
+    position: absolute;
+    font-family: Roboto-Regular;
     top: 93px;
     left: -20px;
     }
 
     .rr-label, .rf-label{
     position: absolute;
+    font-family: Roboto-Regular;
     top: 93px;
     left: 170px;
     }

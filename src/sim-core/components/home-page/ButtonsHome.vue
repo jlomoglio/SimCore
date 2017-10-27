@@ -48,7 +48,7 @@ export default {
                 if (btnClicked === 'usimulation') {
                     // Set the Video Page Activity Tile to: Using the Simulation
                     this.$store.dispatch('setActivityName', 'Using the Simulation')
-
+                    this.$store.dispatch('setVideoSource', '/assets/video/intro_video.html')
                     // Set the loaded video based on the module type
                     if (this.$store.getters.getModuleType === 'concepts') {
                         this.$store.dispatch('setActiveButton', 'uconcepts')
@@ -67,6 +67,7 @@ export default {
                 // Button: Understanding the Equipment
                 if (btnClicked === 'uequipment') {
                     // Set the Video Page Activity Tile to: Understanding the Equipment
+                    this.$store.dispatch('setVideoSource', '/assets/video/equipment_video.html')
                     this.$store.dispatch('setActivityName', 'Understanding the Equipment')
                     this.$store.dispatch('setActiveButton', 'usimulation')
                 }

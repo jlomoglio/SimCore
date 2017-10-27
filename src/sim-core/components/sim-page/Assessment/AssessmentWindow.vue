@@ -228,6 +228,8 @@ export default {
 	font-size: 15px;
 	font-family: Roboto-Medium;
 	line-height: 17px;
+    text-align: left;
+    margin-left: 10px;
 }
 
 #assessment-window  > #assessment-content > .question > .answers {

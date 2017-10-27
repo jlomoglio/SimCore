@@ -1,18 +1,19 @@
 
 <template>
-<div class="gear-container">
-  <div class="gear-BG">
+  <div class="gear-container">
+    <div class="gear-BG">
       <img id="gear-img" class="gear-img" src="/assets/img/module/gear_shift_movement_Sprite.png"/>
-  </div>
-  <div class="hot-spots">
-    <hint-box id="drive-hint" v-hint="driveShowHint"></hint-box>
-    <hint-box id="park-hint" v-hint="parkShowHint"></hint-box>
+    </div>
+    <div class="hot-spots">
+      <hint-box id="drive-hint" v-hint="driveShowHint"></hint-box>
+      <hint-box id="park-hint" v-hint="parkShowHint"></hint-box>
+      
+      <div id="drive-hotspot" @click="drive()"></div>
+      <div id="park-hotspot" @click="park()"></div>
+    </div>
 
-    <div id="drive-hotspot" @click="drive()"></div>
-    <div id="park-hotspot" @click="park()"></div>
+    
   </div>
-  
-</div>
 </template>
 <script>
 import { TweenMax, SteppedEase } from 'gsap'
@@ -64,7 +65,7 @@ export default {
         },
         putInDrive(ro) {
             TweenMax.to(`#gear-img`, 1, {
-                marginLeft: `-464px`,
+                marginLeft: `-544px`,
                 ease: SteppedEase.config(4),
                 onComplete: this.driveCallBack
             })
@@ -73,7 +74,7 @@ export default {
             this.row += 1
             if (this.row < 4) {
                 var sprite = document.getElementById('gear-img')
-                var yPosition = this.row * 116
+                var yPosition = this.row * 136
                 sprite.style.marginLeft = '0px'
                 sprite.style.marginTop = `-${yPosition}px`
                 this.putInDrive()
@@ -92,8 +93,8 @@ export default {
             this.row -= 1
             if (this.row >= 0) {
                 var sprite = document.getElementById('gear-img')
-                var yPosition = this.row * 116
-                sprite.style.marginLeft = '-464px'
+                var yPosition = this.row * 136
+                sprite.style.marginLeft = '-544px'
                 sprite.style.marginTop = `-${yPosition}px`
                 this.putInPark()
             } else {
@@ -106,57 +107,59 @@ export default {
 <style scoped>
   .gear-BG {
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     overflow: hidden;
     box-sizing: border-box;
     border: 2px solid #a6a6a6;
     position: fixed;
+    margin-top: -14px;
+    margin-left: 7px;
   }
- #drive-hotspot {
-   position: absolute;
-   bottom: -82px;
-   left: 44px;
-   width: 8px;
-   height: 9px;
-   border-radius: 50%;
-   z-index: 5;
- }
- #park-hotspot {
+  #drive-hotspot {
     position: absolute;
-    bottom: -72px;
-    left: 31px;
-    width: 8px;
-    height: 9px;
+    bottom: -82px;
+    left: 58px;
+    width: 9px;
+    height: 10px;
+    border-radius: 50%;
+    z-index: 5;
+  }
+  #park-hotspot {
+    position: absolute;
+    bottom: -70px;
+    left: 44px;
+    width: 9px;
+    height: 10px;
     border-radius: 12px;
     z-index: 5;
- }
+  }
   #drive-hint{
-   position: absolute;
-   bottom: -83px;
-   left: 44px;
-   width: 8px;
-   height: 9px;
-   border-radius: 50%;
- }
- #park-hint {
-   position: absolute;
-   bottom: -72px;
-   left: 31px;
-   width: 8px;
-   height: 9px;
-   border-radius: 12px;
- }
- .gear-img {
+    position: absolute;
+    bottom: -82px;
+    left: 58px;
+    width: 9px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  #park-hint {
+    position: absolute;
+    bottom: -70px;
+    left: 44px;
+    width: 9px;
+    height: 10px;
+    border-radius: 12px;
+  }
+  .gear-img {
     width: 500%;
     height: 400%;
     margin-left: 0px;
     margin-top: 0px;
     position: relative;
- }
- .hot-spots {
+  }
+  .hot-spots {
     position: relative;
     z-index: 2;
     height: 0;
- }
+  }
 </style>

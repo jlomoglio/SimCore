@@ -88,7 +88,8 @@ export const downloadReportAsPDF = (data) => {
     doc.setTextColor(31, 31, 31)
     doc.text(10, 27, data.moduleName)
 
-    doc.text(10, 35, 'Name: ' + data.firstName + ' ' + data.lastName)
+    // doc.text(10, 35, 'Name: ' + data.firstName + ' ' + data.lastName)
+    doc.text(10, 35, 'Name: ')
 
     doc.setDrawColor(120, 128, 128)
     doc.setFontSize(24)
