@@ -74,6 +74,7 @@ export default {
     width: 400px;
     z-index: 20;
     text-align: left;
+    color: #000000;
 }
 #safe-start {
     background: rgba(0, 0, 0, 0) url("/assets/img/buttons/horizontal/continue.png") repeat scroll 0 0 / 100% 100%;
