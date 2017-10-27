@@ -376,13 +376,15 @@
     transform: rotate(60deg);
     }
     .lr-label, .lf-label{
-    position: absolute; 
+    position: absolute;
+    font-family: Roboto-Regular;
     top: 93px;
     left: -20px;
     }
 
     .rr-label, .rf-label{
     position: absolute;
+    font-family: Roboto-Regular;
     top: 93px;
     left: 170px;
     }
