@@ -1,7 +1,7 @@
 {
     "t1": {
         "vo": "../assets/audio/a1/A1_T1.mp3",
-        "cc": "Now check the operation of brakes, To begin, turn on the Ignition.",
+        "cc": "Now, check the operation of the brakes. To begin, turn on the ignition.",
         "reportLabel": "Turn on the Ignition."
     },
     "t2": {
@@ -11,7 +11,7 @@
     },
     "t3": {
         "vo": "../assets/audio/a1/A1_T3.mp3",
-        "cc": "Great, Now apply the brakes and observe the brake fluid flow from the master cylinder.",
+        "cc": "Great. Now apply the brakes and observe the brake fluid flowing from the master cylinder.",
         "reportLabel": "Apply the Brakes."
     },
     "t4": {
@@ -26,7 +26,7 @@
     },
     "t6": {
         "vo": "../assets/audio/a1/A1_T6.mp3",
-        "cc": "Check the operation of the disk brakes on this vehicle, To begin, turn on the Ignition.",
+        "cc": "Check the operation of the disc brakes on this vehicle. To begin, turn on the ignition.",
         "reportLabel": "Turn on the Ignition."
     },
     "t7": {

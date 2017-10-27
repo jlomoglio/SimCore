@@ -65,7 +65,32 @@ export const RqQuestion = Vue.component('RqQuestion', {
             question: randomizeQuestionAnswers(rqData[`question${this.questionId}`])
         }
     },
+    mounted: function() {
+        let expectAbvAllArr = this.filterArrayItems(this.question.answers, 'notequal')
+        let abvAllArr = this.filterArrayItems(this.question.answers, 'equal')
+        this.question.answers = Object.assign(expectAbvAllArr)
+        this.question.answers.push(abvAllArr[0])
+    },
+
     methods: {
+        filterArrayItems: function(arrayItems, eqOperators) {
+            return arrayItems.map(function(item) {
+                if (eqOperators === 'notequal') {
+                    if (item.id !== 4) {
+                        return item
+                    }
+                }
+                if (eqOperators === 'equal') {
+                    if (item.id === 4) {
+                        return item
+                    }
+                }
+            }).filter(function(item) {
+                if (item) {
+                    return item
+                }
+            })
+        },
         userSelectedAnswer: function (elem) {
             const qid = elem.target.parentNode.parentNode.parentNode.id.replace('question_', '')
             addRadioAnswer({qid: qid, answers: [{id: parseInt(elem.target.value)}]})

@@ -48,7 +48,7 @@ export default {
 	position: absolute;
 	float: left;
 	top: 0px;
-	left: 230px;
+	left: 199px;
 	margin-bottom: 10px;
 }
 
