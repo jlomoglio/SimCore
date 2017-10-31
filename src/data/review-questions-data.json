@@ -91,7 +91,8 @@
                 "id": 4,
                 "answer": "All of the Above",
                 "correct": true,
-                "type": "radio"
+                "type": "radio",
+                "randomize": false
             }
         ]
     },
@@ -123,7 +124,8 @@
                 "id": 4,
                 "answer": "All of the Above",
                 "correct": true,
-                "type": "radio"
+                "type": "radio",
+                "randomize": false
             }
         ]
     }

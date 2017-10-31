@@ -4,9 +4,30 @@ import { endModuleData, setReviewQuestionModuleData, getModuleTotaltime } from '
 
 export const randomizeQuestionAnswers = (question) => {
     if (question.randomize) {
-        let randomizeAnswers = question.answers.sort(function () {
+        // Create an array of non randomized answers
+        let nonRandomizedAnswers = []
+        _.each(question.answers, (answer, idx) => {
+            if (answer.randomize === false) {
+                nonRandomizedAnswers.push({idx, answer})
+            }
+        })
+
+        // Remove any non randomized answers
+        let filteredAnswers = _.remove(question.answers, function(answer) {
+            return answer.randomize !== false
+        })
+
+        // Automatically remove any answers that are none randomized
+        let randomizeAnswers = filteredAnswers.sort(function () {
             return 0.5 - Math.random()
         })
+
+        if (nonRandomizedAnswers.length > 0) {
+            _.each(nonRandomizedAnswers, (answer) => {
+                randomizeAnswers.splice(answer.idx, 0, answer.answer)
+            })
+        }
+
         question['answers'] = randomizeAnswers
     }
     return question

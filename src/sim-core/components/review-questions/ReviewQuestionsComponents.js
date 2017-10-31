@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import {
-    addRadioAnswer,
-    addCheckboxAnswer,
-    removeCheckboxAnswer,
     randomizeQuestionAnswers,
     checkAnswersWithFeedback
 } from '../../core/review-questions'
@@ -63,51 +60,6 @@ export const RqQuestion = Vue.component('RqQuestion', {
     data () {
         return {
             question: randomizeQuestionAnswers(rqData[`question${this.questionId}`])
-        }
-    },
-    mounted: function() {
-        let expectAbvAllArr = this.filterArrayItems(this.question.answers, 'notequal')
-        let abvAllArr = this.filterArrayItems(this.question.answers, 'equal')
-        this.question.answers = Object.assign(expectAbvAllArr)
-        this.question.answers.push(abvAllArr[0])
-    },
-
-    methods: {
-        filterArrayItems: function(arrayItems, eqOperators) {
-            return arrayItems.map(function(item) {
-                if (eqOperators === 'notequal') {
-                    if (item.id !== 4) {
-                        return item
-                    }
-                }
-                if (eqOperators === 'equal') {
-                    if (item.id === 4) {
-                        return item
-                    }
-                }
-            }).filter(function(item) {
-                if (item) {
-                    return item
-                }
-            })
-        },
-        userSelectedAnswer: function (elem) {
-            const qid = elem.target.parentNode.parentNode.parentNode.id.replace('question_', '')
-            addRadioAnswer({qid: qid, answers: [{id: parseInt(elem.target.value)}]})
-        },
-        userCheckedAnswer: function (elem) {
-            const qid = elem.target.parentNode.parentNode.parentNode.id.replace('question_', '')
-            if (elem.target.checked) {
-                this.userAnswers = addCheckboxAnswer(this.userAnswers, {
-                    qid: qid,
-                    answers: {id: parseInt(elem.target.value)}
-                })
-            } else {
-                this.userAnswers = removeCheckboxAnswer(this.userAnswers, {
-                    qid: qid,
-                    answers: {id: parseInt(elem.target.value)}
-                })
-            }
         }
     }
 })
