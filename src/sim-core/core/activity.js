@@ -4,9 +4,14 @@ import _ from 'lodash'
 import { pause } from './audio-player'
 import eoaData from '../../data/eoa-data.json'
 import resetData from '../../data/reset-activity.json'
+import { endActivitySendLTIData } from './lti'
 
 export const getActivity = (activityId) => {
-    return _.find(store.state.moduleData.activities, {id: activityId})
+    if (store.state.moduleData) {
+        return _.find(store.state.moduleData.activities, {id: activityId})
+    } else {
+        return 'A1'
+    }
 }
 
 export const getActivityIndex = (activityId) => {
@@ -15,14 +20,32 @@ export const getActivityIndex = (activityId) => {
     })
 }
 export const getNextActivity = () => {
-    // Find the next activity with module data activities
-    // with the property of complete equals false
-    return _.chain(store.state.moduleData.activities)
+    // Get the current activity
+    const currentActivityId = store.state.module.currentActivityId
+    const currentActivityIndex = getActivityIndex(currentActivityId)
+
+    if (currentActivityIndex < store.state.moduleData.activities.length) {
+        return _.chain(store.state.moduleData.activities)
+            .filter((activity, index) => {
+                return currentActivityIndex < index
+            })
             .filter((activity) => {
                 return activity.completed === false
             })
             .first()
             .value()
+    }
+}
+
+export const getNextIncompleteActivity = () => {
+    // Find the next activity with module data activities
+    // with the property of complete equals false
+    return _.chain(store.state.moduleData.activities)
+        .filter((activity) => {
+            return activity.completed === false
+        })
+        .first()
+        .value()
 }
 
 export const goToReviewQuestions = () => {
@@ -33,7 +56,18 @@ export const goToReviewQuestions = () => {
 }
 
 export const goToNextActivity = () => {
-    let nextActivity = getNextActivity()
+    // activity object instantiation
+    let nextActivity = null
+    // last activity object in module data
+    let lastActivity = _.last(store.state.moduleData.activities)
+
+    // check if the last activity is completed
+    if (lastActivity.completed) {
+        nextActivity = getNextIncompleteActivity()
+    } else {
+        nextActivity = getNextActivity()
+    }
+
     pause()
     store.commit('setEndActivityScreenIsShown', false)
     store.commit('toggleLightBox', 'default')
@@ -64,14 +98,10 @@ export const skipActivity = (activityId) => {
 
 export const endActivity = () => {
     store.commit('setEndActivityScreenIsShown', true)
+    // reset audio rewind list
+    store.commit('resetAudioRewindDefaults')
     setActivityCompleted()
-}
-
-export const startActivity = (title, mode, id) => {
-    console.log(title, mode, id)
-    // core.Module.Activity.title(title)
-    // core.Module.Activity.mode(mode)
-    // core.Module.Activity.id(id)
+    endActivitySendLTIData()
 }
 
 export const activityViewChangeReset = () => {
@@ -95,4 +125,7 @@ export const activityViewChangeReset = () => {
     resetAlertWindows.forEach((mutation) => {
         store.commit(mutation)
     })
+
+    // reset audio rewind list
+    store.commit('resetAudioRewindDefaults')
 }

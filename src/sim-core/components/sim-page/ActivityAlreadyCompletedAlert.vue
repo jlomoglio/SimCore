@@ -7,7 +7,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { playAudio } from '../../core/audio-player'
+import { playAudio, unPause, pause } from '../../core/audio-player'
 
 export default {
     name: 'ActivityAlreadyCompletedAlert',
@@ -18,6 +18,8 @@ export default {
     },
     methods: {
         close () {
+            pause('moduleAudioPlayer')
+            unPause()
             this.$store.commit('hideActivityAlreadyCompletedAlert')
         }
     },

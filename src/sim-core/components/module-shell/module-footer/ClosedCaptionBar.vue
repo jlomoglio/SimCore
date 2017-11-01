@@ -1,5 +1,5 @@
 <template>
-  <div id="closed-caption-bar" v-if="this.$store.getters.getCCBarIsShown">{{ this.$store.getters.getCCBarText }}</div>
+  <div id="closed-caption-bar" v-if="this.$store.getters.getCCBarIsShown" v-html="this.$store.getters.getCCBarText">{{ this.$store.getters.getCCBarText }}</div>
 </template>
 
 <script>

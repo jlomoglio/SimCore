@@ -10,7 +10,7 @@
 import _ from 'lodash'
 import { mapGetters } from 'vuex'
 import { goToNextActivity, goToReviewQuestions, getEOAData } from '../../core/activity'
-import { playAudio } from '../../core/audio-player'
+import { playAudio, pause } from '../../core/audio-player'
 
 export default {
     name: 'EndActivityScreen',
@@ -37,6 +37,8 @@ export default {
             if (newVal === true) {
                 let eoaData = getEOAData(this.currentActivityId)
                 if (eoaData) {
+                    pause('taskAudioPlayer')
+                    pause('rewindTaskAudioPlayer')
                     playAudio(eoaData.vo, null)
                 }
             }

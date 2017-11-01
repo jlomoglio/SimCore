@@ -54,7 +54,8 @@
 		  	}
 		},
 		"serviceInfo": {
-			"isOpen": false
+			"isOpen": false,
+            "menuOptions": []
 		}
 	}
 }

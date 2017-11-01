@@ -3,7 +3,7 @@
         <div id="homeLogo"></div>
         <div id="homeContainer">
             <div id="mainHeading">
-                <!-- <p id="line1">{{ this.$store.getters.getSeriesName1 }}</p> -->
+                <p id="line1">{{ this.$store.getters.getSeriesName1 }}</p>
                 <p id="line2">{{ this.$store.getters.getSeriesName2 }}</p>
             </div>
             <div id="subHeading">{{ this.$store.getters.getModuleName }}</div>
@@ -51,29 +51,21 @@ export default {
 	height: 625px;
 }
 
-/* CSS Hack: Target Chrome & Safari */
-#mainHeading:not(*:root) {
-	font-family: RobotoSlab-Bold;
-	position: absolute;
-	top: 82px;
-    left: 0;
-	width: 1000px;
-	height: auto;
-	font-size : 89px;
-	color: #fff;
-	text-indent: 0;
-    text-align: left;
-}
-
 
 #mainHeading {
 	font-family: RobotoSlab-Bold;
+    position: relative;
+    margin-top: 82px;
 	width: 1000px;
 	height: auto;
 	font-size : 89px;
 	color: #fff;
 	text-indent: 0;
     text-align: left;
+    p {
+        margin: 0;
+        padding: 0;
+    }
 }
 
 

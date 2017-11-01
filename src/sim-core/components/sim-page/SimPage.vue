@@ -26,6 +26,7 @@
 
         <light-box></light-box>
         <activity-light-box></activity-light-box>
+        <activity-block-box></activity-block-box>
 
         <skip-activity-alert></skip-activity-alert>
         <close-module-alert></close-module-alert>
@@ -53,6 +54,7 @@ import ModuleFooter from '../module-shell/module-footer/ModuleFooter'
 import PopupVideoPlayer from './PopupVideoPlayer'
 import LightBox from './LightBox'
 import ActivityLightBox from './ActivityLightBox'
+import ActivityBlockBox from './ActivityBlockBox'
 
 import AssessmentWindow from './Assessment/AssessmentWindow'
 import AssessmentWindowContinueButton from './Assessment/AssessmentContinueButton'
@@ -79,6 +81,7 @@ export default {
         PopupVideoPlayer,
         LightBox,
         ActivityLightBox,
+        ActivityBlockBox,
 
         AssessmentWindow,
         AssessmentWindowContinueButton,
@@ -118,7 +121,7 @@ export default {
     top: 0;
     left: 50%;
     margin-left: -500px;
-    background: url('/assets/img/activities/engine_compartment_not_faded_with_AC_machine-a.png');
+    background: #5C5A58;
     overflow: hidden;
 }
 

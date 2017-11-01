@@ -8,20 +8,20 @@
         <div id="si-header">
             <span class="closeIcon" @click="closeWindow()"></span>
             <span class="minMaxIcon" :class="{ minimized: isCollapsed, maximized: isExpanded }" title="Minimize" @click="triggerMinMax()"></span>
-            <span class="downloadIcon" @click="downloadFile(contentImage)"></span>
+            <span class="downloadIcon" @click="downloadFile(contentImage, contentImageFileName)"></span>
             <span class="zoomOutIcon" :class="{ active: zoomOutEnabled }" @click="zoomOut(0.5)"></span>
             <span class="zoomInIcon" :class="{ active: zoomInEnabled }" @click="zoomIn(0.5)"></span>
         </div>
         <div id="si-content" class="si-content">
             <div id="si-content-inner">
-                <img id="content-image" :src="contentImage">
+                <img id="content-image" :src="contentImage" v-if="this.$store.getters.getCurrentActivityId !== 'A3'">
+                <img id="content-image2" :src="contentImage" v-else="this.$store.getters.getCurrentActivityId === 'A3'">
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import { unPause } from '../../core/audio-player'
 import { Draggable } from 'gsap'
 import { siZoomIn, siZoomOut } from '../../core/si-zoom'
 import download from 'downloadjs'
@@ -33,7 +33,7 @@ export default {
             // zoomPercent: 1
             zoomPanelBgImg: {
                 background: null,
-                backgroundSize: '50%'
+                backgroundSize: '100%'
             }
         }
     },
@@ -82,6 +82,9 @@ export default {
         contentImage() {
             return this.$store.getters.getSiWindowContent
         },
+        contentImageFileName() {
+            return this.$store.getters.getSiWindowFileName
+        },
         siHeight() {
             return this.$store.getters.getSiWindowHeight
         },
@@ -108,6 +111,10 @@ export default {
         contentImage(neVal) {
             this.contentImage = neVal
         },
+        contentImageFileName(neVal) {
+            console.log(neVal)
+            this.contentImageFileName = neVal
+        },
         siHeight(newVal) {
             this.siHeight = newVal
         },
@@ -130,7 +137,7 @@ export default {
             this.isExpanded = true
             this.collapsed = false
             this.$store.commit('expandSiWindow')
-            unPause()
+            // unPause()
         },
         triggerMinMax() {
             if (this.isExpanded === true) {
@@ -169,8 +176,25 @@ export default {
             this.zoomPercent = (this.zoomPercent - percent)
             this.toggleActive()
         },
-        downloadFile(contentImage) {
-            download(contentImage)
+        downloadFile(contentImage, contentImageFileName) {
+            this.getDataUri(contentImage, (data) => {
+                download(data, contentImageFileName, 'image/png')
+            })
+        },
+        getDataUri(url, callback) {
+            var image = new Image()
+
+            image.onload = function () {
+                var canvas = document.createElement('canvas')
+                canvas.width = this.naturalWidth // or 'width' if you want a special/scaled size
+                canvas.height = this.naturalHeight // or 'height' if you want a special/scaled size
+                canvas.getContext('2d').drawImage(this, 0, 0)
+                // Get raw image data
+                // callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''))
+                // ... or get as Data URI
+                callback(canvas.toDataURL('image/png'))
+            }
+            image.src = url
         }
     }
 }
@@ -310,10 +334,12 @@ export default {
 }
 
 #content-image {
-    /*max-width: 100%;
-    max-height: auto;
-	margin: 0 auto;
-	padding: 0;*/
-    zoom: 30%;
+    width: 100%;
+    height: auto;
+}
+
+#content-image2 {
+    width: 100%;
+    height: auto;
 }
 </style>

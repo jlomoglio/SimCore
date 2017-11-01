@@ -26,6 +26,7 @@ export default {
 	********************************************************/
     getCurrentView: state => state.module.currentView,
     getUseContentArea: state => state.module.useContentArea,
+    getHeaderOneLine: state => state.module.oneLine,
     getActivityName: state => state.module.activityName,
     getCurrentActivityId: state => state.module.currentActivityId,
     getEndActivityScreenIsShown: state => state.module.endActivityScreenIsShown,
@@ -38,12 +39,14 @@ export default {
     getLightBoxIsShown: state => state.module.lightBoxIsShown,
     getLightBoxMode: state => state.module.lightBoxMode,
     getActivityLightBoxIsShown: state => state.module.activityLightBoxIsShown,
+    getActivityBlockBoxIsShown: state => state.module.activityBlockBoxIsShown,
     getIntroCompleted: state => state.module.introCompleted,
     getIntroScreenIsShown: state => state.module.introIsShown,
     getUseSafetyScreen: state => state.module.useSafetyScreen,
     getSafetyCompleted: state => state.module.safetyCompleted,
     getSafetyScreenIsShown: state => state.module.safetyIsShown,
-    getcarVideoIsShown: state => state.module.carVideoIsShown,
+    getStartUpScreensCompleted: state => state.moduleData.startUpScreensCompleted,
+    getStartUpScreensPlaying: state => state.module.startUpScreensPlaying,
 
     /********************************************************
      * REVIEW QUESTION GETTERS
@@ -132,6 +135,7 @@ export default {
     getSiWindowIsExpanded: state => state.components.siWindow.isExpanded,
     getSiWindowIsCollapsed: state => state.components.siWindow.isCollapsed,
     getSiWindowContent: state => state.components.siWindow.content,
+    getSiWindowFileName: state => state.components.siWindow.fileName,
     getSiWindowWidth: state => state.components.siWindow.width,
     getSiWindowHeight: state => state.components.siWindow.height,
     getSiWindowZoomInEnabled: state => state.components.siWindow.zoomIn.isEnabled,

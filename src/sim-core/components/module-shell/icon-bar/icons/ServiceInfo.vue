@@ -4,8 +4,8 @@
         <ul id="si-main-menu" v-if="this.$store.getters.getSiMenuOpen">
             <li class="hover"
     			v-for="item in menuItems"
-    			@click="getAction({type:item.type, content:item.content, width:item.width, height:item.height})"
-                v-show="(item.activeActivity <= activityIdNum) ? true : false"
+    			@click="getAction({type:item.type, content:item.content, fileName:item.fileName, width:item.width, height:item.height})"
+                v-if="(item.activeActivity <= activityIdNum) ? true : false"
     		>
                 <span>{{ item.title }}</span>
             </li>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { pause } from '../../../../core/audio-player'
+import { mapGetters } from 'vuex'
 import MenuData from '../../../../../data/service-info-data.json'
 
 export default {
@@ -30,16 +30,23 @@ export default {
     computed: {
         isActive() {
             return this.$store.getters.getServiceInfoIconIsEnabled
-        }
+        },
+        ...mapGetters({
+            activityId: 'getCurrentActivityId'
+        })
     },
     methods: {
         toggleMenu() {
-            pause()
             this.$store.commit('toggleSiMenu')
         },
-        getAction (options) {
+        getAction(options) {
             this.$store.commit('showSiWindow', options)
             this.$store.commit('toggleSiMenu')
+        }
+    },
+    watch: {
+        activityId (newVal) {
+            this.activityIdNum = parseInt(newVal.replace('A', ''))
         }
     }
 }

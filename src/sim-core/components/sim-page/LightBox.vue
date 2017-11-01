@@ -8,18 +8,31 @@
 </template>
 
 <script>
-import { unPause } from '../../core/audio-player'
+import { mapGetters } from 'vuex'
+import { pause, unPause } from '../../core/audio-player'
+
 export default {
     name: 'LightBox',
+    computed: mapGetters({
+        lightBoxIsShown: 'getLightBoxIsShown'
+    }),
     methods: {
         closeMenu () {
-            unPause()
             if (this.$store.getters.getLightBoxMode === 'menuMode') {
                 if (this.$store.getters.getMainMenuOpen === true) {
                     this.$store.commit('toggleMainMenu')
                 } else if (this.$store.getters.getSiMenuOpen === true) {
                     this.$store.commit('toggleSiMenu')
                 }
+            }
+        }
+    },
+    watch: {
+        lightBoxIsShown (newVal) {
+            if (newVal) {
+                pause()
+            } else {
+                unPause()
             }
         }
     }

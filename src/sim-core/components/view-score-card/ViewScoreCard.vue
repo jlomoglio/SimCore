@@ -4,13 +4,13 @@
         <div id="view-score-card-container">
             <div id="congratulations" v-if="moduleData.passed">
                 <h2 class="congrats-title">Congratulations!</h2>
-                <p class="congrats-message">You have successfully completed<br />the simulation on {{ this.moduleData.performanceModuleName }}.</p>
+                <p class="congrats-message">You have successfully completed<br />the simulation on {{ this.convertToPascalCase(this.moduleData.moduleName) }}.</p>
             </div>
             <div id="no-congratulations" v-else>
-                <p class="congrats-message">Sorry. You have not successfully completed<br />the simulation on {{ this.moduleData.performanceModuleName }}.</p>
+                <p class="congrats-message">Sorry. You have not successfully completed<br />the simulation on {{ this.convertToPascalCase(this.moduleData.moduleName) }}.</p>
             </div>
             <div id="results-score">
-                Here is your score: {{ this.moduleData.totalScorePercent }}%
+                Here is Your Score: {{ this.moduleData.totalScorePercent }}%
             </div>
             <div id="time-elapsed">
                 Time elapsed: {{ this.moduleData.totalTimeElapsed }}
@@ -20,44 +20,39 @@
                 <div class="close-window-btn" @click="closeWindow"></div>
             </div>
         </div>
-        <module-footer></module-footer>
     </div>
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
     import { playAudio } from '../../core/audio-player'
+    import { closeModuleWindow } from '../../core/lti'
     import ModuleHeader from '../module-shell/ModuleHeader'
-    import ModuleFooter from '../module-shell/module-footer/ModuleFooter'
     export default {
         name: 'ViewScoreCard',
         components: {
-            ModuleHeader,
-            ModuleFooter
+            ModuleHeader
+        },
+        data () {
+            return {
+                moduleData: this.$store.getters.getModuleData
+            }
         },
         mounted () {
+            console.log(this.moduleData.passed)
+            this.$store.commit('setActivityName', null)
             const scoreCardVO = '/assets/audio/' + (this.moduleData.passed ? 'Congratulations.mp3' : 'Sorry.mp3')
             playAudio(scoreCardVO, null)
-            this.moduleData.totalScorePercent = Math.round(((this.moduleData.reviewQuestions.totalScore + this.moduleData.activities[0].totalScore) / this.moduleData.totalPossibleScore) * 100)
         },
-        computed: mapGetters({
-            moduleData: 'getModuleData'
-        }),
         methods: {
             viewProgressReport () {
                 this.$store.commit('setCurrentView', 'PerformanceReport')
             },
             closeWindow () {
-                window.close()
-            }
-        },
-        watch: {
-            moduleData(newVal) {
-                console.log(newVal, playAudio)
-//                if (newVal && newVal.passed !== undefined) {
-//                    const scoreCardVO = '../assets/audio/' + (newVal.passed ? 'Congratulations.mp3' : 'Sorry.mp3')
-//                    playAudio(scoreCardVO, null)
-//                }
+                closeModuleWindow()
+            },
+            convertToPascalCase (string) {
+                return string.replace(/\w+/g,
+                    function (w) { return w[0].toUpperCase() + w.slice(1).toLowerCase() })
             }
         }
     }
@@ -73,7 +68,7 @@
         right: 0;
         bottom: 0;
         margin: 0 auto;
-        background: url('/assets/img/activities/engine_compartment_not_faded_with_AC_machine-a.png');
+        background: url('/assets/img/activities/engine_compartment_without_AC_machine.png');
 
         #view-score-card-container {
             position: absolute;
@@ -100,11 +95,6 @@
                     color: #8e191b;
                 }
             }
-            @-moz-document url-prefix() {
-                    #congratulations {
-                        margin-top: 15px !important;
-                    }
-            } 
 
             #no-congratulations {
                 float:left;
@@ -112,12 +102,6 @@
                 margin-top: 100px;
                 margin-bottom: 25px;
             }
-
-            @-moz-document url-prefix() {
-                    #no-congratulations {
-                        margin-top: 50px !important;
-                    }
-            }   
 
             .congrats-message {
                 font-family: Roboto-Medium;
@@ -132,7 +116,7 @@
                 font-family: Roboto-Medium;
                 font-size: 48px;
                 color: #000000;
-                margin-bottom: 25px;
+                margin-bottom: 20px;
             }
 
             #time-elapsed {
@@ -145,7 +129,7 @@
             #view-score-card-btns {
                 width: 100%;
                 position:absolute;
-                top: 370px;
+                bottom: 20px;
 
                 .view-report-btn {
                     display: inline-block;

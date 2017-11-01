@@ -1,6 +1,7 @@
 {
 	"currentView": "HomePage",
 	"useContentArea": false,
+    "oneLine": true,
 	"activityName": "",
 	"currentActivityView": "A1V1",
     "currentActivityId": "",
@@ -10,6 +11,9 @@
 	"lightBoxIsShown": false,
 	"lightBoxMode": "defaultMode",
     "activityLightBoxIsShown": false,
+    "activityBlockBoxIsShown": false,
+
+    "startUpScreensPlaying": false,
 
 	"introCompleted": false,
 	"introIsShown": false,
@@ -18,8 +22,6 @@
 	"safetyCompleted": false,
 	"safetyIsShown": false,
 
-	"carVideoIsShown": false,
-	
     "endActivityScreenIsShown": false,
 	"audioCompleted": false,
 
@@ -27,5 +29,7 @@
     "reviewQuestionsSubmitted": false,
     "reviewQuestionsUserAnswers": [],
     "totalReviewQuestionsCount": 0,
-    "totalReviewQuestionsScore": 0
+    "totalReviewQuestionsScore": 0,
+
+    "useLTIData": true
 }

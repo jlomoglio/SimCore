@@ -2,57 +2,81 @@
     <div id="performance-report">
         <module-header></module-header>
         <div id="performance-report-container">
-            <div id="report-data">
+            <div id="report-data-container">
                 <div id="main-heading" class="bar-bg">
                     Performance Report: {{this.fullName}}
                 </div>
                 <div id="summary">
-                    <div id="total-activities">
-                        <span>Total Activities<br /> {{ this.moduleData.activities.length}}</span>
-                    </div>
-                    <div id="total-score">
-                        Total Score<br /> {{ this.moduleData.totalScore}}/{{ this.moduleData.totalPossibleScore}}
-                    </div>
-                    <div id="percentage">
-                        Percentage<br />{{ this.moduleData.totalScorePercent}}%
-                    </div>
-                    <div id="time-elapsed">
-                        Time Elapsed<br />{{ this.moduleData.totalTimeElapsed}}
+                    <div class="row">
+                        <div id="total-activities">
+                            <span>Total Activities<br /> {{ this.moduleData.activities.length}}</span>
+                        </div>
+                        <div id="total-score">
+                            Total Score<br /> {{ this.moduleData.totalScore}}/{{ this.moduleData.totalPossibleScore}}
+                        </div>
+                        <div id="percentage">
+                            Percentage<br />{{ this.moduleData.totalScorePercent}}%
+                        </div>
+                        <div id="time-elapsed">
+                            Time Elapsed<br />{{ this.moduleData.totalTimeElapsed}}
+                        </div>
                     </div>
                 </div>
                 <div id="activity-data-heading">
-                    <div id="number">Activity<br />Number</div>
-                    <div id="module-name">{{ this.moduleData.moduleName}}</div>
-                    <div id="steps">Steps</div>
-                    <div id="attempts">Attempts</div>
-                    <div id="your-score">Your<br />Score</div>
+                    <div class="row">
+                        <div id="number">Activity<br />Number</div>
+                        <div id="module-name">{{ this.moduleData.moduleName}}</div>
+                        <div id="total-activity-score">Total Activity Score</div>
+                        <div id="steps">Steps</div>
+                        <div id="attempts">Attempts</div>
+                        <div id="your-score">Your<br />Score</div>
+                    </div>
                 </div>
                 <div id="activity-data">
-                    <div class="row" v-for="activity in this.moduleData.activities">
+                    <div class="list" v-for="activity in this.moduleData.activities">
                         <div class="activity-heading bar-bg">
-                            <div class="activity-id">
-                                <p>{{ activity.id.replace('A', '') }}</p>
+                            <div class="row">
+                                <div class="activity-id">
+                                    <p>{{ activity.id.replace('A', '') }}</p>
+                                </div>
+                                <div class="activity-title">
+                                    <p>{{ activity.title}}</p>
+                                </div>
+                                <div class="total-activity-score">
+                                    <p>{{ activity.totalPossibleScore }}</p>
+                                </div>
+                                <div class="activity-steps"></div>
+                                <div class="activity-attempts"></div>
+                                <div class="activity-score"></div>
                             </div>
-                            <div class="activity-title">
-                                <p>{{ activity.title}}</p>
-                            </div>
-                            <div class="activity-steps"></div>
-                            <div class="activity-attempts"></div>
-                            <div class="activity-score"></div>
                         </div>
                         <div class="completed-tasks" v-for="completedTask in activity.completedTasks">
-                            <div class="blank"></div>
-                            <div class="task">
-                                <p>{{ completedTask.label }}</p>
+                            <div class="row">
+                                <div class="blank"></div>
+                                <div class="task" v-html="completedTask.label"></div>
+                                <div class="attempts">
+                                    {{ completedTask.attempts }}
+                                </div>
+                                <div class="total-score">
+                                    {{ completedTask.score }}
+                                </div>
                             </div>
-                            <div class="attempts">
-                                <p>{{ completedTask.attempts }}</p>
-                            </div>
-                            <div class="score">
-                                <p>{{ completedTask.score }}</p>
+                        </div>
+                        <div class="completed-tasks">
+                            <div class="row">
+                                <div class="blank"></div>
+                                <div class="task your-score">Your Score:</div>
+                                <div class="attempts"></div>
+                                <div class="total-score">
+                                    {{ activity.totalScore }}
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div id="review-questions-data">
+                    Review Questions: {{this.moduleData.reviewQuestions.totalScore}}
+                    out of {{this.moduleData.reviewQuestions.totalPossibleScore}}
                 </div>
             </div>
 
@@ -62,15 +86,21 @@
             </div>
         </div>
     </div>
+
 </template>
+
 <script>
     import { mapGetters } from 'vuex'
     import { downloadReportAsPDF } from '../../core/reporting'
+    import { closeModuleWindow } from '../../core/lti'
     import ModuleHeader from '../module-shell/ModuleHeader'
     export default {
         name: 'PerformanceReport',
         components: {
             ModuleHeader
+        },
+        mounted () {
+            this.$store.commit('setActivityName', null)
         },
         computed: {
             ...mapGetters({
@@ -85,7 +115,7 @@
                 downloadReportAsPDF()
             },
             closeWindow () {
-                window.close()
+                closeModuleWindow()
             }
         }
     }
@@ -99,16 +129,18 @@
         right: 0;
         bottom: 0;
         margin: 0 auto;
+        background: #fff;
 
         #performance-report-container {
             float:left;
             width: 100%;
             height: 500px;
+            color: #000;
             margin-top: 50px;
             padding-top: 25px;
             border-top: 2px solid #000;
 
-            #report-data {
+            #report-data-container {
                 position: relative;
                 width: 900px;
                 height: 471px;
@@ -117,7 +149,26 @@
                 text-align: left;
                 border: 1px solid #000;
                 margin: 0 auto;
-                overflow: auto;
+                overflow-y: auto;
+
+                & ::-webkit-scrollbar {
+                    background: lightgrey;
+                    width: 10px;
+                    border-radius: 5px;
+                    -moz-border-radius: 5px;
+                    -webkit-border-radius: 5px;
+                }
+
+                & ::-webkit-scrollbar-thumb {
+                    background-color: dimgrey;
+                    outline: 0px solid dimgrey;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    -moz-border-radius: 5px;
+                    -webkit-border-radius: 5px;
+                    height: 80px;
+
+                }
 
                 #main-heading {
                     float:left;
@@ -167,7 +218,7 @@
                     border-top: 1px solid #000;
                     border-collapse: collapse;
 
-                    & > div {
+                    & > div > div {
                         display: table-cell;
                         height: 60px;
                         font-family: RobotoCondensed-Bold;
@@ -184,10 +235,13 @@
                         width: 105px;
                     }
                     #module-name {
-                        width: 315px;
+                        width: 290px;
+                    }
+                    #total-activity-score {
+                        width: 65px;
                     }
                     #steps {
-                        width: 390px;
+                        width: 350px;
                     }
                     #attempts {
                         width: 70px;
@@ -206,7 +260,7 @@
                         width: 100%;
                         border-collapse: collapse;
 
-                        & > div {
+                        & > div > div {
                             display: table-cell;
                             height: 40px;
                             vertical-align: middle;
@@ -220,19 +274,22 @@
                             }
                         }
                         .activity-id {
-                            width: 103px;
+                            width: 100px;
                         }
                         .activity-title {
-                            width: 305px;
+                            width: 276px;
+                        }
+                        .total-activity-score {
+                            width: 65px;
                         }
                         .activity-steps {
-                            width: 372px;
+                            width: 325px;
                         }
                         .activity-attempts {
-                            width: 71px;
+                            width: 70px;
                         }
                         .activity-score {
-                            width: 70px;
+                            width: 68px;
                         }
                     }
 
@@ -241,14 +298,13 @@
                         width: 100%;
                         border-collapse: collapse;
 
-                        & > div {
+                        & > div > div {
                             display: table-cell;
                             height: 45px;
                             vertical-align: middle;
                             text-align: center;
                             border: 1px solid #000;
                             border-top: 0;
-                            color: #2c3e50;
                             box-sizing: border-box;
 
                             &:first-child {
@@ -257,18 +313,29 @@
                         }
 
                         .blank {
-                            width: 405px;
+                            width: 440px;
+                            border: 0;
                         }
                         .task {
-                            width: 365px;
+                            width: 324px;
                             text-align: left;
                             padding: 0px 10px;
+
+                            &.your-score {
+                                text-align: right;
+                            }
                         }
                         .attempts {
                             width: 70px;
                         }
-                        .score {
-                            width: 69px;
+                        .total-score {
+                            width: 68px;
+                        }
+
+                        &:last-child {
+                            .blank {
+                                border-bottom: 1px solid #000;
+                            }
                         }
                     }
                 }
@@ -280,12 +347,17 @@
                     vertical-align: middle;
                 }
 
+                .row {
+                    display: table-row;
+                    width: 100%;
+                }
+
             }
 
             #performance-report-btns {
                 float:left;
                 width: 100%;
-                margin-top: 45px;
+                margin-top: 32px;
 
                 .download-report-btn {
                     display: inline-block;

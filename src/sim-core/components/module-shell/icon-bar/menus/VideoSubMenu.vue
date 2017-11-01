@@ -1,23 +1,13 @@
 <template>
 	<ul id="video-sub-menu" v-if="this.$store.getters.getVideoSubMenuOpen">
 		<li class="video-sub-menu-item"
-			v-for="(video, index) in videos"
-			v-if="index !== 2 && moduleType === 'concepts'"
+			v-for="(video, index) in filterVideos(videos)"
 			@click="playVideo(video.src)"
 		>
 			<span class="video-title">
 				{{ video.title }}
 			</span>
-			<span class="darrow" v-if="index === 0"></span>
-		</li>
-		<li class="video-sub-menu-item"
-			v-for="(video, index) in videos"
-			v-else-if="index !== 1 && moduleType === 'equipment'"
-			@click="playVideo(video.src)"
-		>
-			<span class="video-title">
-				{{ video.title }}
-			</span>
+
 			<span class="darrow" v-if="index === 0"></span>
 		</li>
 		<li class="video-sub-menu-item"
@@ -52,6 +42,17 @@ export default {
             this.$store.commit('setPopupVideoPlayerSrc', src)
             this.$store.commit('closeMainMenu')
             this.$store.commit('toggleLightBox', 'fullMode')
+        },
+        filterVideos (videos) {
+            if (this.moduleType === 'equipment') {
+                return this.videos.filter((video, index) => {
+                    return index !== 1
+                })
+            } else if (this.moduleType === 'concept') {
+                return this.videos.filter((video, index) => {
+                    return index !== 2
+                })
+            }
         }
     }
 }

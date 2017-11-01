@@ -31,6 +31,7 @@
 		"isExpanded": true,
 		"isCollapsed": false,
 		"content": "",
+        "fileName": "",
 		"width": "",
 		"height": "",
 		"zoomIn": {
@@ -49,6 +50,5 @@
         "view": "",
         "isShown": false,
         "callback": {}
-    },
-  	"score": 0
+    }
 }

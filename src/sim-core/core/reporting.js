@@ -16,16 +16,25 @@ export const setModuleStartTime = () => {
     store.commit('setModuleStartTime', new Date().getTime())
 }
 
-export const setModulePass = () => {
+export const setModulePass = (scorePercent) => {
     const moduleData = store.state.moduleData
-    moduleData.totalScorePercent = Math.round(((moduleData.reviewQuestions.totalScore + moduleData.activities[0].totalScore) / moduleData.totalPossibleScore) * 100)
-    return (moduleData.totalScorePercent > moduleData.passingScore)
+    return (scorePercent > moduleData.passingScore)
 }
 
 export const getModuleTotaltime = () => {
     const endTime = new Date().getTime()
     const timeDiffInSecs = ((endTime - store.state.moduleData.startTime) / 1000)
     store.commit('addToModuleTotalTimeTaken', timeDiffInSecs)
+}
+
+export const getModulePossibleTotalScore = () => {
+    let totalPossibleScore = 0
+    let moduleData = store.state.moduleData
+    _.forEach(moduleData.activities, (activity) => {
+        totalPossibleScore += activity.totalPossibleScore
+    })
+    totalPossibleScore += moduleData.reviewQuestions.totalPossibleScore
+    return totalPossibleScore
 }
 
 export const getModuleTotalScore = () => {
@@ -62,10 +71,11 @@ export const convertTotalTimeToMMSS = (totalTime) => {
 
 export const endModuleData = () => {
     let moduleData = store.state.moduleData
+    moduleData.totalPossibleScore = getModulePossibleTotalScore()
     moduleData.totalScore = getModuleTotalScore()
-    moduleData.passed = setModulePass()
     moduleData.totalScorePercent = getModuleScorePercent()
     moduleData.totalTimeElapsed = convertTotalTimeToMMSS(moduleData.totalTimeTaken)
+    moduleData.passed = setModulePass(moduleData.totalScorePercent)
     store.commit('mutateModuleData', moduleData)
 }
 
@@ -88,8 +98,7 @@ export const downloadReportAsPDF = (data) => {
     doc.setTextColor(31, 31, 31)
     doc.text(10, 27, data.moduleName)
 
-    // doc.text(10, 35, 'Name: ' + data.firstName + ' ' + data.lastName)
-    doc.text(10, 35, 'Name: ')
+    doc.text(10, 35, 'Name: ' + data.firstName + ' ' + data.lastName)
 
     doc.setDrawColor(120, 128, 128)
     doc.setFontSize(24)
@@ -128,7 +137,7 @@ export const downloadReportAsPDF = (data) => {
         doc.setFontSize(12)
         doc.setTextColor(179, 29, 23)
         doc.text(10, self.YAxis, activity.title)
-        doc.text(155, self.YAxis, 'Total Activity Score: ' + activity.totalScore)
+        doc.text(155, self.YAxis, 'Total Activity Score: ' + activity.totalPossibleScore + '')
 
         // Activity task column heading
         self.YAxis += 10
@@ -158,7 +167,7 @@ export const downloadReportAsPDF = (data) => {
 
             // Check if the activity task length is greater that 70 characters,
             // if so then wrap the activity task
-            if (completedTask.label.length > 70) {
+            if (completedTask.label && completedTask.label.length > 70) {
                 let task = doc.splitTextToSize(completedTask.label, 130)
                 _.forEach(task, (splitText) => {
                     doc.text(10, self.YAxis, splitText)
@@ -170,7 +179,7 @@ export const downloadReportAsPDF = (data) => {
         })
 
         self.YAxis += 10
-        doc.text(162, self.YAxis, 'Your Score: ' + activity.totalScore)
+        doc.text(162, self.YAxis, 'Your Score: ' + activity.totalScore + '')
 
         self.YAxis += 5
         doc.line(10, self.YAxis, 200, self.YAxis)

@@ -60,7 +60,7 @@ ul#activity-sub-menu {
 
 ul#activity-sub-menu li.activity-sub-menu-item {
 	margin-left: -40px;
-	text-indent: -11px;
+	/* text-indent: -11px; */
 	padding-left: 30px;
 	padding-top: 9px;
     padding-bottom: 9px;

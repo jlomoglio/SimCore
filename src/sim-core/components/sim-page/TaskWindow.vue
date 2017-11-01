@@ -17,30 +17,26 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import TweenMax from 'gsap/TweenMax'
 import Draggable from 'gsap/Draggable'
 import TaskData from '../../../data/task-list-data'
+import { unPause, unMute } from '../../core/audio-player'
 
 export default {
     name: 'TaskWindow',
     data() {
         return {
-            isShown: null
+            isShown: null,
+            tasks: [],
+            description: ''
         }
     },
-    beforeMount() {
-        for (let task in TaskData) {
-            if (task === this.$store.getters.getCurrentActivityId) {
-                this.tasks = TaskData[task].tasks
-                this.description = TaskData[task].description
-
-                if (TaskData[task].description === '') {
-                    this.isShown = false
-                } else {
-                    this.isShown = true
-                }
-            }
-        }
+    computed: mapGetters({
+        activityId: 'getCurrentActivityId'
+    }),
+    mounted() {
+        this.getTaskWindowData(this.$store.getters.getCurrentActivityId)
     },
     updated() {
         var taskWindow = document.getElementById('task-window')
@@ -59,10 +55,32 @@ export default {
         })
     },
     methods: {
+        getTaskWindowData (activityId) {
+            for (let task in TaskData) {
+                if (task === activityId) {
+                    this.tasks = TaskData[task].tasks
+                    this.description = TaskData[task].description
+                    this.start = TaskData[task].startNum
+
+                    if (TaskData[task].description === '') {
+                        this.isShown = false
+                    } else {
+                        this.isShown = true
+                    }
+                }
+            }
+        },
         closeTaskWindow () {
             this.$store.commit('closeTaskWindow')
             // Resets task window to original position
             TweenMax.set(document.getElementById('task-window'), {x: 0, y: 0})
+            unMute()
+            unPause()
+        }
+    },
+    watch: {
+        activityId (newVal) {
+            this.getTaskWindowData(newVal)
         }
     }
 }
@@ -94,7 +112,7 @@ export default {
 #task-header > .activity-title {
 	position: absolute;
 	font-family: Roboto-Bold;
-	font-size: 17px;
+	font-size: 14px;
 	font-weight: bold;
 	color:#FDF7B6;
 	width: 100%;
@@ -151,7 +169,7 @@ export default {
 
 #task-list {
 	margin-top: -20px;
-	margin-left: -18px;
+	margin-left: -15px;
 }
 
 .task-list-item {

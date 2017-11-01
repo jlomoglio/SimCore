@@ -12,14 +12,14 @@
             <div id="col1">
                 <div id="mainViewField">
                     <label>Set Module View:</label>
-					<select id="pageName" class="dbox" v-model="currentPage">
+                    <select id="pageName" class="dbox" v-model="currentPage">
                         <option
-		                    v-for="option in pageOptions"
-		                    :selected="option.value === currentPage"
-		                    :value="option.value"
-			            >
-				            {{ option.text }}
-				        </option>
+                            v-for="option in pageOptions"
+                            :selected="option.value === currentPage"
+                            :value="option.value"
+                        >
+                            {{ option.text }}
+                        </option>
                     </select>
 
                     <select id="activityName" class="dbox" v-model="currentActivity" v-if="currentPage === 'SimPage'">
@@ -43,8 +43,13 @@
                     </select>
 
                     <button @click="loadView()">Go</button>
+
+                    <label id="useLTIData" for="chkUseLTIData">
+                        <input type="checkbox" id="chkUseLTIData" v-model="useLTIData" />
+                        Use LTI data on restart
+                    </label>
                 </div>
-			</div>
+            </div>
         </div>
     </div>
 </template>
@@ -72,19 +77,25 @@ export default {
             activityViewOptions: ToolBoxData.views,
             currentPage: 'HomePage',
             currentActivity: 'A1',
-            currentActivityView: 'V1'
+            currentActivityView: 'V1',
+            useLTIData: false
         }
     },
     mounted() {
+        this.useLTIData = (Boolean(localStorage.getItem('useLTIData') === 'true') || false)
+        this.$store.commit('setUseLTIData', this.useLTIData)
         this.currentPage = (localStorage.getItem('currentView') || 'HomePage')
-        this.$store.commit('setCurrentView', this.currentPage)
 
-        if (this.currentPage === 'SimPage') {
-            this.currentActivity = (localStorage.getItem('currentActivityId') || 'A1')
-            this.currentActivityView = (localStorage.getItem('currentActivityView') || 'V1')
-            activityViewChangeReset()
-            this.$store.commit('setCurrentActivityId', (this.currentActivity))
-            this.$store.commit('setCurrentActivityView', (this.currentActivity + this.currentActivityView))
+        if (!this.useLTIData) {
+            this.$store.commit('setCurrentView', this.currentPage)
+
+            if (this.currentPage === 'SimPage') {
+                this.currentActivity = (localStorage.getItem('currentActivityId') || 'A1')
+                this.currentActivityView = (localStorage.getItem('currentActivityView') || 'V1')
+                activityViewChangeReset()
+                this.$store.commit('setCurrentActivityId', (this.currentActivity))
+                this.$store.commit('setCurrentActivityView', (this.currentActivity + this.currentActivityView))
+            }
         }
     },
     computed: {
@@ -110,6 +121,10 @@ export default {
         moduleCurrentActivityView (newVal) {
             localStorage.setItem('currentActivityView', newVal.substring(2, 4))
             return this.currentActivityView = newVal.substring(2, 4)
+        },
+        useLTIData (newVal) {
+            localStorage.setItem('useLTIData', Boolean(newVal))
+            this.$store.commit('setUseLTIData', Boolean(newVal))
         }
     },
     methods: {

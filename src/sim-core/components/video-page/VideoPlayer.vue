@@ -1,10 +1,6 @@
 <template>
-    <div id="videoplayer" 
-	v-bind:class="{ 'videoplayer': divClass, 'videoplayerDefault': !divClass }"  
-	  >
-        <iframe id="videoFrame" 
-		v-bind:class="{ 'videoFrame': iframeClass, 'videoFrameDefault': !iframeClass }" 
-		 
+    <div id="videoplayer">
+        <iframe id="videoFrame"
 				:src="this.$store.getters.getVideoSource"
 				scrolling="no"
 				frameBorder="0"
@@ -21,27 +17,12 @@
 
 <script>
 export default {
-    name: 'VideoPlayer',
-    props: ['divClass', 'iframeClass'],
-    mounted() {
-		// TODO, need to look for an alternative,
-        this.videoDOM = window.setTimeout(() => {
-            this.$emit('load')
-        }, 1000)
-    },
-    methods: {
-        ended: function () {
-            console.log('VIdeo 3.............')
-        },
-        loaded: function() {
-            console.log('loaded')
-        }
-    }
+    name: 'VideoPlayer'
 }
 </script>
 
 <style scoped>
-.videoplayerDefault {
+#videoplayer {
 	position: absolute;
 	width: 760px;
 	height: 404px;
@@ -52,28 +33,8 @@ export default {
 	display: block;
 }
 
-.videoFrameDefault {
+#videoFrame {
 	width: 760px;
 	height: 404px;
-	position: relative;
-	z-index: 9;
-}
-.videoplayer {
-	position: absolute;
-	width: 1000px;
-	height: 576px;
-	top: 0;
-	left: 0;
-	border: 2px solid #fff;
-	background: #000;
-	display: block;
-}
-
-.videoFrame {
-	width: 100%;
-	height: 100%;
-	top: 28px;
-	position: relative;
-	z-index: 99;
 }
 </style>

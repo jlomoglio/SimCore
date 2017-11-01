@@ -16,7 +16,7 @@
 import { mapGetters } from 'vuex'
 import { skipActivity, resetModuleDataForNewActivity, getActivity } from '../../core/activity'
 import { resetSkipActivityScore } from '../../core/scoring'
-import { unPause, pause, playAudio } from '../../core/audio-player'
+import { unPause, pause } from '../../core/audio-player'
 
 export default {
     name: 'SkipActivityAlert',
@@ -48,13 +48,6 @@ export default {
             pause('moduleAudioPlayer')
             this.$store.commit('hideSkipActivityAlertIsShown')
             unPause()
-        }
-    },
-    watch: {
-        skipActivityAlertIsShown(newVal) {
-            if (newVal === true) {
-                playAudio('/assets/audio/skip-activity.mp3', null)
-            }
         }
     }
 }

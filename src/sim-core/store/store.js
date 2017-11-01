@@ -19,9 +19,7 @@ const state = {
 
     widgets: {},
 
-    audioPlayer: {},
-
-    videoEndingFlag: false
+    audioPlayer: {}
 }
 
 export default new Vuex.Store({

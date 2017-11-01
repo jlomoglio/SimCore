@@ -1,19 +1,6 @@
 import _ from 'lodash'
 import store from '../store/store'
 import Vue from 'vue'
-// let assessmentWindow = store.state.components.assessmentWindow
-
-export const addUserAnswer = (answer) => {
-
-}
-
-export const removeUserAnswer = (answer) => {
-
-}
-
-export const showUserAnswersFeedback = () => {
-
-}
 
 const randomizeQuestionAnswers = (assessment) => {
     if (assessment.randomize) {
@@ -137,6 +124,9 @@ export const feedback = (userAnswers) => {
                 answerContainer.querySelectorAll('#answer_' + answer.id)[0].classList.add('incorrect')
             }
         })
+        answerContainer.querySelectorAll('input').forEach((input) => {
+            input.disabled = true
+        })
     })
 }
 
@@ -157,11 +147,12 @@ export const scoring = (assessment, userAnswers) => {
         }
     })
 
-    Vue.core.Activity.taskComplete(assessment.question, 1, totalScore)
+    Vue.core.Activity.taskComplete(assessment.question, 1, totalScore, 'assessment')
 }
 
 export const config = (assessmentData, callback) => {
     const randomizeAssessment = randomizeQuestionAnswers(assessmentData)
+    store.commit('submitAssessmentWindow', false)
     store.commit('configAssessmentWindow', { assessment: randomizeAssessment, callback: callback })
 }
 
@@ -170,5 +161,15 @@ export const show = () => {
 }
 
 export const hide = () => {
+    const assessmentContainer = document.getElementById('assessment-window')
+    let assessmentAnswers = assessmentContainer.querySelectorAll('.question .answers')[0]
+
+    // Remove previous assessment feedback correct and incorrect marks
+    assessmentAnswers.querySelectorAll('.option').forEach((answer) => {
+        answer.classList.remove('correct')
+        answer.classList.remove('incorrect')
+        answer.querySelector('input').checked = false
+        answer.querySelector('input').disabled = false
+    })
     store.commit('hideAssessmentWindow')
 }

@@ -1,4 +1,4 @@
-import { TweenLite, TweenMax, Draggable } from 'gsap'
+import { TweenMax, Draggable } from 'gsap'
 import store from '../store/store'
 
 export function siZoomIn (state, {target, percent}) {
@@ -19,8 +19,9 @@ export function siZoomOut (state, {target, percent}) {
 
 export function zoom (state, {target, percent}) {
     // TweenLite and Draggable plugins from GSAP to zoom and pan
-    TweenLite.to(target, 0.2, {zoom: state})
+    // TweenLite.to(target, 0.2, 0.4, { scale: state })
     TweenMax.set(target, {x: 0, y: 0})
+    TweenMax.set(target, {css: { scale: state }})
     // Checks if zoomed, then enable gsap draggable plugin
     // else if not zoomed and is at default then disable draggable
     let draggable = Draggable.create(target, {type: 'x,y', edgeResistance: 1, zIndexBoost: false})

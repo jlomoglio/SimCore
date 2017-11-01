@@ -11,7 +11,7 @@
             <span class="rarrow"></span><span>Activities</span>
             <activity-sub-menu></activity-sub-menu>
         </li>
-        <li id="version">
+        <li id="version" v-if="version !== 'Gold'">
 			<span id="versionText">Version: {{ version }}</span>
 		</li>
     </ul>
@@ -20,7 +20,7 @@
 <script>
 import VideoSubMenu from './VideoSubMenu'
 import ActivitySubMenu from './ActivitySubMenu'
-import AudioPlayer from '../../../../core/audio-player'
+import version from '../../../../../version'
 
 export default {
     name: 'MenuMainMenu',
@@ -30,7 +30,7 @@ export default {
     },
     data () {
         return {
-            version: this.$store.getters.getModuleVersion,
+            version: version,
             taskActive: null,
             videoActive: null,
             activityActive: null
@@ -40,7 +40,6 @@ export default {
         loadTaskWindow () {
             this.$store.commit('openTaskWindow')
             this.$store.commit('toggleMainMenu')
-            AudioPlayer.mute()
         },
         toggleVideoSubMenu () {
             this.$store.commit('toggleVideoSubMenu')

@@ -1,33 +1,13 @@
 import _ from 'lodash'
 import store from '../store/store'
 import { endModuleData, setReviewQuestionModuleData, getModuleTotaltime } from './reporting'
+import { sendLTIData } from './lti'
 
 export const randomizeQuestionAnswers = (question) => {
     if (question.randomize) {
-        // Create an array of non randomized answers
-        let nonRandomizedAnswers = []
-        _.each(question.answers, (answer, idx) => {
-            if (answer.randomize === false) {
-                nonRandomizedAnswers.push({idx, answer})
-            }
-        })
-
-        // Remove any non randomized answers
-        let filteredAnswers = _.remove(question.answers, function(answer) {
-            return answer.randomize !== false
-        })
-
-        // Automatically remove any answers that are none randomized
-        let randomizeAnswers = filteredAnswers.sort(function () {
+        let randomizeAnswers = question.answers.sort(function () {
             return 0.5 - Math.random()
         })
-
-        if (nonRandomizedAnswers.length > 0) {
-            _.each(nonRandomizedAnswers, (answer) => {
-                randomizeAnswers.splice(answer.idx, 0, answer.answer)
-            })
-        }
-
         question['answers'] = randomizeAnswers
     }
     return question
@@ -147,7 +127,7 @@ export const checkAnswersWithFeedback = (questions) => {
             totalPossibleScore: module.totalReviewQuestionsCount })
         getModuleTotaltime()
         endModuleData()
-        // update LTI Data with new performance report
+        sendLTIData()
     }
     store.commit('setReviewQuestionsUserAnswers', [])
     store.commit('setReviewQuestionsSubmitted', true)
@@ -164,6 +144,9 @@ export const feedback = (userAnswers) => {
             } else {
                 answerContainer.querySelectorAll('#answer_' + answer.id)[0].classList.add('incorrect')
             }
+        })
+        answerContainer.querySelectorAll('input').forEach((input) => {
+            input.disabled = true
         })
     })
 }

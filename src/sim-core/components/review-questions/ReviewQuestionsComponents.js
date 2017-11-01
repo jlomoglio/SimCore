@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import {
+    addRadioAnswer,
+    addCheckboxAnswer,
+    removeCheckboxAnswer,
     randomizeQuestionAnswers,
     checkAnswersWithFeedback
 } from '../../core/review-questions'
@@ -60,6 +63,26 @@ export const RqQuestion = Vue.component('RqQuestion', {
     data () {
         return {
             question: randomizeQuestionAnswers(rqData[`question${this.questionId}`])
+        }
+    },
+    methods: {
+        userSelectedAnswer: function (elem) {
+            const qid = elem.target.parentNode.parentNode.parentNode.id.replace('question_', '')
+            addRadioAnswer({qid: qid, answers: [{id: parseInt(elem.target.value)}]})
+        },
+        userCheckedAnswer: function (elem) {
+            const qid = elem.target.parentNode.parentNode.parentNode.id.replace('question_', '')
+            if (elem.target.checked) {
+                this.userAnswers = addCheckboxAnswer(this.userAnswers, {
+                    qid: qid,
+                    answers: {id: parseInt(elem.target.value)}
+                })
+            } else {
+                this.userAnswers = removeCheckboxAnswer(this.userAnswers, {
+                    qid: qid,
+                    answers: {id: parseInt(elem.target.value)}
+                })
+            }
         }
     }
 })

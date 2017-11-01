@@ -6,7 +6,7 @@
  *
  ***************************************************************************************/
 import store from '../store/store'
-import { addActivityScore } from './scoring'
+import { addActivityScore, addTotalActivityScore } from './scoring'
 import { addReportingData } from './reporting'
 import Zoom from './zoom'
 import { endActivity } from './activity'
@@ -201,20 +201,24 @@ const api = {
             api.Activity.mode(mode)
             api.Activity.id(id)
         },
-        showIntro: () => {
-            store.commit('showIntroScreen')
+        headerSingleLine: (oneLine) => {
+            store.commit('setHeaderOneLine', oneLine)
+        },
+        showIntro: (callback) => {
+            if (store.state.moduleData.startUpScreensCompleted) {
+                if (callback) {
+                    callback()
+                }
+            } else {
+                store.commit('setStartUpScreensPlaying', true)
+                store.commit('showIntroScreen')
+            }
         },
         showSafety: () => {
             store.commit('showSafetyScreen')
         },
         safetyIsShown: () => {
             return store.getters.getSafetyScreenIsShown
-        },
-        carVideoIsShown: () => {
-            return store.getters.getcarVideoIsShown
-        },
-        carVideoIsHide: () => {
-            return store.commit('hideCarVideoScreen')
         },
         introComplete: () => {
             return store.getters.getIntroCompleted
@@ -230,7 +234,8 @@ const api = {
         correct: function(vo, cc, callback) {
             AudioPlayer.play(vo, cc, () => { callback() })
         },
-        taskComplete: (label, attempts, score) => {
+        taskComplete: (label, attempts, score, type) => {
+            addTotalActivityScore(type)
             addActivityScore(score)
             addReportingData({ label, attempts, score })
             clearRewindPlayList()

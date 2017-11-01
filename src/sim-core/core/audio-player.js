@@ -38,6 +38,7 @@ let moduleAudio = {
         this.currentCCArr = null
         this.callback = {}
         this.isPlaying = false
+        this.isPaused = false
     }
 }
 
@@ -49,7 +50,7 @@ let taskAudio = {
     callback: {},
     addToRewindPlaylist: false,
     isPlaying: false,
-    isPaused: true,
+    isPaused: false,
     resetAudioObject: () => {
         this.currentPlayer = null
         this.currentIndex = 0
@@ -57,6 +58,7 @@ let taskAudio = {
         this.currentCCArr = null
         this.callback = {}
         this.isPlaying = false
+        this.isPaused = false
     }
 }
 
@@ -80,7 +82,11 @@ let rewindAudio = {
     }
 }
 
-function playAudioSequence(audio, player) {
+function playAudioSequence(audio, player, isTaskAudio) {
+    if (isTaskAudio) {
+        store.commit('showActivityBlockBox')
+    }
+
     if (audio.currentCCArr && audio.currentCCArr.length > 0) {
         store.commit('showCCBar')
     }
@@ -106,11 +112,13 @@ function playAudioSequence(audio, player) {
         player.onended = () => {
             audio.currentIndex += 1
             audio.isPlaying = false
-            playAudioSequence(audio, player)
+            playAudioSequence(audio, player, isTaskAudio)
         }
     } else {
         audio.isPlaying = false
+        store.commit('hideActivityBlockBox')
         if (audio.currentCCArr && audio.currentCCArr.length > 0) {
+            store.commit('addCCBarText', '')
             store.commit('hideCCBar')
         }
         if (audio.callback) {
@@ -146,6 +154,7 @@ function playRewindAudioSequence(audio, player) {
         rewindAudio.isPlaying = false
 
         if (audio.currentCCArr && audio.currentCCArr.length > 0) {
+            store.commit('addCCBarText', '')
             store.commit('hideCCBar')
         }
 
@@ -162,6 +171,9 @@ function playRewindAudioSequence(audio, player) {
 }
 
 export const playAudio = (audioArr, audioCCArr = null, endSeqenceCallback = null) => {
+    if (rewindAudio.isPlaying === true) {
+        return false
+    }
     if (moduleAudio.isPlaying) {
         moduleAudioPlayer.pause()
         taskAudioPlayer.pause()
@@ -222,7 +234,7 @@ export const play = (audioArr, audioCCArr, endSeqenceCallback) => {
         taskAudioPlayer.volume = 1
     }
 
-    playAudioSequence(taskAudio, taskAudioPlayer)
+    playAudioSequence(taskAudio, taskAudioPlayer, true)
 }
 
 export const rewindAudioPlay = () => {
@@ -276,7 +288,7 @@ export const pause = (player) => {
             moduleAudio.isPlaying = false
             moduleAudioPlayer.pause()
         }
-        if (taskAudio.isPlaying) {
+        if (taskAudio.isPlaying === true) {
             taskAudio.isPaused = true
             taskAudio.isPlaying = false
             taskAudioPlayer.pause()
@@ -291,11 +303,13 @@ export const pause = (player) => {
 
 export const unPause = () => {
     if (taskAudio.isPaused && !rewindAudio.unPauseTaskAudio) {
-        taskAudio.isPlaying = true
-        taskAudio.isPaused = false
-        taskAudioPlayer.play()
+        if (taskAudio.isPaused && !taskAudio.isPlaying) {
+            taskAudio.isPlaying = true
+            taskAudio.isPaused = false
+            taskAudioPlayer.play()
+        }
     }
-    else if (rewindAudio.isPaused) {
+    else if (rewindAudio.isPaused && !taskAudio.isPaused) {
         rewindAudio.isPlaying = true
         rewindAudio.isPaused = false
         rewindTaskAudioPlayer.play()
@@ -304,14 +318,16 @@ export const unPause = () => {
 
 export const mute = () => {
     store.commit('muteAudio')
-    rewindTaskAudioPlayer.volume = 0
-    taskAudioPlayer.volume = 0
+    rewindTaskAudioPlayer.muted = true
+    moduleAudioPlayer.muted = true
+    taskAudioPlayer.muted = true
 }
 
 export const unMute = () => {
     store.commit('unmuteAudio')
-    rewindTaskAudioPlayer.volume = 1
-    taskAudioPlayer.volume = 1
+    rewindTaskAudioPlayer.muted = false
+    moduleAudioPlayer.muted = false
+    taskAudioPlayer.muted = false
 }
 
 export const clearRewindPlayList = () => {

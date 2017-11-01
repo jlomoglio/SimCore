@@ -3,22 +3,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { pause, unPause } from '../../../../core/audio-player'
-
 export default {
     name: 'IconMainMenu',
-    computed: mapGetters({
-        menuOpened: 'getMainMenuOpen'
-    }),
     methods: {
         toggleMenu () {
             this.$store.commit('toggleMainMenu')
-            if (this.menuOpened) {
-                pause()
-            } else {
-                unPause()
-            }
         }
     }
 }

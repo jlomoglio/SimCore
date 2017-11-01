@@ -14,6 +14,16 @@ export const addActivityScore = (score) => {
     store.commit('addModuleScore', score)
     store.commit('addActivityScore', activities)
 }
+export const addTotalActivityScore = (type) => {
+    let taskScore = 3
+    if (type && type === 'assessment') {
+        taskScore = 1
+    }
+    let activities = store.state.moduleData.activities
+    const idx = getActivityIndex(store.state.module.currentActivityId)
+    activities[idx].totalPossibleScore += taskScore
+    store.commit('addActivityScore', activities)
+}
 
 /**
  * A method to reset an activity score and update the module score
@@ -29,6 +39,7 @@ export const resetSkipActivityScore = () => {
     // Remove activity score from module score
     const updatedModuleScore = store.state.moduleData.totalScore - activityScore
     activities[idx].totalScore = 0
+    activities[idx].totalPossibleScore = 0
     store.commit('setModuleScore', updatedModuleScore)
     store.commit('addActivityScore', activities)
 }

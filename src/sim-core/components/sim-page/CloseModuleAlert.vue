@@ -3,7 +3,7 @@
         <div class="alert-content">
 			<div class="alert-text">You have not completed the following activities in the simulation:</div>
 			<div id="activityNames" class="alert-text">
-				<span v-for="activity in this.incompletedActivities(this.activities)">{{ activity.title }}</span>
+				<span v-for="activity in this.incompletedActivities(this.activities)">Activity {{activity.key}}: {{ activity.title }}</span>
 			</div>
 			<div class="alert-text confirmation-text">
 				Are you sure you want to close the simulation? All unsaved work on this activity will
@@ -21,14 +21,13 @@
 import _ from 'lodash'
 import { mapGetters } from 'vuex'
 import { unPause } from '../../core/audio-player'
+import { closeModuleWindow } from '../../core/lti'
 
 export default {
     name: 'CloseModuleAlert',
     methods: {
         close () {
-            // update time spent on activity
-            // and then send data to LTI
-            console.log('close')
+            closeModuleWindow()
         },
         cancel () {
             this.$store.commit('hideCloseModuleAlert')

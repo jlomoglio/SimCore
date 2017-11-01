@@ -39,6 +39,9 @@ export default {
     addToModuleTotalTimeTaken: (state, timeTaken) => {
         state.moduleData.totalTimeTaken += timeTaken
     },
+    setUseLTIData: (state, useLTIData) => {
+        state.module.useLTIData = useLTIData
+    },
 
     /********************************************************
      * AUDIO PAGE  MUTATIONS
@@ -127,6 +130,9 @@ export default {
     },
     setUseContentArea: (state, useContentArea) => {
         state.module.useContentArea = useContentArea
+    },
+    setHeaderOneLine: (state, oneLine) => {
+        state.module.oneLine = oneLine
     },
     setActivityName: (state, activityName) => {
         state.module.activityName = activityName
@@ -258,7 +264,6 @@ export default {
         state.module.lightBoxIsShown = true
         state.module.lightBoxMode = 'defaultMode'
         state.iconBar.isShown = false
-        state.module.carVideoIsShown = false
     },
     hideIntroScreen: (state) => {
         state.module.introCompleted = true
@@ -285,22 +290,19 @@ export default {
         state.module.safetyCompleted = true
         state.module.lightBoxIsShown = false
         state.iconBar.isShown = true
-        state.module.carVideoIsShown = true
-    },
-    showCarVideoScreen: (state) => {
-        console.log('Inside showCarVideoScreen')
-        state.module.safetyCompleted = true
-        state.module.carVideoIsShown = true
-        // state.module.lightBoxIsShown = true
-        state.iconBar.isShown = true
-    },
-    hideCarVideoScreen: (state) => {
-        state.module.carVideoIsShown = false
-        // state.module.lightBoxIsShown = false
-        state.iconBar.isShown = true
     },
     safetyCompleted: (state, completed) => {
         state.module.safetyCompleted = completed
+    },
+
+    /********************************************************
+     * START UP SCREENS
+     ********************************************************/
+    setStartUpScreensCompleted: (state, completed) => {
+        state.moduleData.startUpScreensCompleted = completed
+    },
+    setStartUpScreensPlaying: (state, playing) => {
+        state.module.startUpScreensPlaying = playing
     },
 
     /********************************************************
@@ -332,6 +334,16 @@ export default {
     },
     hideActivityLightBox: (state) => {
         state.module.activityLightBoxIsShown = false
+    },
+
+    /********************************************************
+     * ACTIVITY BLOCKBOX: TOGGLE
+     ********************************************************/
+    showActivityBlockBox: (state) => {
+        state.module.activityBlockBoxIsShown = true
+    },
+    hideActivityBlockBox: (state) => {
+        state.module.activityBlockBoxIsShown = false
     },
 
     /********************************************************
@@ -562,11 +574,15 @@ export default {
     /********************************************************
      * SERVICE INFORMATION WINDOW
      ********************************************************/
+    setSiIconMenuItems: (state, items) => {
+        state.iconBar.icons.serviceInfo.menuItems = items
+    },
     showSiWindow: (state, options) => {
         state.components.siWindow.isShown = true
         state.components.siWindow.isExpanded = true
         state.components.siWindow.isCollapsed = false
         state.components.siWindow.content = options.content
+        state.components.siWindow.fileName = options.fileName
         state.components.siWindow.width = options.width
         state.components.siWindow.height = options.height
         state.iconBar.icons.serviceInfo.isEnabled = false

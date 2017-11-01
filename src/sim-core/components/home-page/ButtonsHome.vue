@@ -32,6 +32,7 @@
 
 <script>
 import { setModuleStartTime } from '../../core/reporting'
+import { startModuleWithLTIData } from '../../core/lti'
 export default {
     name: 'ButtonsHome',
     methods: {
@@ -39,37 +40,39 @@ export default {
             // Change the view
             if (view === 'SimPage') {
                 setModuleStartTime()
-                this.$store.commit('setCurrentView', view)
-                this.$store.commit('setCurrentActivityView', 'A1V1')
+                startModuleWithLTIData(view)
             } else {
                 this.$store.commit('setCurrentView', view)
 
                 // Button: Using the Simulation
                 if (btnClicked === 'usimulation') {
                     // Set the Video Page Activity Tile to: Using the Simulation
-                    this.$store.dispatch('setActivityName', 'Using the Simulation')
-                    this.$store.dispatch('setVideoSource', '/assets/video/intro_video.html')
+                    this.$store.commit('setActivityName', 'Using the Simulation')
+
                     // Set the loaded video based on the module type
                     if (this.$store.getters.getModuleType === 'concepts') {
-                        this.$store.dispatch('setActiveButton', 'uconcepts')
+                        this.$store.commit('setActiveButton', 'uconcepts')
                     } else if (this.$store.getters.getModuleType === 'equipment') {
-                        this.$store.dispatch('setActiveButton', 'uequipment')
+                        this.$store.commit('setActiveButton', 'uequipment')
                     }
                 }
 
                 // Button: Understanding the Concepts
                 else if (btnClicked === 'uconcepts') {
                     // Set the Video Page Activity Tile to: Understanding the Concepts
-                    this.$store.dispatch('setActivityName', 'Understanding the Concepts')
-                    this.$store.dispatch('setActiveButton', 'usimulation')
+                    this.$store.commit('setLoadedVideo', 'uconcepts')
+                    this.$store.commit('setActivityName', 'Understanding the Concepts')
+                    this.$store.commit('setActiveButton', 'usimulation')
+                    this.$store.commit('setVideoSource', '../assets/video/concepts_video.html')
                 }
 
                 // Button: Understanding the Equipment
                 if (btnClicked === 'uequipment') {
                     // Set the Video Page Activity Tile to: Understanding the Equipment
-                    this.$store.dispatch('setVideoSource', '/assets/video/equipment_video.html')
-                    this.$store.dispatch('setActivityName', 'Understanding the Equipment')
-                    this.$store.dispatch('setActiveButton', 'usimulation')
+                    this.$store.commit('setLoadedVideo', 'uequipment')
+                    this.$store.commit('setActivityName', 'Understanding the Equipment')
+                    this.$store.commit('setActiveButton', 'usimulation')
+                    this.$store.commit('setVideoSource', '../assets/video/equipment_video.html')
                 }
             }
         }
