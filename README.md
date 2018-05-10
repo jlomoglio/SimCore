@@ -1,30 +1,12 @@
-# vueapp01
+# SimCore
 
-> A Vue.js project
+> A Vue2.js Project I created as a platform for developing interactive learning modules for Cengage. 
 
-## Build Setup
+The goal was to have a form tool that would allow their visionaries to quickly input all their narratives, quizzes along with activity and task data. Once the form was completed the data would then be output into a json file. They also needed a custom platform that would allow their junior developers to quickly and easily import the data and to give them the ability to eaily develop the modules.
 
-``` bash
-# install dependencies
-npm install
+Simulation modules are comprised of several activitities that each have tasks that a student must perform, such as rotating a dial to the correct reading, or dragging a probe to a drop-zone. Each activity is voice narrated and has optional closed captioning. Students receive points for each task they complete correctly.
 
-# serve with hot reload at localhost:8080
-npm run dev
+The existing code for the application was one of the worst code sets I had ever come across. So after several meetings, I was assigned as the lead designer and was given several candidates to choose from to work on my team. Once I had my team in place, we began tearing through the old code base and designing a new platform.
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Documentation
+https://jlomoglio.github.io/2018/portfolio/simdocs/index.html
