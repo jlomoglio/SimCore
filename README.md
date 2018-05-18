@@ -1,4 +1,5 @@
 # SimCore
+[![Build Status][jlomoglio-badge]][jlomoglio-badge-url]
 
 > A Vue2.js Project I created as a platform for developing interactive learning modules for Cengage. 
 
@@ -10,3 +11,6 @@ The existing code for the application was one of the worst code sets I had ever 
 
 ## Documentation
 https://jlomoglio.github.io/2018/portfolio/simdocs/index.html
+
+[jlomoglio-badge]: https://jlomoglio.github.io/2018/
+[jlomoglio-badge-url]: https://jlomoglio.github.io/2018/
