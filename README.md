@@ -12,5 +12,5 @@ The existing code for the application was one of the worst code sets I had ever 
 ## Documentation
 https://jlomoglio.github.io/2018/portfolio/simdocs/index.html
 
-[jlomoglio-badge]: https://jlomoglio.github.io/2018/
+[jlomoglio-badge]: https://travis-ci.org/angular/quickstart.svg?branch=master
 [jlomoglio-badge-url]: https://jlomoglio.github.io/2018/
