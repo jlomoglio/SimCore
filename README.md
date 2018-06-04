@@ -14,3 +14,8 @@ https://jlomoglio.github.io/2018/portfolio/simdocs/index.html
 
 [jlomoglio-badge]: https://travis-ci.org/angular/quickstart.svg?branch=master
 [jlomoglio-badge-url]: https://jlomoglio.github.io/2018/
+
+## Video Demo 
+In this video demo, I will walk thru what SimCore is and how I designed it. This is a session I recorded while previweing it to another development team that needed to use it.
+
+https://youtu.be/SgTiNqgmBAs
