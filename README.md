@@ -9,8 +9,6 @@ Simulation modules are comprised of several activitities that each have tasks th
 
 The existing code for the application was one of the worst code sets I had ever come across. So after several meetings, I was assigned as the lead designer and was given several candidates to choose from to work on my team. Once I had my team in place, we began tearing through the old code base and designing a new platform.
 
-## Documentation
-https://jlomoglio.github.io/2018/portfolio/simdocs/index.html
 
 [jlomoglio-badge]: https://travis-ci.org/angular/quickstart.svg?branch=master
 [jlomoglio-badge-url]: https://jlomoglio.github.io/2018/
