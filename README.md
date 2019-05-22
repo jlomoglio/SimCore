@@ -14,7 +14,7 @@ The existing code for the application was one of the worst code sets I had ever 
 [jlomoglio-badge-url]: https://jlomoglio.github.io/2018/
 
 ## Video Demo 
-In this video demo, I will walk thru what SimCore is and how I designed it. This is a session I recorded while previweing it to another development team that needed to use it.
+In this video demo, I will walk thru what SimCore is and how I designed it. This is a session I recorded while showing it to another development team that needed to use it.
 
 https://youtu.be/SgTiNqgmBAs
 
