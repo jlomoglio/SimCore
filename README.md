@@ -17,3 +17,9 @@ The existing code for the application was one of the worst code sets I had ever 
 In this video demo, I will walk thru what SimCore is and how I designed it. This is a session I recorded while previweing it to another development team that needed to use it.
 
 https://youtu.be/SgTiNqgmBAs
+
+
+## Documentation
+I built this documentation site with jCore and it provides detailed information on how to setup and use SimCore.
+
+http://joelomoglio.gallery/simmod/
